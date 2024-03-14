@@ -19,6 +19,11 @@ Para la parte de los test, se creo una carpeta llamada "test" en donde se creó 
 
 Por lo que para probar cada uno de estos se debe acceder a la carpeta test.
 
+```bash
+node test/testProductsManager.js
+node test/testUsersManager.js
+```
+
 ## UsersManager 
 Para esta clase el archivo de test es testUsersManager.js, en el que se programo lo siguiente:
 1. La creación de los dos usuarios y uno tercero sin role teniendo en cuenta lo anterior para validar esto.

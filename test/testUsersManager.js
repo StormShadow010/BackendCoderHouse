@@ -2,6 +2,7 @@ const UsersManager = require("../UsersManager")
 
 const testUsersManager = () => {
     const userNew = new UsersManager();
+    console.log("Testing the class UsersManager")
 
     console.log("Creating a new user 1")
     userNew.create({

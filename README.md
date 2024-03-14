@@ -1,1 +1,1 @@
-# BackendCoderHouse
+Para cada ejercicio realizada se crearon las clases acorde a lo solicitado, además se programo el caso en que algún campo no venga, para de esta forma que por medio de un throw new Error y todo este encerrado en un try catch para validar posibles errores.

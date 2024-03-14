@@ -29,6 +29,7 @@ Para esta clase el archivo de test es testUsersManager.js, en el que se programo
 Para esta clase el archivo de test es testProductsManager.js, en el que se programo lo siguiente:
 1. La creación de los cinco productos.
 2. Se muestran los productos creados.
-3. Crear un producto sin el parametro de la categoría, demostrando el error que esto tendría
+3. Crear un producto sin el parametro del stock, demostrando el error que esto tendría
+4. Crear un producto sin el parametro de la categoría, demostrando el error que esto tendría
 
 

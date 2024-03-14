@@ -8,10 +8,10 @@ Para cada una se creó una variable privada que guarda el arreglo de todos los p
 Además se crearon los metodos de create(data) y read para cada clase, en donde el primero a partir de la información suministrada creaba un nuevo objeto en el arreglo y en el segundo metodo se traía el arreglo para mostrarlo con la información que contiene.
 
 ## UsersManager 
-Para esta clase se valido en la parte de create que los espacios de photo, email y password son obligatorios de lo contrario saldría el siguiente error ->  throw new Error("All fields are required!!!!!") y en el caso de rol, se valido que en caso de no ser enviado por defecto el rol se asume como "user"
+Para esta clase se valido en la parte de create los espacios de photo, email y password son obligatorios de lo contrario saldría el siguiente error ->  throw new Error("All fields are required!!!!!") y en el caso de rol, se valido que en caso de no ser enviado por defecto el rol se asume como "user"
 
 ## ProductsManager
-Para esta clase se valido en la parte de create que los espacios de title, photo, category, price y stock son obligatorios de lo contrario saldría el siguiente error -> throw new Error("All fields are required!!")
+Para esta clase se valido en la parte de create los espacios de title, photo, category, price y stock son obligatorios de lo contrario saldría el siguiente error -> throw new Error("All fields are required!!")
 
 # Testing
 

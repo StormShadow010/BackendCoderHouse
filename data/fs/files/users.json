@@ -1,0 +1,44 @@
+[
+  {
+    "id": "948222314679b73e72d4477b",
+    "photo": "default-image-url",
+    "email": "user1@example.com",
+    "password": "<PASSWORD>",
+    "role": "admin"
+  },
+  {
+    "id": "8d79273cf3025d830d0456e6",
+    "photo": "default-image-url",
+    "email": "user2@example.com",
+    "password": "<PASSWORD>",
+    "role": "admin"
+  },
+  {
+    "id": "030f4a42ee3deb0c7f137e2a",
+    "photo": "default-image-url",
+    "email": "user3@example.com",
+    "password": "<PASSWORD>",
+    "role": "employee"
+  },
+  {
+    "id": "fd9d94392fd13d3cc0902a9f",
+    "photo": "default-image-url",
+    "email": "user2@example.com",
+    "password": "<PASSWORD>",
+    "role": "admin"
+  },
+  {
+    "id": "f7b7c64c302aadeac8614b29",
+    "photo": "default-image-url",
+    "email": "user3@example.com",
+    "password": "<PASSWORD>",
+    "role": "employee"
+  },
+  {
+    "id": "cee55aae8e40d51a3b5a261f",
+    "photo": "https://unsplash.com",
+    "email": "user4@example.com",
+    "password": "<PASSWORD>",
+    "role": "employee"
+  }
+]

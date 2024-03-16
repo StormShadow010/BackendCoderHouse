@@ -45,6 +45,7 @@ console.log(userNew.read());
 console.log(
   "Test : Creating a new user 5 without email parameter, an error is expected"
 );
+
 userNew.create({
   photo:
     "https://unsplash.com/es/fotos/fotografia-de-enfoque-superficial-de-mujer-al-aire-libre-durante-el-dia-rDEOVtE7vOs",

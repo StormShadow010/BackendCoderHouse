@@ -10,7 +10,6 @@ module.exports = class UsersManager {
 
   init = () => {
     const exists = fs.existsSync(this.path);
-    console.log(exists);
     if (!exists) {
       const stringData = JSON.stringify([], null, 2);
       fs.writeFileSync(this.path, stringData);

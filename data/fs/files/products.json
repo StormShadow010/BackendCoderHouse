@@ -1,6 +1,6 @@
 [
   {
-    "id": "7e1f0b0abe2328b419a47704",
+    "id": "f1e146df7ac97edfdf4ef4c7",
     "title": "Product 0",
     "photo": "https://example.com/photo0.jpg",
     "category": "Category A",
@@ -8,7 +8,7 @@
     "stock": 100
   },
   {
-    "id": "f2e43b37017c99a34a800b61",
+    "id": "62c82d0e6b8a0283939dcf77",
     "title": "Product 1",
     "photo": "https://example.com/photo1.jpg",
     "category": "Category B",
@@ -16,7 +16,7 @@
     "stock": 100
   },
   {
-    "id": "03c0625dc6c7011e2b360865",
+    "id": "c22b26ccbb12faa8d062ad71",
     "title": "Product 2",
     "photo": "https://example.com/photo2.jpg",
     "category": "Category A",
@@ -24,7 +24,7 @@
     "stock": 100
   },
   {
-    "id": "d365b6a62b65b41c2eaac329",
+    "id": "8f564ba02c513f221907900a",
     "title": "Product 3",
     "photo": "https://example.com/photo3.jpg",
     "category": "Category B",
@@ -32,79 +32,7 @@
     "stock": 100
   },
   {
-    "id": "08df1436366fb22096e1636d",
-    "title": "Product 6",
-    "photo": "https://example.com/photo6.jpg",
-    "category": "Category A",
-    "price": 700,
-    "stock": 100
-  },
-  {
-    "id": "b8be366a3ad9c94905e64943",
-    "title": "Product 7",
-    "photo": "https://example.com/photo7.jpg",
-    "category": "Category B",
-    "price": 800,
-    "stock": 100
-  },
-  {
-    "id": "40016969b366fd90834e8e44",
-    "title": "Product 8",
-    "photo": "https://example.com/photo8.jpg",
-    "category": "Category A",
-    "price": 900,
-    "stock": 100
-  },
-  {
-    "id": "5992342ff0f086b39a0dbe24",
-    "title": "Product 9",
-    "photo": "https://example.com/photo9.jpg",
-    "category": "Category B",
-    "price": 1000,
-    "stock": 100
-  },
-  {
-    "id": "d0b613ffd40ecab63bfa507f",
-    "title": "Product 0",
-    "photo": "https://example.com/photo0.jpg",
-    "category": "Category A",
-    "price": 100,
-    "stock": 100
-  },
-  {
-    "id": "cc2375514b6bc0c236d4d36b",
-    "title": "Product 1",
-    "photo": "https://example.com/photo1.jpg",
-    "category": "Category B",
-    "price": 200,
-    "stock": 100
-  },
-  {
-    "id": "7914434284c9daa554094d04",
-    "title": "Product 2",
-    "photo": "https://example.com/photo2.jpg",
-    "category": "Category A",
-    "price": 300,
-    "stock": 100
-  },
-  {
-    "id": "9f73845d7555e981543980ab",
-    "title": "Product 3",
-    "photo": "https://example.com/photo3.jpg",
-    "category": "Category B",
-    "price": 400,
-    "stock": 100
-  },
-  {
-    "id": "994086730440d423b0115e53",
-    "title": "Product 4",
-    "photo": "https://example.com/photo4.jpg",
-    "category": "Category A",
-    "price": 500,
-    "stock": 100
-  },
-  {
-    "id": "10b49e18357318bc83c08622",
+    "id": "11a9f94a5660f6345aff44f0",
     "title": "Product 5",
     "photo": "https://example.com/photo5.jpg",
     "category": "Category B",
@@ -112,7 +40,7 @@
     "stock": 100
   },
   {
-    "id": "a38622abba62cc88fca27d3f",
+    "id": "0bb7da14be485a7647ea91d8",
     "title": "Product 6",
     "photo": "https://example.com/photo6.jpg",
     "category": "Category A",
@@ -120,7 +48,7 @@
     "stock": 100
   },
   {
-    "id": "d0334504dc27f7fe30eac115",
+    "id": "e099e21bd454e8b44d1243aa",
     "title": "Product 7",
     "photo": "https://example.com/photo7.jpg",
     "category": "Category B",
@@ -128,7 +56,7 @@
     "stock": 100
   },
   {
-    "id": "d9d958076282ed92d2afedeb",
+    "id": "fc86aa321884cf2b97432c70",
     "title": "Product 8",
     "photo": "https://example.com/photo8.jpg",
     "category": "Category A",
@@ -136,7 +64,7 @@
     "stock": 100
   },
   {
-    "id": "93dedf8a99375e965dacba9b",
+    "id": "58b6991890bc6a995fca3ba6",
     "title": "Product 9",
     "photo": "https://example.com/photo9.jpg",
     "category": "Category B",

@@ -1,5 +1,6 @@
 import express from "express"
 import productsManager from "./data/fs/ProductsManager.fs.js"
+import usersManager from "./data/fs/UsersManager.fs.js"
 
 //Definir un servidor
 const server = express()
@@ -65,6 +66,58 @@ server.get("/api/products/:pid", async (req, res) => {
     try {
         const { pid } = req.params;
         const one = await productsManager.readOne(pid);
+
+        const response = one ? {
+            response: one,
+            success: true
+        } : {
+            statusCode: 404,
+            response: null,
+            message: "No product found",
+            success: false
+        };
+
+        return res.status(response.success ? 200 : response.statusCode).json(response);
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({
+            response: error.message,
+            success: false
+        });
+    }
+});
+
+
+server.get("/api/users", async (req, res) => {
+    try {
+        const { role } = req.query;
+        const all = await usersManager.read(role);
+
+        const response = all.length !== 0 ? {
+            response: all,
+            role,
+            success: true
+        } : {
+            statusCode: 404,
+            response: null,
+            message: "No users found",
+            success: false
+        };
+
+        return res.status(response.success ? 200 : response.statusCode).json(response);
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({
+            response: error.message,
+            success: false
+        });
+    }
+})
+
+server.get("/api/users/:uid", async (req, res) => {
+    try {
+        const { uid } = req.params;
+        const one = await usersManager.readOne(uid);
 
         const response = one ? {
             response: one,

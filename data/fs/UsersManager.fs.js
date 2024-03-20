@@ -2,9 +2,9 @@ import fs from "fs";
 import crypto from "crypto";
 import { createFile, createFileNP, readFile } from "./helpers/manageFiles.js";
 
-class ProductsManager {
+class UsersManager {
     constructor() {
-        this.path = "./data/fs/files/products.json";
+        this.path = "./data/fs/files/users.json";
         this.init();
     }
     init = () => {
@@ -19,29 +19,29 @@ class ProductsManager {
 
     create = async (data) => {
         try {
-            const { title, photo, category, price, stock } = data;
-            if (!title || !category || !price || !stock) {
+            const { photo, email, password, role } = data;
+            if (!email || !password || !role) {
                 throw new Error("All fields are required!!");
             }
-            //Create object for new product
-            const newProduct = {
+            //Create object for new User
+            const newUser = {
                 id: crypto.randomBytes(12).toString("hex"),
-                title,
                 photo: photo || "https://unsplash.com",
-                category,
-                price,
-                stock,
+                email,
+                password,
+                role,
             };
             let fileTotal = await readFile(this.path);
-            await createFileNP(this.path, fileTotal, newProduct);
+            await createFileNP(this.path, fileTotal, newUser);
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     };
-    read = async (category) => {
+
+    read = async (role) => {
         try {
             let fileTotal = await readFile(this.path);
-            category && (fileTotal = fileTotal.filter(each => each.category.toLowerCase() === category.toLowerCase()))
+            role && (fileTotal = fileTotal.filter(each => each.role.toLowerCase() === role.toLowerCase()))
             return fileTotal
         } catch (error) {
             throw error;
@@ -64,18 +64,18 @@ class ProductsManager {
             let restFile = fileTotal.filter((product) => product.id !== id);
 
             if (!restFile) {
-                throw error;
+                throw new Error("User not found!!");
             } else {
                 const findProductExists = await this.readOne(id);
-                console.log("Product deleted:", findProductExists);
+                console.log("User deleted:", findProductExists);
                 await createFile(this.path, restFile);
                 return restFile;
             }
         } catch (error) {
-            throw error;
+            console.log(error);
         }
     };
 }
 
-const productsManager = new ProductsManager()
-export default productsManager
+const usersManager = new UsersManager()
+export default usersManager

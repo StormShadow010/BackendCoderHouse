@@ -77,7 +77,7 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
     - Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/users/d25328edbc8d95b73638989`
 
 
-##Probar los métodos de las clases
+## Probar los métodos de las clases
 Para la parte de los test, se creo una carpeta llamada "test" en donde se creó una archivo tanto para UsersManager como ProductsManager para el caso de memory y fs, en el que se crean los diferentes métodos (create,read,readOne,destroy), en caso de querer probarlo se puede con las siguientes rutas:
 
 ### Rutas

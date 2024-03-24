@@ -1,162 +1,162 @@
 [
-    {
-        "id": "a6153773d3933b7287f23150",
-        "title": "Rustic Metal Shirt",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Electronic",
-        "price": "839.00",
-        "stock": "9002"
-    },
-    {
-        "id": "4656e4ae4f1aa8e8987ef83f",
-        "title": "Practical Concrete Pizza",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Bespoke",
-        "price": "280.00",
-        "stock": "06496"
-    },
-    {
-        "id": "5420f8909f2f837bd2c76611",
-        "title": "Incredible Soft Gloves",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Electronic",
-        "price": "598.00",
-        "stock": "1359"
-    },
-    {
-        "id": "fec69dfd9432c561f95c1eae",
-        "title": "Gorgeous Wooden Cheese",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Awesome",
-        "price": "997.00",
-        "stock": "702"
-    },
-    {
-        "id": "8c3927feadb66145f21599b7",
-        "title": "Intelligent Steel Gloves",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Small",
-        "price": "154.00",
-        "stock": "0637"
-    },
-    {
-        "id": "6c306569bf6e2722e20ebdfb",
-        "title": "Unbranded Granite Soap",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Licensed",
-        "price": "215.00",
-        "stock": "65828"
-    },
-    {
-        "id": "f895586d2058a7edbff07506",
-        "title": "Handcrafted Metal Shoes",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Intelligent",
-        "price": "387.00",
-        "stock": "385"
-    },
-    {
-        "id": "71ccb798a91764e14d169407",
-        "title": "Fantastic Wooden Chair",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Modern",
-        "price": "433.00",
-        "stock": "4790"
-    },
-    {
-        "id": "7cff4628c08f8374da54bd8a",
-        "title": "Oriental Steel Hat",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Handcrafted",
-        "price": "156.00",
-        "stock": "112"
-    },
-    {
-        "id": "3e2e6ecb5779d7dd5f124733",
-        "title": "Fantastic Granite Tuna",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Practical",
-        "price": "412.00",
-        "stock": "212"
-    },
-    {
-        "id": "43fae370f09e41b62f5e9220",
-        "title": "Fantastic Fresh Sausages",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Tasty",
-        "price": "487.00",
-        "stock": "32141"
-    },
-    {
-        "id": "3cb87b06bfb2a63438a7afa8",
-        "title": "Elegant Rubber Chips",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Elegant",
-        "price": "842.00",
-        "stock": "07984"
-    },
-    {
-        "id": "ba4f87f0c721b0e6621800ff",
-        "title": "Awesome Bronze Chair",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Elegant",
-        "price": "460.00",
-        "stock": "747"
-    },
-    {
-        "id": "1e12304cef159b28fe664226",
-        "title": "Modern Cotton Keyboard",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Luxurious",
-        "price": "275.00",
-        "stock": "07181"
-    },
-    {
-        "id": "c91ca217b4b4411b8b30d086",
-        "title": "Luxurious Rubber Chips",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Modern",
-        "price": "943.00",
-        "stock": "3290"
-    },
-    {
-        "id": "2060195b22e0cf72664db05e",
-        "title": "Small Wooden Computer",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Electronic",
-        "price": "2.00",
-        "stock": "84232"
-    },
-    {
-        "id": "fc7aac04afd9a82e87ca1439",
-        "title": "Handcrafted Cotton Pizza",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Elegant",
-        "price": "178.00",
-        "stock": "877"
-    },
-    {
-        "id": "3b5501148a13f490e40ad37e",
-        "title": "Unbranded Plastic Ball",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Small",
-        "price": "506.00",
-        "stock": "67120"
-    },
-    {
-        "id": "f6b988b342dd9215d18bfea0",
-        "title": "Recycled Frozen Pants",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Incredible",
-        "price": "952.00",
-        "stock": "725"
-    },
-    {
-        "id": "7390de02e7bafb195b9730f7",
-        "title": "Ergonomic Rubber Car",
-        "photo": "https://loremflickr.com/640/480",
-        "category": "Ergonomic",
-        "price": "213.00",
-        "stock": "141"
-    }
+  {
+    "id": "353324372ff812d0734c22ac",
+    "title": "Product 0",
+    "photo": "https://example.com/photo0.jpg",
+    "category": "Category A",
+    "price": 100,
+    "stock": 100
+  },
+  {
+    "id": "355a6aa63a80964ea4d0dfc7",
+    "title": "Product 1",
+    "photo": "https://example.com/photo1.jpg",
+    "category": "Category B",
+    "price": 200,
+    "stock": 100
+  },
+  {
+    "id": "03cc4031e7d3cb031e3785f6",
+    "title": "Product 2",
+    "photo": "https://example.com/photo2.jpg",
+    "category": "Category A",
+    "price": 300,
+    "stock": 100
+  },
+  {
+    "id": "29e1831d8c864fbb4a01d7ba",
+    "title": "Product 3",
+    "photo": "https://example.com/photo3.jpg",
+    "category": "Category B",
+    "price": 400,
+    "stock": 100
+  },
+  {
+    "id": "077924bb7dced900c1287c28",
+    "title": "Product 5",
+    "photo": "https://example.com/photo5.jpg",
+    "category": "Category B",
+    "price": 600,
+    "stock": 100
+  },
+  {
+    "id": "3d5e42328a6e8ed0f79afff9",
+    "title": "Product 6",
+    "photo": "https://example.com/photo6.jpg",
+    "category": "Category A",
+    "price": 700,
+    "stock": 100
+  },
+  {
+    "id": "6aa229dd4cd3ae3bae7ce922",
+    "title": "Product 7",
+    "photo": "https://example.com/photo7.jpg",
+    "category": "Category B",
+    "price": 800,
+    "stock": 100
+  },
+  {
+    "id": "b884af7764080b8ab6ea78d5",
+    "title": "Product 8",
+    "photo": "https://example.com/photo8.jpg",
+    "category": "Category A",
+    "price": 900,
+    "stock": 100
+  },
+  {
+    "id": "e65bab69bee8eed2317b02b0",
+    "title": "Product 9",
+    "photo": "https://example.com/photo9.jpg",
+    "category": "Category B",
+    "price": 1000,
+    "stock": 100
+  },
+  {
+    "id": "ca880acb5a2c93e043454873",
+    "title": "Product 10",
+    "photo": "https://example.com/photo10.jpg",
+    "category": "Category A",
+    "price": 1100,
+    "stock": 100
+  },
+  {
+    "id": "a0c0d309897a3cfbb100a810",
+    "title": "Product 11",
+    "photo": "https://example.com/photo11.jpg",
+    "category": "Category B",
+    "price": 1200,
+    "stock": 100
+  },
+  {
+    "id": "2eec8be2c69ebdcc4476251a",
+    "title": "Product 12",
+    "photo": "https://example.com/photo12.jpg",
+    "category": "Category A",
+    "price": 1300,
+    "stock": 100
+  },
+  {
+    "id": "273a0827769991295725fdde",
+    "title": "Product 13",
+    "photo": "https://example.com/photo13.jpg",
+    "category": "Category B",
+    "price": 1400,
+    "stock": 100
+  },
+  {
+    "id": "3bc652a725b90373687293ee",
+    "title": "Product 14",
+    "photo": "https://example.com/photo14.jpg",
+    "category": "Category A",
+    "price": 1500,
+    "stock": 100
+  },
+  {
+    "id": "b7e34751121c051d5eb7e96e",
+    "title": "Product 15",
+    "photo": "https://example.com/photo15.jpg",
+    "category": "Category B",
+    "price": 1600,
+    "stock": 100
+  },
+  {
+    "id": "6d869350bb7c3b4faa1afd55",
+    "title": "Product 16",
+    "photo": "https://example.com/photo16.jpg",
+    "category": "Category A",
+    "price": 1700,
+    "stock": 100
+  },
+  {
+    "id": "e309e05124f180e4b71e17ca",
+    "title": "Product 17",
+    "photo": "https://example.com/photo17.jpg",
+    "category": "Category B",
+    "price": 1800,
+    "stock": 100
+  },
+  {
+    "id": "9d26da422c5be426b924e727",
+    "title": "Product 18",
+    "photo": "https://example.com/photo18.jpg",
+    "category": "Category A",
+    "price": 1900,
+    "stock": 100
+  },
+  {
+    "id": "cc06ea0aef987f9311b349fc",
+    "title": "Product 19",
+    "photo": "https://example.com/photo19.jpg",
+    "category": "Category B",
+    "price": 2000,
+    "stock": 100
+  },
+  {
+    "id": "221ec3471933f74d6920c51d",
+    "title": "Product 20",
+    "photo": "https://example.com/photo20.jpg",
+    "category": "Category A",
+    "price": 2100,
+    "stock": 100
+  }
 ]

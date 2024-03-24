@@ -1,6 +1,6 @@
-const crypto = require("crypto"); //Create id random with hexa
+import crypto from "crypto";
 
-module.exports = class ProductsManager {
+class ProductsManager {
   static #products = [];
   create(data) {
     try {
@@ -60,3 +60,6 @@ module.exports = class ProductsManager {
     }
   };
 };
+
+const productsManager = new ProductsManager()
+export default productsManager

@@ -12,29 +12,28 @@ class UsersManager {
         if (!exists) {
             const stringData = JSON.stringify([], null, 2);
             fs.writeFileSync(this.path, stringData);
-        } else {
-            return null
         }
     };
 
     create = async (data) => {
         try {
             const { photo, email, password, role } = data;
-            if (!email || !password || !role) {
+            if (!email || !password) {
                 throw new Error("All fields are required!!");
             }
-            //Create object for new User
+
             const newUser = {
                 id: crypto.randomBytes(12).toString("hex"),
                 photo: photo || "https://unsplash.com",
                 email,
                 password,
-                role,
+                role: role || 0
             };
             let fileTotal = await readFile(this.path);
             await createFileNP(this.path, fileTotal, newUser);
         } catch (error) {
             console.log(error);
+            return error
         }
     };
 
@@ -44,7 +43,8 @@ class UsersManager {
             role && (fileTotal = fileTotal.filter(each => each.role.toLowerCase() === role.toLowerCase()))
             return fileTotal
         } catch (error) {
-            throw error;
+            console.log(error);
+            return error
         }
     }
 
@@ -52,27 +52,26 @@ class UsersManager {
         try {
             let fileTotal = await readFile(this.path);
             let itemId = fileTotal.find((item) => item.id === id);
-            return itemId;
+            return itemId ? itemId : console.log("User not found!!");
         } catch (error) {
-            throw error;
+            console.log(error);
+            return error
         }
     };
 
     destroy = async (id) => {
         try {
             let fileTotal = await readFile(this.path);
-            let restFile = fileTotal.filter((product) => product.id !== id);
+            let userDelete = await this.readOne(id);
 
-            if (!restFile) {
-                throw new Error("User not found!!");
-            } else {
-                const findProductExists = await this.readOne(id);
-                console.log("User deleted:", findProductExists);
-                await createFile(this.path, restFile);
-                return restFile;
+            if (userDelete) {
+                console.log("User deleted:", userDelete);
+                let usersFilter = fileTotal.filter((users) => users.id !== id);
+                await createFile(this.path, usersFilter);
             }
         } catch (error) {
             console.log(error);
+            return error
         }
     };
 }

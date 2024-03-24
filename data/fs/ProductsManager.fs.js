@@ -12,8 +12,6 @@ class ProductsManager {
         if (!exists) {
             const stringData = JSON.stringify([], null, 2);
             fs.writeFileSync(this.path, stringData);
-        } else {
-            return null
         }
     };
 
@@ -35,7 +33,8 @@ class ProductsManager {
             let fileTotal = await readFile(this.path);
             await createFileNP(this.path, fileTotal, newProduct);
         } catch (error) {
-            throw error;
+            console.log(error);
+            return error
         }
     };
     read = async (category) => {
@@ -44,7 +43,8 @@ class ProductsManager {
             category && (fileTotal = fileTotal.filter(each => each.category.toLowerCase() === category.toLowerCase()))
             return fileTotal
         } catch (error) {
-            throw error;
+            console.log(error);
+            return error
         }
     }
 
@@ -52,27 +52,26 @@ class ProductsManager {
         try {
             let fileTotal = await readFile(this.path);
             let itemId = fileTotal.find((item) => item.id === id);
-            return itemId;
+            return itemId ? itemId : console.log("Product not found!!");
         } catch (error) {
-            throw error;
+            console.log(error);
+            return error
         }
     };
 
     destroy = async (id) => {
         try {
             let fileTotal = await readFile(this.path);
-            let restFile = fileTotal.filter((product) => product.id !== id);
+            let productDelete = await this.readOne(id);
 
-            if (!restFile) {
-                throw error;
-            } else {
-                const findProductExists = await this.readOne(id);
-                console.log("Product deleted:", findProductExists);
-                await createFile(this.path, restFile);
-                return restFile;
+            if (productDelete) {
+                console.log("Product deleted:", productDelete);
+                let productsFilter = fileTotal.filter((product) => product.id !== id);
+                await createFile(this.path, productsFilter);
             }
         } catch (error) {
-            throw error;
+            console.log(error);
+            return error
         }
     };
 }

@@ -1,11 +1,11 @@
-const crypto = require("crypto"); //Create id random with hexa
+import crypto from "crypto";//Create id random with hexa
 
-module.exports = class UsersManager {
+class UsersManager {
   static #users = [];
   create(data) {
     try {
       const { photo, email, password, role } = data;
-      if (!email || !password || !role) {
+      if (!email || !password) {
         throw new Error("All fields are required!!");
       }
       //Create object for new user
@@ -14,7 +14,7 @@ module.exports = class UsersManager {
         photo: photo || "https://unsplash.com",
         email,
         password,
-        role,
+        role: role || "0",
       };
       //Add new user to array uers
       UsersManager.#users.push(newUser);
@@ -59,3 +59,7 @@ module.exports = class UsersManager {
     }
   };
 };
+
+
+const usersManager = new UsersManager()
+export default usersManager

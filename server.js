@@ -125,7 +125,7 @@ server.get("/api/users/:uid", async (req, res) => {
         } : {
             statusCode: 404,
             response: null,
-            message: "No product found",
+            message: "No user found",
             success: false
         };
 

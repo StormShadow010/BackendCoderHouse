@@ -63,8 +63,8 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
    - Para obtener un producto específico (reemplazar `:pid` por el ID del producto): `http://localhost:8080/api/products/:pid`
    (Puedes usar la siguiente ruta `http://localhost:8080/api/products/353324372ff812d0734c22ac`)
 2. Casos de error:
-- Filtrar por una categoría que no existe por ejemplo `http://localhost:8080/api/products?category=category%20D`
-- Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/products/353324372ff812d0734`
+    - Filtrar por una categoría que no existe por ejemplo `http://localhost:8080/api/products?category=category%20D`
+    - Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/products/353324372ff812d0734`
 ---
 **Usuarios:**
 1. Casos de exito:
@@ -73,8 +73,8 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
    (Puedes usar la siguiente ruta `http://localhost:8080/api/users?role=0`)
    - Para obtener un usuario específico (reemplazar `:uid` por el ID del usuario): `http://localhost:8080/api/users/:uid`(Puedes usar la siguiente ruta `http://localhost:8080/api/users/d25328edbc8d95b73638fcd8`)
 2. Casos de error:
-- Filtrar por un rol que no existe por ejemplo `http://localhost:8080/api/users?role=2`
-- Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/users/d25328edbc8d95b73638989`
+    - Filtrar por un rol que no existe por ejemplo `http://localhost:8080/api/users?role=2`
+    - Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/users/d25328edbc8d95b73638989`
 
 
 ##Probar los métodos de las clases

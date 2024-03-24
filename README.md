@@ -1,40 +1,100 @@
+# Desasío:Manejo de archivos
 
-# Clases con ECMAScript y ECMAScript avanzado - Desafío
+Este desafío desarrolla un sistema para administrar productos y usuarios usando Node.js junto con el módulo FileSystem (fs) de manera asincrónica y la memoria de forma sincróna. Se emplean las características de async/await y promesas para asegurar un proceso de ejecución eficiente y que no bloquee otras operaciones, como sucede en el caso de memoria.
 
-En esta entrega se realizó un desafío en el que se tenían que programar una clase “ProductsManager”  y una clase “UsersManager”.
+## Estructura de Datos
 
-Para cada una se creó una variable privada que guarda el arreglo de todos los productos/usuarios. 
+Cada producto tiene las siguientes propiedades:
 
-Además se crearon los metodos de create(data) y read para cada clase, en donde el primero a partir de la información suministrada creaba un nuevo objeto en el arreglo y en el segundo metodo se traía el arreglo para mostrarlo con la información que contiene.
+- **_id_** (código identificador de 12 bytes en hexadecimal)
+- **_title_** (título)
+- **_photo_** (ruta de imagen)
+- **_category_** (categoría)
+- **_price_** (precio)
+- **_stock_** (unidades disponibles)
 
-## UsersManager 
-Para esta clase se valido en la parte de create los espacios de photo, email y password son obligatorios de lo contrario saldría el siguiente error ->  throw new Error("All fields are required!!!!!") y en el caso de rol, se valido que en caso de no ser enviado por defecto el rol se asume como "user"
+Cada usuario tiene las siguientes propiedades:
 
-## ProductsManager
-Para esta clase se valido en la parte de create los espacios de title, photo, category, price y stock son obligatorios de lo contrario saldría el siguiente error -> throw new Error("All fields are required!!")
+- **_id_** (código identificador de 12 bytes en hexadecimal)
+- **_photo_** (ruta de imagen)
+- **_email_**
+- **_password_**
+- **_role_** (rol de usuario)
 
-# Testing
+## Clases ProductManager y UserManager
+
+Las clases `ProductManager` y `UserManager` cuentan con los siguientes métodos:
+
+- `init()`: Se utiliza para inicializar el sistema de archivos y asegurarse de que el archivo de datos exista y esté en el formato adecuado.
+- `create(data)`: Agrega un nuevo producto\usuario al sistema.
+- `read()`: Devuelve una lista de todos los productos\usuarios almacenados.
+- `readOne(id)`: Devuelve un producto\usuario específico según su ID.
+- `destroy(id)`: Elimina un producto\usuario según su ID.
+
+Estos métodos manejan errores utilizando `try/catch` más que todo se debe evidenciar en la parte de FileSystem.
+
+Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuestión de no repetir código en la lectura y creación del documento, esto se uso tantyo para la clase `ProductManager` como `UserManager`
+
+# Testing del código
 
 Para la parte de los test, se creo una carpeta llamada "test" en donde se creó una archivo tanto para UsersManager como ProductsManager, en el que por medio de la exportanción del modulo de la clase, se crea una instancia y se hacen los respectivos casos de prueba.
 
-Por lo que para probar cada uno de estos se debe acceder a la carpeta test.
+## Rutas
 
-```bash
-node test/testProductsManager.js
-node test/testUsersManager.js
+Es importante que para probar se maneje un ruta desde la raíz de esta forma
+
+```javascript
+node test/memory/testProductsManager.memory.js
+node test/memory/testUsersManager.memory.js
+node test/fs/testProductsManager.fs.js
+node test/fs/testUsersManager.fs.js
 ```
 
-## UsersManager 
-Para esta clase el archivo de test es testUsersManager.js, en el que se programo lo siguiente:
-1. La creación de los dos usuarios y uno tercero sin role teniendo en cuenta lo anterior para validar esto.
-2. Se muestran los usuarios creados.
-3. Crear un usuario sin el path de la 4, demostrando el error que esto tendría
+### Testing Class ProductManager - Memory
 
-## ProductsManager
-Para esta clase el archivo de test es testProductsManager.js, en el que se programo lo siguiente:
-1. La creación de los cinco productos.
-2. Se muestran los productos creados.
-3. Crear un producto sin el parametro del stock, demostrando el error que esto tendría
-4. Crear un producto sin el parametro de la categoría, demostrando el error que esto tendría
+Para este testing se creo el siguiente código, en el que:
 
+- Se crean productos
+- Se muestra la creación de todos
+- Se busca por ID
+- Se destruye por ID
+- Se muestran los datos que quedarón después de la eliminación
+- Casos de errores
+
+### Testing Class UserManager - Memory
+
+Para este testing se creo el siguiente código, en el que:
+
+- Se crean usuarios
+- Se muestra la creación de todos
+- Se busca por ID
+- Se destruye por ID
+- Se muestran los datos que quedarón después de la eliminación
+- Casos de errores
+
+### Testing Class ProductManager - FS
+
+Para este testing se creo el siguiente código, en el que:
+
+- Se pasa por la función init primero al crear la instancia
+- Se lee la data del archivo json `products.js`
+- Se crean los productos con un For para que el código no sea tan extenso
+- Se muestra la creación de todos
+- Se busca por ID
+- Se destruye por ID
+- Se muestran los datos que quedarón después de la eliminación
+- Casos de errores
+
+### Testing Class UserManager - FS
+
+Para este testing se creo el siguiente código, en el que:
+
+- Se pasa por la función init primero al crear la instancia
+- Se lee la data del archivo json `users.js`
+- Se crean los usuarios
+- Se muestra la creación de todos
+- Se busca por ID
+- Se destruye por ID
+- Se muestran los datos que quedarón después de la eliminación
+- Casos de errores
 

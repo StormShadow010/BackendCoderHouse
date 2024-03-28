@@ -6,7 +6,7 @@ const testProductsManager = async () => {
     console.log(fileTotal);
 
     console.log("Creation of the products");
-    for (let i = 0; i < 21; i++) {
+    for (let i = 0; i < 41; i++) {
         await productsManager.create({
             title: `Product ${i}`,
             photo: `https://example.com/photo${i}.jpg`,

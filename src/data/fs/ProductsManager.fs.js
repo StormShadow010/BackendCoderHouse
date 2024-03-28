@@ -4,7 +4,7 @@ import { createFile, createFileNP, readFile } from "./helpers/manageFiles.js";
 
 class ProductsManager {
     constructor() {
-        this.path = "./data/fs/files/products.json";
+        this.path = "./src/data/fs/files/products.json";
         this.init();
     }
     init = () => {
@@ -18,33 +18,31 @@ class ProductsManager {
     create = async (data) => {
         try {
             const { title, photo, category, price, stock } = data;
-            if (!title || !category || !price || !stock) {
-                throw new Error("All fields are required!!");
-            }
+            if (!title) throw new Error("Title is required!!");
             //Create object for new product
             const newProduct = {
                 id: crypto.randomBytes(12).toString("hex"),
                 title,
                 photo: photo || "https://unsplash.com",
-                category,
-                price,
-                stock,
+                category: category || "Category A",
+                price: price || 1,
+                stock: stock || 1
             };
             let fileTotal = await readFile(this.path);
             await createFileNP(this.path, fileTotal, newProduct);
+            return newProduct;
         } catch (error) {
-            console.log(error);
-            return error
+            throw error;
         }
     };
+
     read = async (category) => {
         try {
             let fileTotal = await readFile(this.path);
             category && (fileTotal = fileTotal.filter(each => each.category.toLowerCase() === category.toLowerCase()))
             return fileTotal
         } catch (error) {
-            console.log(error);
-            return error
+            throw error;
         }
     }
 
@@ -52,10 +50,23 @@ class ProductsManager {
         try {
             let fileTotal = await readFile(this.path);
             let itemId = fileTotal.find((item) => item.id === id);
-            return itemId ? itemId : console.log("Product not found!!");
+            return itemId
         } catch (error) {
-            console.log(error);
-            return error
+            throw error;
+        }
+    };
+
+    update = async (id, data) => {
+        try {
+            let fileTotal = JSON.parse(await fs.promises.readFile(this.path, "utf-8"));
+            const product = fileTotal.find((user) => user.id === id);
+            if (product) {
+                Object.assign(product, data);
+                await createFile(this.path, fileTotal);
+            }
+            return product;
+        } catch (error) {
+            throw error;
         }
     };
 
@@ -69,9 +80,9 @@ class ProductsManager {
                 let productsFilter = fileTotal.filter((product) => product.id !== id);
                 await createFile(this.path, productsFilter);
             }
+            return productDelete;
         } catch (error) {
-            console.log(error);
-            return error
+            throw error;
         }
     };
 }

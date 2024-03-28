@@ -1,6 +1,7 @@
 import usersManager from "../../memory/UsersManager.memory.js";
 
 
+
 //Creating a new user 1
 usersManager.create({
     photo:
@@ -46,6 +47,13 @@ let allUsers = usersManager.read();
 console.log(allUsers);
 console.log("Find a user by ID:");
 console.log("Found:!!!", usersManager.readOne(allUsers[0].id));
+console.log("Update a user by ID:");
+console.log(usersManager.update(allUsers[2].id, {
+    password: "Estocolmo"
+}))
+console.log("Show all users");
+allUsers = usersManager.read();
+console.log(allUsers);
 console.log("Deleting a user by ID:");
 usersManager.destroy(allUsers[0].id);
 console.log("Show all users");

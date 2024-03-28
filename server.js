@@ -1,6 +1,6 @@
 import express from "express"
 import indexRouter from "./src/routers/index.router.js"
-import errorHandler from "./src/middlewares/errorHandler.mid.js"
+import { errorHandler, pathHandler } from "./src/middlewares/index.mid.js"
 
 /*************
     SERVER
@@ -24,3 +24,4 @@ server.use("/", indexRouter);
   MIDDLEWARES - OWN
 **************/
 server.use(errorHandler);
+server.use(pathHandler);

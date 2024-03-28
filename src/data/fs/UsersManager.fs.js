@@ -18,7 +18,7 @@ class UsersManager {
     create = async (data) => {
         try {
             const { photo, email, password, role } = data;
-            if (!email || !password) throw new Error("All fields are required!!");
+            if (!email || !password) throw new Error("Email and password are required!!");
             //Create object for new user
             const newUser = {
                 id: crypto.randomBytes(12).toString("hex"),

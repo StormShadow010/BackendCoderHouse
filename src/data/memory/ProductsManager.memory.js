@@ -5,17 +5,15 @@ class ProductsManager {
   create(data) {
     try {
       const { title, photo, category, price, stock } = data;
-      if (!title || !category || !price || !stock) {
-        throw new Error("All fields are required!!");
-      }
+      if (!title) throw new Error("Title is required!!");
       //Create object for new product
       const newProduct = {
         id: crypto.randomBytes(12).toString("hex"),
         title,
         photo: photo || "https://unsplash.com",
-        category,
-        price,
-        stock,
+        category: category || "Category A",
+        price: price || 1,
+        stock: stock || 1
       };
       //Add new product to array products
       ProductsManager.#products.push(newProduct);
@@ -47,6 +45,16 @@ class ProductsManager {
       console.log(error);
     }
   };
+
+  update = (id, data) => {
+    try {
+      const productToUpdate = this.readOne(id);
+      Object.assign(productToUpdate, data);
+      return productToUpdate
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   destroy = (id) => {
     try {

@@ -15,7 +15,7 @@ const create = async (req, res, next) => {
                 message: "User created successfully",
             });
         } else {
-            const error = new Error("Error creating user");
+            const error = new Error("Error creating a new user");
             error.statusCode = 404;
             throw error;
         }
@@ -27,8 +27,8 @@ const create = async (req, res, next) => {
 //Read <- get all users or get for role
 const read = async (req, res, next) => {
     try {
-        const { category } = req.query;
-        const users = await usersManager.read(category);
+        const { role } = req.query;
+        const users = await usersManager.read(role);
         if (users.length > 0) {
             return res.json({
                 statusCode: 200,

@@ -115,6 +115,3 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
 2. Casos de error:
     - Filtrar por un rol que no existe por ejemplo `http://localhost:8080/api/users?role=2`
     - Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/users/d25328edbc8d95b73638989`
-
-
-

@@ -4,7 +4,7 @@ import { createFile, createFileNP, readFile } from "./helpers/manageFiles.js";
 
 class UsersManager {
     constructor() {
-        this.path = "./data/fs/files/users.json";
+        this.path = "./src/data/fs/files/users.json";
         this.init();
     }
     init = () => {
@@ -18,10 +18,8 @@ class UsersManager {
     create = async (data) => {
         try {
             const { photo, email, password, role } = data;
-            if (!email || !password) {
-                throw new Error("All fields are required!!");
-            }
-
+            if (!email || !password) throw new Error("All fields are required!!");
+            //Create object for new user
             const newUser = {
                 id: crypto.randomBytes(12).toString("hex"),
                 photo: photo || "https://unsplash.com",
@@ -31,20 +29,19 @@ class UsersManager {
             };
             let fileTotal = await readFile(this.path);
             await createFileNP(this.path, fileTotal, newUser);
+            return newUser;
         } catch (error) {
-            console.log(error);
-            return error
+            throw error;
         }
     };
 
     read = async (role) => {
         try {
             let fileTotal = await readFile(this.path);
-            role && (fileTotal = fileTotal.filter(each => each.role.toLowerCase() === role.toLowerCase()))
-            return fileTotal
+            role && (fileTotal = fileTotal.filter((user) => user.role === role))
+            return fileTotal;
         } catch (error) {
-            console.log(error);
-            return error
+            throw error;
         }
     }
 
@@ -52,10 +49,23 @@ class UsersManager {
         try {
             let fileTotal = await readFile(this.path);
             let itemId = fileTotal.find((item) => item.id === id);
-            return itemId ? itemId : console.log("User not found!!");
+            return itemId
         } catch (error) {
-            console.log(error);
-            return error
+            throw error;
+        }
+    };
+
+    update = async (id, data) => {
+        try {
+            let fileTotal = JSON.parse(await fs.promises.readFile(this.path, "utf-8"));
+            const user = fileTotal.find((user) => user.id === id);
+            if (user) {
+                Object.assign(user, data);
+                await createFile(this.path, fileTotal);
+            }
+            return user;
+        } catch (error) {
+            throw error;
         }
     };
 
@@ -69,9 +79,9 @@ class UsersManager {
                 let usersFilter = fileTotal.filter((users) => users.id !== id);
                 await createFile(this.path, usersFilter);
             }
+            return userDelete;
         } catch (error) {
-            console.log(error);
-            return error
+            throw error;
         }
     };
 }

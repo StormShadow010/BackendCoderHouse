@@ -16,6 +16,5 @@ export const createFileNP = async (path, file, newProduct) => {
     file.push(newProduct);
     file = JSON.stringify(file, null, 2);
     await fs.promises.writeFile(path, file);
-    console.log("Product added:", newProduct);
 };
 

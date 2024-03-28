@@ -1,6 +1,7 @@
 import express from "express"
 import indexRouter from "./src/routers/index.router.js"
 import { errorHandler, pathHandler } from "./src/middlewares/index.mid.js"
+import morgan from "morgan"
 
 /*************
     SERVER
@@ -15,6 +16,7 @@ server.listen(port, ready) // <- Start the server and listen on the specified po
 **************/
 server.use(express.urlencoded({ extended: true })) // <-- Allows the server to read req.param and req.query
 server.use(express.json()); // <-- Allows the server to read req.body (parse incoming requests with JSON payloads)
+server.use(morgan("dev"))
 
 /*************
   ROUTER MAIN

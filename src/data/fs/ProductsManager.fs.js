@@ -18,7 +18,7 @@ class ProductsManager {
     create = async (data) => {
         try {
             const { title, photo, category, price, stock } = data;
-            if (!title) throw new Error("Title is required!!");
+            // if (!title) throw new Error("Title is required!!");
             //Create object for new product
             const newProduct = {
                 id: crypto.randomBytes(12).toString("hex"),

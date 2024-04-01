@@ -1,5 +1,6 @@
 import { Router } from "express";
 import productsManager from "../../data/fs/ProductsManager.fs.js";
+import { checkMandatoryFieldsProducts } from "../../middlewares/checkMandatoryFieldsProducts.mid.js";
 
 const productsRouter = Router()
 
@@ -104,7 +105,7 @@ const destroy = async (req, res, next) => {
 }
 
 //Create a new product
-productsRouter.post("/", create);
+productsRouter.post("/", checkMandatoryFieldsProducts, create);
 //Read <- get all products or get for category
 productsRouter.get("/", read);
 //Read <- get product by ID

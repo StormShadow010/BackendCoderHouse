@@ -26,5 +26,19 @@
     "email": "user5@example.com",
     "password": "<PASSWORD>",
     "role": "0"
+  },
+  {
+    "id": "f21b400af0fb170589e6d846",
+    "photo": "testing.png",
+    "email": "testing@gmail.com",
+    "password": "testing123",
+    "role": "0"
+  },
+  {
+    "id": "266ed049591957945ee2ddb5",
+    "photo": "testing2.png",
+    "email": "testing2@gmail.com",
+    "password": "testing123",
+    "role": "1"
   }
 ]

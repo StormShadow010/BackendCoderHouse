@@ -1,5 +1,6 @@
 import { Router } from "express";
 import usersManager from "../../data/fs/UsersManager.fs.js";
+import { checkMandatoryFieldsUsers } from "../../middlewares/checkMandatoryFieldsUsers.mid.js";
 
 const usersRouter = Router()
 
@@ -104,7 +105,7 @@ const destroy = async (req, res, next) => {
 }
 
 //Create a new user
-usersRouter.post("/", create);
+usersRouter.post("/", checkMandatoryFieldsUsers, create);
 //Read <- get all users or get for role
 usersRouter.get("/", read);
 //Read <- get user by ID

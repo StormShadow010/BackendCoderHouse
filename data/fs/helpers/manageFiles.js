@@ -19,3 +19,4 @@ export const createFileNP = async (path, file, newProduct) => {
     console.log("Product added:", newProduct);
 };
 
+

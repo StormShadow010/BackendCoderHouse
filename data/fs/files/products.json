@@ -157,6 +157,7 @@
     "photo": "https://example.com/photo20.jpg",
     "category": "Category A",
     "price": 2100,
+
     "stock": 100
   }
 ]

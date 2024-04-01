@@ -1,6 +1,7 @@
 import crypto from "crypto";
 
 class ProductsManager {
+
   static #products = [];
   create(data) {
     try {
@@ -60,6 +61,6 @@ class ProductsManager {
     }
   };
 };
-
 const productsManager = new ProductsManager()
 export default productsManager
+

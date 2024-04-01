@@ -1,11 +1,13 @@
 import crypto from "crypto";//Create id random with hexa
 
 class UsersManager {
+
   static #users = [];
   create(data) {
     try {
       const { photo, email, password, role } = data;
       if (!email || !password) {
+
         throw new Error("All fields are required!!");
       }
       //Create object for new user
@@ -15,6 +17,7 @@ class UsersManager {
         email,
         password,
         role: role || "0",
+
       };
       //Add new user to array uers
       UsersManager.#users.push(newUser);
@@ -59,7 +62,5 @@ class UsersManager {
     }
   };
 };
-
-
 const usersManager = new UsersManager()
 export default usersManager

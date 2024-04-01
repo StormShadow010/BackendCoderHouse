@@ -1,4 +1,3 @@
-
 # Desafío:Servidor de express
 
 En este desafío se ha creado un servidor utilizando Express para administrar productos y usuarios. Se han desarrollado funciones para gestionar los datos de productos y usuarios, lo que permite realizar operaciones de tipo de get, en el caso de los productos obtener todos, filtrarlos por categoría o filtrarlos por ID, y en el caso de los usuarios obtener todos, filtrar por role (0 ó 1) y filtrarlos por ID.  
@@ -19,6 +18,7 @@ Cada usuario tiene las siguientes propiedades:
 - ***email***
 - ***password***
 - ***role*** (rol de usuario, por defecto cero)
+
 
 ## Clases ProductManager y UserManager
 

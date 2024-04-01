@@ -1,5 +1,5 @@
 
-# Primera entrega del proyecyto final
+# Primera entrega del proyecto final
 
 En esta primera entrega del proyecto final se ha creado un servidor utilizando Express para administrar productos y usuarios. Se han desarrollado funciones para gestionar los datos de productos y usuarios, lo que permite realizar operaciones de tipo de get,post,put y delete.
 

@@ -9,3 +9,4 @@ export const checkMandatoryFieldsUsers = (req, res, next) => {
     }
     next();
 }
+

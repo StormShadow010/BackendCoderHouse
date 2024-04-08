@@ -3,6 +3,7 @@ import indexRouter from "./src/routers/index.router.js"
 import { errorHandler, pathHandler } from "./src/middlewares/index.mid.js"
 import morgan from "morgan"
 
+
 /*************
     SERVER
 **************/
@@ -10,7 +11,6 @@ const server = express() // <- Initialize Express server
 const port = 8080 // <- Define the port number for the server
 const ready = () => console.log("Server ready on port:" + port) //<-Callback ready to check that the server is up
 server.listen(port, ready) // <- Start the server and listen on the specified port
-
 /*************
   MIDDLEWARES - EXPRESS
 **************/
@@ -27,3 +27,4 @@ server.use("/", indexRouter);
 **************/
 server.use(errorHandler);
 server.use(pathHandler);
+

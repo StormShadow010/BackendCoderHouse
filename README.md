@@ -3,6 +3,8 @@
 
 En esta entrega se evaluará el uso de Socket para la creación de productos, en donde se evidencie el protocolo de comunicación basado en TCP, además de esto se hará uso de Views para mostrar las vistas requeridas en la consigna.
 
+Además en la carpeta public, se crearon carpetas para almanecenar los iconos para cuestiones por defecto como el parametro *photo* y el logo del e-commerce.
+
 La parte los Manager se conserva de la siguiente forma:
 
 ## Estructura de Datos

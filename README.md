@@ -1,7 +1,9 @@
 
-# Primera entrega del proyecto final
+# Websockets + Handlebars
 
-En esta primera entrega del proyecto final se ha creado un servidor utilizando Express para administrar productos y usuarios. Se han desarrollado funciones para gestionar los datos de productos y usuarios, lo que permite realizar operaciones de tipo de get,post,put y delete.
+En esta entrega se evaluará el uso de Socket para la creación de productos, en donde se evidencie el protocolo de comunicación basado en TCP, además de esto se hará uso de Views para mostrar las vistas requeridas en la consigna.
+
+La parte los Manager se conserva de la siguiente forma:
 
 ## Estructura de Datos
 
@@ -34,6 +36,13 @@ Las clases `ProductManager` y `UserManager` cuentan con los siguientes métodos:
 Estos métodos manejan errores utilizando `try/catch` más que todo se debe evidenciar en la parte de FileSystem.
 
 Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuestión de no repetir código en la lectura y creación del documento, esto se uso tanto para la  clase `ProductManager` como `UserManager`
+
+## Sockets
+
+### “connection” para configurar los dos puntos de conexión (sockets) del back y del front:
+socketServer.on() en el socket del servidor
+script de socket y ejecutar io() para generar el socket del cliente
+
 
 ## Endpoints Implementadas
 ### Endpoints de Productos:

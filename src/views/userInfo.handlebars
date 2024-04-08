@@ -1,0 +1,20 @@
+<div class="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-md p-5">
+    {{#if user.id}}
+    <img class="w-32 h-32 rounded-full mx-auto" src={{user.photo}} alt="Profile picture">
+    <h2 class="text-center text-2xl font-semibold mt-3">Email: {{user.email}}</h2>
+    <h2 class="text-center text-2xl font-semibold mt-3">Passoword: {{user.password}}</h2>
+    <h2 class="text-center text-2xl font-semibold mt-3">Role: {{user.role}}</h2>
+    {{else}}
+    <h2 class="text-center text-2xl font-semibold mt-3">User not found</h2>
+    {{/if}}
+    {{!-- <div class="flex justify-center mt-5">
+        <a href="#" class="text-blue-500 hover:text-blue-700 mx-3">Twitter</a>
+        <a href="#" class="text-blue-500 hover:text-blue-700 mx-3">LinkedIn</a>
+        <a href="#" class="text-blue-500 hover:text-blue-700 mx-3">GitHub</a>
+    </div> --}}
+    {{!-- <div class="mt-5">
+        <h3 class="text-xl font-semibold">Bio</h3>
+        <p class="text-gray-600 mt-2">John is a software engineer with over 10 years of experience in developing web and
+            mobile applications. He is skilled in JavaScript, React, and Node.js.</p>
+    </div> --}}
+</div>

@@ -23,7 +23,7 @@ class ProductsManager {
             const newProduct = {
                 id: crypto.randomBytes(12).toString("hex"),
                 title,
-                photo: photo || "https://unsplash.com",
+                photo: photo || "/assets/icons/imagepreview.png",
                 category: category || "Category A",
                 price: price || 1,
                 stock: stock || 1

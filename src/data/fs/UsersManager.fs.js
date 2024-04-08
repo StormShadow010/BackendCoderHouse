@@ -22,7 +22,7 @@ class UsersManager {
             //Create object for new user
             const newUser = {
                 id: crypto.randomBytes(12).toString("hex"),
-                photo: photo || "https://unsplash.com",
+                photo: photo || "/assets/icons/avatar.png",
                 email,
                 password,
                 role: role || 0

@@ -11,3 +11,12 @@ productsRouter.get("/", async (req, res, next) => {
         return next(error);
     }
 })
+
+productsRouter.get("/real", async (req, res, next) => {
+    try {
+        const products = await productsManager.read()
+        return res.render("realProducts", { products })
+    } catch (error) {
+        return next(error);
+    }
+})

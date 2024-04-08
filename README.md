@@ -39,7 +39,7 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
 
 ## Sockets
 
-### “connection” para configurar los dos puntos de conexión (sockets) del back y del front:
+- “connection” para configurar los dos puntos de conexión (sockets) del back y del front:
 socketServer.on() en el socket del servidor
 script de socket y ejecutar io() para generar el socket del cliente
 

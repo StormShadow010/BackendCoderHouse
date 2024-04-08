@@ -1,33 +1,34 @@
-# Desafío:Servidor de express
 
-En este desafío se ha creado un servidor utilizando Express para administrar productos y usuarios. Se han desarrollado funciones para gestionar los datos de productos y usuarios, lo que permite realizar operaciones de tipo de get, en el caso de los productos obtener todos, filtrarlos por categoría o filtrarlos por ID, y en el caso de los usuarios obtener todos, filtrar por role (0 ó 1) y filtrarlos por ID.  
+# Primera entrega del proyecto final
+
+En esta primera entrega del proyecto final se ha creado un servidor utilizando Express para administrar productos y usuarios. Se han desarrollado funciones para gestionar los datos de productos y usuarios, lo que permite realizar operaciones de tipo de get,post,put y delete.
 
 ## Estructura de Datos
 
 Cada producto tiene las siguientes propiedades:
-- ***id*** (código identificador de 12 bytes en hexadecimal)
-- ***title*** (título)
+- ***id*** (código identificador de 12bytes y hexadecimal)
+- ***title*** (titulo, obligatorio)
 - ***photo*** (ruta de imagen, dar valores por defecto)
-- ***category*** (categoría)
-- ***price*** (precio)
-- ***stock*** (unidades disponibles)
+- ***category*** (categoria del producto, dar valores por defecto)
+- ***price*** (precio, por defecto 1)
+- ***stock*** (unidades disponibles, por defecto 1)
 
 Cada usuario tiene las siguientes propiedades:
-- ***id*** (código identificador de 12 bytes en hexadecimal)
+- ***id*** (12bytes y hexadecimal)
 - ***photo*** (ruta de imagen, dar valores por defecto)
-- ***email***
-- ***password***
-- ***role*** (rol de usuario, por defecto cero)
-
+- ***email*** (obligatorio)
+- ***password*** (obligatorio)
+- ***role*** (rol de usuario, por defecto 0)
 
 ## Clases ProductManager y UserManager
 
 Las clases `ProductManager` y `UserManager` cuentan con los siguientes métodos:
 
 - `init()`: Se utiliza para inicializar el sistema de archivos y asegurarse de que el archivo de datos exista y esté en el formato adecuado.
-- `create(data)`: Agrega un nuevo producto\usuario al sistema.
+- `create(data)`: Agrega un nuevo producto\usuario al sistema con la data enviada.
 - `read()`: Devuelve una lista de todos los productos\usuarios almacenados.
 - `readOne(id)`: Devuelve un producto\usuario específico según su ID.
+- `update(id,data)`: Actualizar un producto\usuario específico según su ID y la data enviada
 - `destroy(id)`: Elimina un producto\usuario según su ID.
 
 Estos métodos manejan errores utilizando `try/catch` más que todo se debe evidenciar en la parte de FileSystem.
@@ -36,12 +37,17 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
 
 ## Endpoints Implementadas
 ### Endpoints de Productos:
-- `GET /api/products`: Permite obtener todos los productos almacenados. Se puede filtrar por categoría mediante una query. Si el array tiene productos, se devuelve un objeto con un código de estado `200` y la lista de productos en la propiedad "response". Si no hay productos, se devuelve un objeto con un código de estado `404` y un mensaje descriptivo.
-- `GET /api/products/:pid`: Permite obtener un producto específico por su ID. Si se encuentra el producto, se devuelve un objeto con un código de estado `200` y el producto en la propiedad "response". Si no se encuentra, se devuelve un objeto con un código de estado `404` y un mensaje descriptivo.
-
+- `POST /api/products`: Crear un producto y guardarlo con fs. Si se crea con éxito statusCode: `201` response: id (del nuevo producto) message: (mensaje descriptivo). Manejar errores con errorHandler
+- `GET /api/products`: Para buscar todos los productos de fs. Agregar la query necesaria para filtrar por categoría. Si el array tiene productos, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el array). Manejar errores con errorHandler
+- `GET /api/products/:pid`: Para buscar un producto de fs. Si se encuentra el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto). Manejar errores con errorHandler
+- `PUT /api/products/:pid`: Para buscar un producto de fs y actualizarlo.Si se actualiza el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto modificado). Manejar errores con errorHandler
+- `DELETE /api/products/:pid`: Para buscar un producto de fs y eliminarlo. Si se elimina el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto). Manejar errores con errorHandler
 ### Endpoints de Usuarios:
-- `GET /api/users`: Permite obtener todos los usuarios almacenados. Se puede filtrar por rol mediante una query. Si el array tiene usuarios, se devuelve un objeto con un código de estado `200` y la lista de usuarios en la propiedad "response". Si no hay usuarios, se devuelve un objeto con un código de estado `404` y un mensaje descriptivo.
-- `GET /api/users/:uid`: Permite obtener un usuario específico por su ID. Si se encuentra el usuario, se devuelve un objeto con un código de estado `200` y el usuario en la propiedad "response". Si no se encuentra, se devuelve un objeto con un código de estado `404` y un mensaje descriptivo.
+- `POST /api/users`: Crear un usuario y guardarlo con fs. Si se crea con éxito statusCode: `201` response: id (del nuevo usuario) message: (mensaje descriptivo). Manejar errores con errorHandler
+- `GET /api/users`: Para buscar todos los usuarios de fs. Agregar la query necesaria para filtrar por rol. Si el array tiene usuarios, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el array). Manejar errores con errorHandler
+- `GET /api/users/:uid`: para buscar un usuario de fs. Si se encuentra el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto). Manejar errores con errorHandler
+- `PUT /api/users/:uid`:Para buscar un usuario de fs y actualizarlo.Si se actualiza el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto modificado). Manejar errores con errorHandler
+- `DELETE /api/users/:uid`: Para buscar un usuario de fs y eliminarlo. Si se elimina el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto). Manejar errores con errorHandler
 
 # Testing del código
 
@@ -52,7 +58,7 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
 1. Clonar el repositorio o descargar el código fuente.
 2. Instalar las dependencias del proyecto utilizando el comando `npm install` ó `npm i` .
 3. Iniciar el servidor con el comando `npm run dev` o `node server.js`.
-4. Utilizar las siguientes URLs en un navegador web o realizar peticiones HTTP mediante herramientas como Postman:
+4. Realizar las peticiones HTTP mediante la herramienta Postman, tener cuidado de poner el método que corresponda.
 
 ---
 **Productos:**
@@ -62,6 +68,23 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
    (Puedes usar la siguiente ruta `http://localhost:8080/api/products?category=category%20B`)
    - Para obtener un producto específico (reemplazar `:pid` por el ID del producto): `http://localhost:8080/api/products/:pid`
    (Puedes usar la siguiente ruta `http://localhost:8080/api/products/353324372ff812d0734c22ac`)
+   - Para crear se debe usar: `http://localhost:8080/api/products`, y configurar el body, por ejemplo así:
+   ```javascript	
+   {
+    "title": "Product 41",
+    "photo": "https://example.com/photo21.jpg",
+    "category": "Category A"
+    }
+   ```
+   - Para actualizar se debe usar: `http://localhost:8080/api/products/:pid`, se debe configurar el body y id del producto, por ejemplo así:
+   ID: Del último elemento creado, en donde al momento de la creación sale el ID del producto nuevo
+   ```javascript	
+   {
+    "price": 50
+    }
+   ```
+   - Para borrar se debe usar: `http://localhost:8080/api/products/:pid`, tener en cuenta un ID por ejemplo se puede usar el de la creación.
+
 2. Casos de error:
     - Filtrar por una categoría que no existe por ejemplo `http://localhost:8080/api/products?category=category%20D`
     - Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/products/353324372ff812d0734`
@@ -72,19 +95,23 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
    - Para filtrar por rol (reemplazar `filtro` por el rol): `http://localhost:8080/api/users?rol=filtro`
    (Puedes usar la siguiente ruta `http://localhost:8080/api/users?role=0`)
    - Para obtener un usuario específico (reemplazar `:uid` por el ID del usuario): `http://localhost:8080/api/users/:uid`(Puedes usar la siguiente ruta `http://localhost:8080/api/users/d25328edbc8d95b73638fcd8`)
+   - Para crear se debe usar: `http://localhost:8080/api/users`, y configurar el body, por ejemplo así:
+   ```javascript	
+   {
+    "photo":"testing.png",
+    "emal":"testing@gmail.com",
+    "password":"testing123",
+    "role":"0"
+    }
+   ```
+   - Para actualizar se debe usar: `http://localhost:8080/api/products/:uid`, se debe configurar el body y id del usuario, por ejemplo así:
+   ID: Del último elemento creado, en donde al momento de la creación sale el ID del usuario nuevo
+   ```javascript	
+   {
+    "password":"123456789"
+    }
+   ```
+   - Para borrar se debe usar: `http://localhost:8080/api/users/:uid`, tener en cuenta un ID por ejemplo se puede usar el de la creación.
 2. Casos de error:
     - Filtrar por un rol que no existe por ejemplo `http://localhost:8080/api/users?role=2`
     - Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/users/d25328edbc8d95b73638989`
-
-
-## Probar los métodos de las clases
-Para la parte de los test, se creo una carpeta llamada "test" en donde se creó una archivo tanto para UsersManager como ProductsManager para el caso de memory y fs, en el que se crean los diferentes métodos (create,read,readOne,destroy), en caso de querer probarlo se puede con las siguientes rutas:
-
-### Rutas
-Es importante que para probar se maneje un ruta desde la raíz de esta forma
-```javascript
-node data/testing/memory/testProductsManager.memory.js
-node data/testing/memory/testUsersManager.memory.js
-node data/testing/fs/testProductsManager.fs.js
-node data/testing/fs/testUsersManager.fs.js
-```

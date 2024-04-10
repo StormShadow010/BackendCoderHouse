@@ -60,6 +60,8 @@ script de socket y ejecutar io() para generar el socket del cliente
 
 - Recepción “new product”: en el socket del servidor, guardar el producto en el archivo y luego emitir todos los productos para actualizar en tiempo real la vista /products/real
 
+
+
 ## Vistas
 
 - localhost:8080/ debe mostrar la página de inicio del comercio. Como mínimo debe incluir el logo del comercio y todos los productos que se venden (sólo hbs). 
@@ -69,3 +71,10 @@ script de socket y ejecutar io() para generar el socket del cliente
 - localhost:8080/users/:uid debe mostrar la página con los datos del usuario (solo hbs), se puede probar el `:uid` 75309d7ee7db27302e4a2008.
 
 - localhost:8080/users/register debe mostrar la página con un formulario para registrar un usuario (solo hbs, no es necesario que sea funcional).
+
+## Pruebas
+
+- En la vista  `localhost:8080/` se pueden ver los productos.
+- En la vista `/products/real` se puede crear un producto  e inmediatamente se debe crear en todos los clientes que estén conectados.
+- En la vista `localhost:8080/users/:uid`, se puede ver el usuario con el `:uid` 75309d7ee7db27302e4a2008
+- En la vista `localhost:8080/users/register`, se puede ver el formulario de registro para el usuario, pero no es funcional. 

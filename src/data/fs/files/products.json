@@ -326,5 +326,21 @@
     "category": "Category A",
     "price": 1,
     "stock": 1
+  },
+  {
+    "id": "19f6fe601be795e58f8c2b04",
+    "title": "New Product",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000014158/0ca41128bf40b7e0dc32a046a659ecdc69e4d7cc7a3257d6280be665d2f795b5",
+    "category": "B",
+    "price": "50",
+    "stock": "30"
+  },
+  {
+    "id": "2ce82e7511d5c21a27513c77",
+    "title": "jajaja",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Category A",
+    "price": 1,
+    "stock": 1
   }
 ]

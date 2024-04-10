@@ -14,8 +14,7 @@ productsRouter.get("/", async (req, res, next) => {
 
 productsRouter.get("/real", async (req, res, next) => {
     try {
-        const products = await productsManager.read()
-        return res.render("realProducts", { products })
+        return res.render("realProducts")
     } catch (error) {
         return next(error);
     }

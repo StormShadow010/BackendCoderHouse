@@ -320,49 +320,9 @@
     "stock": 100
   },
   {
-    "id": "9d84332d106cd8dcd2d99836",
-    "title": "",
-    "photo": "/assets/icons/imagepreview.png",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "f02c1200aed2cbbbc5654ac6",
-    "title": "",
-    "photo": "asda",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "7d86523f8df8124167c9e277",
-    "title": "",
-    "photo": "asda",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "dd1d5cbe775de3febd3fea42",
-    "title": "",
-    "photo": "asda",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "86e13af484da2b2bb7920042",
-    "title": "",
-    "photo": "asda",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "e61916a25cef82782163b27b",
+    "id": "653463f8bfff0f40c4daad18",
     "title": "Testing2",
-    "photo": "asdasdasd",
+    "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
     "price": 1,
     "stock": 1

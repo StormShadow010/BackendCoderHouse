@@ -15,7 +15,6 @@ usersRouter.get("/register", async (req, res, next) => {
 usersRouter.get("/:uid", async (req, res, next) => {
     try {
         const user = await usersManager.readOne(req.params.uid)
-        console.log(user)
         // const products = await productsManager.read()
         return res.render("userInfo", { user })
     } catch (error) {

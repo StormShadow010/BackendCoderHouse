@@ -4,7 +4,6 @@ export default async (socket) => {
     //Socket Server
     socket.emit("products", await productsManager.read())
     socket.on("new product", async (data) => {
-        console.log(data)
         await productsManager.create(data)
         socket.emit("products", await productsManager.read())
     })

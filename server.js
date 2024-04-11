@@ -15,7 +15,7 @@ import socketCallBack from "./src/routers/index.socket.js"
     SERVER
 **************/
 const server = express() // <- Initialize Express server
-const port = 8080 // <- Define the port number for the server
+const port = 8000 // <- Define the port number for the server
 const ready = () => console.log("Server ready on port:" + port) //<-Callback ready to check that the server is up
 // server.listen(port, ready) // <- Start the server and listen on the specified port Without Socket
 

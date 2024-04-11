@@ -1,0 +1,30 @@
+[
+  {
+    "id": "353ebeb26d3d23204a5d81c0",
+    "photo": "default-image-url",
+    "email": "user1@example.com",
+    "password": "<PASSWORD>",
+    "role": "1"
+  },
+  {
+    "id": "814da4c13273dfdd3c7b7952",
+    "photo": "default-image-url",
+    "email": "user2@example.com",
+    "password": "<PASSWORD>",
+    "role": "0"
+  },
+  {
+    "id": "d25328edbc8d95b73638fcd8",
+    "photo": "default-image-url",
+    "email": "user3@example.com",
+    "password": "<PASSWORD>",
+    "role": "1"
+  },
+  {
+    "id": "792be1dff52129e0be48d0f5",
+    "photo": "default-image-url",
+    "email": "user5@example.com",
+    "password": "<PASSWORD>",
+    "role": "0"
+  }
+]

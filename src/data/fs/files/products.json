@@ -342,5 +342,21 @@
     "category": "Category A",
     "price": 1,
     "stock": 1
+  },
+  {
+    "id": "87702d76dcfd8f6cd2ad8b99",
+    "title": "Hi",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Category A",
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "id": "2dacc52384d8391cd75d1d6f",
+    "title": "Hooo",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Category A",
+    "price": 1,
+    "stock": 1
   }
 ]

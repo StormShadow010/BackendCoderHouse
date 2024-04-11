@@ -1,44 +1,30 @@
 [
   {
     "id": "71eceb545d242dd629f4a232",
-    "photo": "default-image-url",
+    "photo": "/assets/icons/avatar.png",
     "email": "user1@example.com",
     "password": "<PASSWORD>",
     "role": "1"
   },
   {
     "id": "75309d7ee7db27302e4a2008",
-    "photo": "default-image-url",
+    "photo": "/assets/icons/avatar.png",
     "email": "user2@example.com",
     "password": "<PASSWORD>",
     "role": "0"
   },
   {
     "id": "1dcfcd123b61df422167b198",
-    "photo": "default-image-url",
+    "photo": "/assets/icons/avatar.png",
     "email": "user3@example.com",
     "password": "<PASSWORD>",
     "role": "1"
   },
   {
     "id": "93a63f8c35662e3f127a3f23",
-    "photo": "default-image-url",
-    "email": "user5@example.com",
+    "photo": "/assets/icons/avatar.png",
+    "email": "user4@example.com",
     "password": "<PASSWORD>",
     "role": "0"
-  },
-  {
-    "id": "f21b400af0fb170589e6d846",
-    "photo": "testing.png",
-    "email": "testing@gmail.com",
-    "password": "testing123",
-    "role": "0"
-  },
-  {
-    "id": "266ed049591957945ee2ddb5",
-    "photo": "testing2.png",
-    "email": "testing2@gmail.com",
-    "password": "testing123",
-    "role": "1"
   }
 ]

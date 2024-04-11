@@ -1,7 +1,11 @@
 
-# Primera entrega del proyecto final
+# Websockets + Handlebars
 
-En esta primera entrega del proyecto final se ha creado un servidor utilizando Express para administrar productos y usuarios. Se han desarrollado funciones para gestionar los datos de productos y usuarios, lo que permite realizar operaciones de tipo de get,post,put y delete.
+En esta entrega se evaluará el uso de Socket para la creación de productos, en donde se evidencie el protocolo de comunicación basado en TCP, además de esto se hará uso de Views para mostrar las vistas requeridas en la consigna.
+
+Además en la carpeta public, se crearon carpetas para almanecenar los iconos para cuestiones por defecto como el parametro *photo* y el logo del e-commerce.
+
+La parte los Manager se conserva de la siguiente forma:
 
 ## Estructura de Datos
 
@@ -35,22 +39,6 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 
 Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuestión de no repetir código en la lectura y creación del documento, esto se uso tanto para la  clase `ProductManager` como `UserManager`
 
-## Endpoints Implementadas
-### Endpoints de Productos:
-- `POST /api/products`: Crear un producto y guardarlo con fs. Si se crea con éxito statusCode: `201` response: id (del nuevo producto) message: (mensaje descriptivo). Manejar errores con errorHandler
-- `GET /api/products`: Para buscar todos los productos de fs. Agregar la query necesaria para filtrar por categoría. Si el array tiene productos, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el array). Manejar errores con errorHandler
-- `GET /api/products/:pid`: Para buscar un producto de fs. Si se encuentra el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto). Manejar errores con errorHandler
-- `PUT /api/products/:pid`: Para buscar un producto de fs y actualizarlo.Si se actualiza el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto modificado). Manejar errores con errorHandler
-- `DELETE /api/products/:pid`: Para buscar un producto de fs y eliminarlo. Si se elimina el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto). Manejar errores con errorHandler
-### Endpoints de Usuarios:
-- `POST /api/users`: Crear un usuario y guardarlo con fs. Si se crea con éxito statusCode: `201` response: id (del nuevo usuario) message: (mensaje descriptivo). Manejar errores con errorHandler
-- `GET /api/users`: Para buscar todos los usuarios de fs. Agregar la query necesaria para filtrar por rol. Si el array tiene usuarios, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el array). Manejar errores con errorHandler
-- `GET /api/users/:uid`: para buscar un usuario de fs. Si se encuentra el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto). Manejar errores con errorHandler
-- `PUT /api/users/:uid`:Para buscar un usuario de fs y actualizarlo.Si se actualiza el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto modificado). Manejar errores con errorHandler
-- `DELETE /api/users/:uid`: Para buscar un usuario de fs y eliminarlo. Si se elimina el producto, enviar al cliente un objeto con las propiedades: statusCode: `200` response: (el objeto). Manejar errores con errorHandler
-
-# Testing del código
-
 ## Requisitos Previos
 - Node.js instalado, versión mayor a la 18.
 
@@ -58,60 +46,35 @@ Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuesti
 1. Clonar el repositorio o descargar el código fuente.
 2. Instalar las dependencias del proyecto utilizando el comando `npm install` ó `npm i` .
 3. Iniciar el servidor con el comando `npm run dev` o `node server.js`.
-4. Realizar las peticiones HTTP mediante la herramienta Postman, tener cuidado de poner el método que corresponda.
+4. Realizar las peticiones HTTP en el navegador, se recomienda google, debido a que estaremos revisando las vistas.
 
----
-**Productos:**
-1. Casos de exito:
-   - Para obtener todos los productos: `http://localhost:8080/api/products`
-   - Para filtrar por categoria (reemplazar `filtro` por la categoria): `http://localhost:8080/api/products?category=filtro`
-   (Puedes usar la siguiente ruta `http://localhost:8080/api/products?category=category%20B`)
-   - Para obtener un producto específico (reemplazar `:pid` por el ID del producto): `http://localhost:8080/api/products/:pid`
-   (Puedes usar la siguiente ruta `http://localhost:8080/api/products/353324372ff812d0734c22ac`)
-   - Para crear se debe usar: `http://localhost:8080/api/products`, y configurar el body, por ejemplo así:
-   ```javascript	
-   {
-    "title": "Product 41",
-    "photo": "https://example.com/photo21.jpg",
-    "category": "Category A"
-    }
-   ```
-   - Para actualizar se debe usar: `http://localhost:8080/api/products/:pid`, se debe configurar el body y id del producto, por ejemplo así:
-   ID: Del último elemento creado, en donde al momento de la creación sale el ID del producto nuevo
-   ```javascript	
-   {
-    "price": 50
-    }
-   ```
-   - Para borrar se debe usar: `http://localhost:8080/api/products/:pid`, tener en cuenta un ID por ejemplo se puede usar el de la creación.
+## Sockets
 
-2. Casos de error:
-    - Filtrar por una categoría que no existe por ejemplo `http://localhost:8080/api/products?category=category%20D`
-    - Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/products/353324372ff812d0734`
----
-**Usuarios:**
-1. Casos de exito:
-   - Para obtener todos los usuarios: `http://localhost:8080/api/users`
-   - Para filtrar por rol (reemplazar `filtro` por el rol): `http://localhost:8080/api/users?rol=filtro`
-   (Puedes usar la siguiente ruta `http://localhost:8080/api/users?role=0`)
-   - Para obtener un usuario específico (reemplazar `:uid` por el ID del usuario): `http://localhost:8080/api/users/:uid`(Puedes usar la siguiente ruta `http://localhost:8080/api/users/d25328edbc8d95b73638fcd8`)
-   - Para crear se debe usar: `http://localhost:8080/api/users`, y configurar el body, por ejemplo así:
-   ```javascript	
-   {
-    "photo":"testing.png",
-    "emal":"testing@gmail.com",
-    "password":"testing123",
-    "role":"0"
-    }
-   ```
-   - Para actualizar se debe usar: `http://localhost:8080/api/products/:uid`, se debe configurar el body y id del usuario, por ejemplo así:
-   ID: Del último elemento creado, en donde al momento de la creación sale el ID del usuario nuevo
-   ```javascript	
-   {
-    "password":"123456789"
-    }
-   ```
-   - Para borrar se debe usar: `http://localhost:8080/api/users/:uid`, tener en cuenta un ID por ejemplo se puede usar el de la creación.
-2. Casos de error:
-    - Filtrar por un rol que no existe por ejemplo `http://localhost:8080/api/users?role=2`
-    - Filtrar por un ID que no existe por ejemplo `http://localhost:8080/api/users/d25328edbc8d95b73638989`
+- “connection” para configurar los dos puntos de conexión (sockets) del back y del front:
+socketServer.on() en el socket del servidor
+script de socket y ejecutar io() para generar el socket del cliente
+- Emisión “products”: en el socket del servidor (back), llamar al manager de productos de FS para enviar un objeto con todos los productos hacia el socket del cliente.
+- Recepción “products”: en el socket del cliente de la vista /products/real de handlebars, con js renderizar dinámicamente y en tiempo real los productos recibidos.
+
+- Emisión “new product”: en el socket del cliente de la vista /products/real de handlebars, con js, capturar los datos del formulario y luego emitir el producto para guardarlo en el json del back.
+
+- Recepción “new product”: en el socket del servidor, guardar el producto en el archivo y luego emitir todos los productos para actualizar en tiempo real la vista /products/real
+
+
+
+## Vistas
+
+- localhost:8080/ debe mostrar la página de inicio del comercio. Como mínimo debe incluir el logo del comercio y todos los productos que se venden (sólo hbs). 
+
+- localhost:8080/products/real debe mostrar la página con el formulario de creación y todos los productos y debe actualizarse en tiempo real (hbs+socket).
+
+- localhost:8080/users/:uid debe mostrar la página con los datos del usuario (solo hbs), se puede probar el `:uid` 75309d7ee7db27302e4a2008.
+
+- localhost:8080/users/register debe mostrar la página con un formulario para registrar un usuario (solo hbs, no es necesario que sea funcional).
+
+## Pruebas
+
+- En la vista  `localhost:8080/` se pueden ver los productos.
+- En la vista `/products/real` se puede crear un producto  e inmediatamente se debe crear en todos los clientes que estén conectados.
+- En la vista `localhost:8080/users/:uid`, se puede ver el usuario con el `:uid` 75309d7ee7db27302e4a2008
+- En la vista `localhost:8080/users/register`, se puede ver el formulario de registro para el usuario, pero no es funcional. 

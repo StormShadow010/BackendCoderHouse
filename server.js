@@ -1,3 +1,4 @@
+import "dotenv/config.js";
 import { engine } from "express-handlebars"
 import express from "express"
 import morgan from "morgan"
@@ -10,14 +11,15 @@ import { errorHandler, pathHandler } from "./src/middlewares/index.mid.js"
 import indexRouter from "./src/routers/index.router.js"
 import __dirname from "./utils.js"
 import socketCallBack from "./src/routers/index.socket.js"
+import { dbConnection } from "./src/utils/mongo/dbConnection.util.js";
 
-/*************
-    SERVER
-**************/
-const server = express() // <- Initialize Express server
-const port = 8080 // <- Define the port number for the server
-const ready = () => console.log("Server ready on port:" + port) //<-Callback ready to check that the server is up
-// server.listen(port, ready) // <- Start the server and listen on the specified port Without Socket
+//HTTP Server
+const server = express()
+const port = process.env.PORT || 9000;
+const ready = () => {
+  console.log("Server ready on port:" + process.env.PORT)
+  dbConnection()
+}
 
 //Server de Socket
 const nodeServer = createServer(server);

@@ -35,7 +35,7 @@ class Manager {
             throw error;
         }
     }
-    delete = async (id) => {
+    destroy = async (id) => {
         try {
             const note = await this.Model.findByIdAndDelete(id);
             return note;

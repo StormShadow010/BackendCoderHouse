@@ -1,5 +1,6 @@
 import { Router } from "express";
-import productsManager from "../../data/fs/ProductsManager.fs.js";
+// import productsManager from "../../data/fs/ProductsManager.fs.js";
+import { productsManager } from "../../data/mongo/managers/indexManager.mongo.js";
 import { checkMandatoryFieldsProducts } from "../../middlewares/checkMandatoryFieldsProducts.mid.js";
 
 const productsRouter = Router()

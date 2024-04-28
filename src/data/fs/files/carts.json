@@ -1,0 +1,23 @@
+[
+  {
+    "id": "2261995d5ba3265285235579",
+    "user_id": "75309d7ee7db27302e4a2008",
+    "product_id": "2250",
+    "quantity": 10,
+    "state": "paid"
+  },
+  {
+    "id": "3786749b0b41419032fb909e",
+    "user_id": "123",
+    "product_id": "456",
+    "quantity": 2,
+    "state": "reserved"
+  },
+  {
+    "id": "d1dd0a0f7693896af593bdbb",
+    "user_id": "75309d7ee7db27302e4a2008",
+    "product_id": "2250",
+    "quantity": 10,
+    "state": "paid"
+  }
+]

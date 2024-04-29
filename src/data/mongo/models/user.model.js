@@ -10,7 +10,8 @@ const schema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true //No repeate value in database
+        unique: true, //No repeate value in database
+        index: true,
     },
     password: {
         type: String,
@@ -18,7 +19,8 @@ const schema = new Schema({
     },
     role: {
         type: Number,
-        default: 0
+        default: 0,
+        index: true
     }
 }, { timestamps: true });
 

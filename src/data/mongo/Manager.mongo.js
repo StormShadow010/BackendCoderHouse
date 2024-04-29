@@ -4,24 +4,24 @@ class Manager {
     }
     create = async (data) => {
         try {
-            const newNote = await this.Model.create(data)
-            return newNote;
+            const newOne = await this.Model.create(data)
+            return newOne;
         } catch (error) {
             throw error;
         }
     }
     read = async (category) => {
         try {
-            const notes = await this.Model.find();
-            return notes;
+            const allData = await this.Model.find();
+            return allData;
         } catch (error) {
             throw error;
         }
     }
     readOne = async (id) => {
         try {
-            const note = await this.Model.findById(id);
-            return note;
+            const itemInvidual = await this.Model.findById(id);
+            return itemInvidual;
         } catch (error) {
             throw error;
         }
@@ -29,16 +29,16 @@ class Manager {
     update = async (id, data) => {
         try {
             //new:true return a object updated
-            const note = await this.Model.findByIdAndUpdate(id, data, { new: true });
-            return note;
+            const itemUpdate = await this.Model.findByIdAndUpdate(id, data, { new: true });
+            return itemUpdate;
         } catch (error) {
             throw error;
         }
     }
     destroy = async (id) => {
         try {
-            const note = await this.Model.findByIdAndDelete(id);
-            return note;
+            const itemDelete = await this.Model.findByIdAndDelete(id);
+            return itemDelete;
         } catch (error) {
             throw error;
         }

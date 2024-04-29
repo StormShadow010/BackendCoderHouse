@@ -5,7 +5,8 @@ let collection = "products";
 const schema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     photo: {
         type: String,

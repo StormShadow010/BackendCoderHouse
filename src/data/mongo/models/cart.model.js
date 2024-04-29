@@ -6,12 +6,14 @@ const schema = new Schema(
         user_id: {
             type: Types.ObjectId,
             ref: "users",
-            required: true
+            required: true,
+            index: true
         },
         product_id: {
             type: Types.ObjectId,
             ref: "products",
-            required: true
+            required: true,
+            index: true
         },
         quantity: {
             type: Number,
@@ -29,6 +31,7 @@ const schema = new Schema(
 );
 
 schema.pre("find", function () { this.populate("user_id"); });
-schema.pre("find", function () { this.populate({ path: "product_id" }) })
+schema.pre("find", function () { this.populate("product_id"); });
+schema.pre("findOne", function () { this.populate({ path: "product_id" }) })
 
 export const Cart = model(collection, schema);

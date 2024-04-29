@@ -1,6 +1,5 @@
 [
   {
-    "id": "d99cd7f607bcf8684f30952a",
     "title": "Product 0",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -8,7 +7,6 @@
     "stock": 100
   },
   {
-    "id": "fca35bb5b65dd271d7ae8ac8",
     "title": "Product 1",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -16,7 +14,6 @@
     "stock": 100
   },
   {
-    "id": "47523794c9ba2f4db474a85d",
     "title": "Product 2",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -24,7 +21,6 @@
     "stock": 100
   },
   {
-    "id": "ba96ffc1ca5af8a5681cf982",
     "title": "Product 3",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -32,7 +28,6 @@
     "stock": 100
   },
   {
-    "id": "68536bc0a8c4cfda94694d76",
     "title": "Product 5",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -40,7 +35,6 @@
     "stock": 100
   },
   {
-    "id": "a59f23e0862dca44731ca30d",
     "title": "Product 6",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -48,7 +42,6 @@
     "stock": 100
   },
   {
-    "id": "ef492de98b05580df6b96ee1",
     "title": "Product 7",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -56,7 +49,6 @@
     "stock": 100
   },
   {
-    "id": "9fc71204d115257997f73502",
     "title": "Product 8",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -64,7 +56,6 @@
     "stock": 100
   },
   {
-    "id": "5df31c1a02778e0099467937",
     "title": "Product 9",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -72,7 +63,6 @@
     "stock": 100
   },
   {
-    "id": "d76243e64edf769950990389",
     "title": "Product 10",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -80,7 +70,6 @@
     "stock": 100
   },
   {
-    "id": "f883ec854b8213bb11aa41c9",
     "title": "Product 11",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -88,7 +77,6 @@
     "stock": 100
   },
   {
-    "id": "3c871e312100210d7cdd8cbc",
     "title": "Product 12",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -96,7 +84,6 @@
     "stock": 100
   },
   {
-    "id": "af484747c49e731de00b8097",
     "title": "Product 13",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -104,7 +91,6 @@
     "stock": 100
   },
   {
-    "id": "8656c35f642ff4406c7be6e6",
     "title": "Product 14",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -112,7 +98,6 @@
     "stock": 100
   },
   {
-    "id": "d05594c25353135e090b118f",
     "title": "Product 15",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -120,7 +105,6 @@
     "stock": 100
   },
   {
-    "id": "6e6ad1bd8c2f807d9766cc3b",
     "title": "Product 16",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -128,7 +112,6 @@
     "stock": 100
   },
   {
-    "id": "835a78cac5928d098e7ec0e4",
     "title": "Product 17",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -136,7 +119,6 @@
     "stock": 100
   },
   {
-    "id": "adb6161daa0dcc84797ee493",
     "title": "Product 18",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -144,7 +126,6 @@
     "stock": 100
   },
   {
-    "id": "3f17089113b809fa36e8d712",
     "title": "Product 19",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -152,7 +133,6 @@
     "stock": 100
   },
   {
-    "id": "9be169b9a48a496253744e89",
     "title": "Product 20",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -160,7 +140,6 @@
     "stock": 100
   },
   {
-    "id": "5f23621959a81aec7b3e5888",
     "title": "Product 21",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -168,7 +147,6 @@
     "stock": 100
   },
   {
-    "id": "cb6303811d880015fd9a29dc",
     "title": "Product 22",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -176,7 +154,6 @@
     "stock": 100
   },
   {
-    "id": "fdc4bfbaf45365eb68666aad",
     "title": "Product 23",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -184,7 +161,6 @@
     "stock": 100
   },
   {
-    "id": "fdc9e9cd0e13e8eceb0c08ea",
     "title": "Product 24",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -192,7 +168,6 @@
     "stock": 100
   },
   {
-    "id": "856dc33da46d324d123eeb26",
     "title": "Product 25",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -200,7 +175,6 @@
     "stock": 100
   },
   {
-    "id": "820fbba8002b6f4c6ba677b1",
     "title": "Product 26",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -208,7 +182,6 @@
     "stock": 100
   },
   {
-    "id": "a11851afab4e7ab44ec8a67a",
     "title": "Product 27",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -216,7 +189,6 @@
     "stock": 100
   },
   {
-    "id": "c7ba9a1f35c72ec66d90c195",
     "title": "Product 28",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -224,7 +196,6 @@
     "stock": 100
   },
   {
-    "id": "61b6898a870baa7d9098cb20",
     "title": "Product 29",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -232,7 +203,6 @@
     "stock": 100
   },
   {
-    "id": "89215a599d57130a801b5d85",
     "title": "Product 30",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -240,7 +210,6 @@
     "stock": 100
   },
   {
-    "id": "aacba2e1c5d705cb8c5664a4",
     "title": "Product 31",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -248,7 +217,6 @@
     "stock": 100
   },
   {
-    "id": "f1db9f2e14d361c18ca2ee52",
     "title": "Product 32",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -256,7 +224,6 @@
     "stock": 100
   },
   {
-    "id": "d3fbc84040dbacaab047795e",
     "title": "Product 33",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -264,7 +231,6 @@
     "stock": 100
   },
   {
-    "id": "763e256b4a006d02bd5dfdad",
     "title": "Product 34",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -272,7 +238,6 @@
     "stock": 100
   },
   {
-    "id": "ab19c78864a620b3d113e31d",
     "title": "Product 35",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -280,7 +245,6 @@
     "stock": 100
   },
   {
-    "id": "6885587552aa19744c127945",
     "title": "Product 36",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -288,7 +252,6 @@
     "stock": 100
   },
   {
-    "id": "6982f73c189f15af3b2c3bfc",
     "title": "Product 37",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -296,7 +259,6 @@
     "stock": 100
   },
   {
-    "id": "50b3dd64eb21b01840489690",
     "title": "Product 38",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
@@ -304,7 +266,6 @@
     "stock": 100
   },
   {
-    "id": "d8beb6e4888e31e5588d876e",
     "title": "Product 39",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category B",
@@ -312,51 +273,10 @@
     "stock": 100
   },
   {
-    "id": "0d7b0e603ad6e56c80e2cd0c",
     "title": "Product 40",
     "photo": "/assets/icons/imagepreview.png",
     "category": "Category A",
     "price": 4100,
     "stock": 100
-  },
-  {
-    "id": "653463f8bfff0f40c4daad18",
-    "title": "Testing2",
-    "photo": "/assets/icons/imagepreview.png",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "19f6fe601be795e58f8c2b04",
-    "title": "New Product",
-    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000014158/0ca41128bf40b7e0dc32a046a659ecdc69e4d7cc7a3257d6280be665d2f795b5",
-    "category": "B",
-    "price": "50",
-    "stock": "30"
-  },
-  {
-    "id": "2ce82e7511d5c21a27513c77",
-    "title": "jajaja",
-    "photo": "/assets/icons/imagepreview.png",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "87702d76dcfd8f6cd2ad8b99",
-    "title": "Hi",
-    "photo": "/assets/icons/imagepreview.png",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "2dacc52384d8391cd75d1d6f",
-    "title": "Hooo",
-    "photo": "/assets/icons/imagepreview.png",
-    "category": "Category A",
-    "price": 1,
-    "stock": 1
   }
 ]

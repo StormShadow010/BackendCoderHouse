@@ -5,8 +5,8 @@ import cartsRouter from "./cart.api.js";
 
 const apiRouter = Router();
 
-apiRouter.use("/users", usersRouter);
 apiRouter.use("/products", productsRouter);
+apiRouter.use("/users", usersRouter);
 apiRouter.use("/carts", cartsRouter);
 
 export default apiRouter;

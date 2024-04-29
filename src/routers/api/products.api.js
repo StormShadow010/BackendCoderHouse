@@ -37,7 +37,7 @@ const read = async (req, res, next) => {
                 response: products,
             });
         } else {
-            const error = new Error("Not found category/data!");
+            const error = new Error("Not found data!");
             error.statusCode = 404;
             throw error;
         }

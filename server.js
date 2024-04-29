@@ -2,7 +2,6 @@ import "dotenv/config.js";
 import express from "express"
 import morgan from "morgan"
 
-
 import { errorHandler, pathHandler } from "./src/middlewares/index.mid.js"
 import indexRouter from "./src/routers/index.router.js"
 import __dirname from "./utils.js"
@@ -17,9 +16,9 @@ const ready = () => {
 }
 server.listen(port, ready)
 //MIDDLEWARES - EXPRESS
-server.use(express.urlencoded({ extended: true })) // <-- Allows the server to read req.param and req.query
-server.use(express.json()); // <-- Allows the server to read req.body (parse incoming requests with JSON payloads)
-server.use(morgan("dev")) //Record each of the requests
+server.use(express.urlencoded({ extended: true }))
+server.use(express.json());
+server.use(morgan("dev"))
 server.use(express.static(__dirname + "/public"));
 //ROUTER MAIN
 server.use("/", indexRouter);

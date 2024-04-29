@@ -1,5 +1,3 @@
-import crypto from "crypto";
-
 class CartsManager {
     static #products = [];
     create(data) {
@@ -7,7 +5,6 @@ class CartsManager {
             const { user_id, product_id, quantity, state } = data;
             //Create object for new product
             const addCartProduct = {
-                id: crypto.randomBytes(12).toString("hex"),
                 user_id,
                 product_id,
                 quantity,

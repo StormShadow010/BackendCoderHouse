@@ -21,7 +21,7 @@ const showProducts = (allData) => {
         newDiv.className = `product ${product._id} `
 
         newDiv.innerHTML = `
-            <a href="/product-detail.html?pid=${product._id}" class="group">
+            <a href="/products/product-detail.html?pid=${product._id}" class="group">
                 <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
                     <div class="flex items-end justify-end h-56 w-full bg-cover"
                         style="background-image: url(${`${product.photo}`});">

@@ -1,5 +1,4 @@
 import fs from "fs";
-import crypto from "crypto";
 import { createFile, createFileNP, readFile } from "./helpers/manageFiles.js";
 
 class CartsManager {
@@ -20,7 +19,6 @@ class CartsManager {
             const { user_id, product_id, quantity, state } = data;
             //Create object for new product
             const addCartProduct = {
-                id: crypto.randomBytes(12).toString("hex"),
                 user_id,
                 product_id,
                 quantity,

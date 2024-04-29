@@ -67,6 +67,7 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 
 ## CartsManager
 
-Este Manager se encuentran en las tres persistencias (fs,memory mongo)
+Este Manager se encuentran en las tres persistencias (fs,memory mongo), para el probar para fs y memory en data se creo una carpeta testing en donde se prueba cada manager.
 
+### Observaciones
 Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuestión de no repetir código en la lectura y creación del documento, esto se uso tanto para la  clase `ProductsManager`,`UsersManager` y `CartsManager` 

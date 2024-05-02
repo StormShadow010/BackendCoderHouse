@@ -1,5 +1,6 @@
 import { Router } from "express";
-import productsManager from "../../data/fs/ProductsManager.fs.js";
+// import productsManager from "../../data/fs/ProductsManager.fs.js";
+import { productsManager } from "../../data/mongo/managers/indexManager.mongo.js";
 import { checkMandatoryFieldsProducts } from "../../middlewares/checkMandatoryFieldsProducts.mid.js";
 
 const productsRouter = Router()
@@ -36,7 +37,7 @@ const read = async (req, res, next) => {
                 response: products,
             });
         } else {
-            const error = new Error("Not found category/data!");
+            const error = new Error("Not found data!");
             error.statusCode = 404;
             throw error;
         }

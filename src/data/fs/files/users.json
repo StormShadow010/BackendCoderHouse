@@ -1,27 +1,23 @@
 [
   {
-    "id": "71eceb545d242dd629f4a232",
     "photo": "/assets/icons/avatar.png",
     "email": "user1@example.com",
     "password": "<PASSWORD>",
     "role": "1"
   },
   {
-    "id": "75309d7ee7db27302e4a2008",
     "photo": "/assets/icons/avatar.png",
     "email": "user2@example.com",
     "password": "<PASSWORD>",
     "role": "0"
   },
   {
-    "id": "1dcfcd123b61df422167b198",
     "photo": "/assets/icons/avatar.png",
     "email": "user3@example.com",
     "password": "<PASSWORD>",
     "role": "1"
   },
   {
-    "id": "93a63f8c35662e3f127a3f23",
     "photo": "/assets/icons/avatar.png",
     "email": "user4@example.com",
     "password": "<PASSWORD>",

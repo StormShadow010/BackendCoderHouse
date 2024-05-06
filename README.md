@@ -1,9 +1,8 @@
 
-# Práctica de integración sobre ecommerce
+# Segunda entrega del Proyecto final
 
-En esta entrega se evaluará la implementación de mongo como una tercera instancia, además de las vistas (En este caso se hizo el cambio de handlebar a JS VAINILLA)
+En esta entrega se evaluará la implementación de mongo como una tercera instancia, en donde tendrán vistas, CRUD del carrito y la parte de paginación.
 
-Además se usará la persistencia de mongo para incorporarla, en donde se tendrá el manager de Products, Users y Carts.
 
 ## Estructura de Datos
 
@@ -42,7 +41,7 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 
 ## Requisitos Previos
 - Node.js instalado, versión mayor a la 18.
-
+- Variables de entorno 
 ## Pasos para Probar el Servidor
 1. Clonar el repositorio o descargar el código fuente.
 2. Instalar las dependencias del proyecto utilizando el comando `npm install` ó `npm i` .
@@ -52,22 +51,34 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 
 ## Vistas
 
-- localhost:8080/ debe mostrar la página de inicio del comercio. Como mínimo debe incluir el logo del comercio y todos los productos que se venden. 
-- localhost:8080/products/:pid debe mostrar el detalle del producto y un botón para agregar al carrito.
-- localhost:8080/users/register debe mostrar la página con un formulario para registrar un usuario.
-- localhost:8080/users/:uid debe mostrar la página con los datos del usuario.
+1. localhost:8080/ 
+    - Barra de navegación
+    - Logo
+    - Todos los productos disponibles y paginados
+    - Agregar filtro por categoría (En este caso se hizo por Title)
+    - Cada tarjeta de producto tiene que linkear hacia la página de detalle del producto.
 
+2. localhost:8080/products/:pid 
+    - Un botón para agregar el producto al carrito
+    - `hardcodear` un user_id existente para poder para que funcione correctamente
+3. localhost:8080/users/register debe mostrar la página con un formulario para registrar un usuario. (Es funcional)
+4. localhost:8080/users/login debe mostrar la página con un formulario para iniciar sesión (Al ser un usuario existente redigire a la landing Page)
+5. localhost:8080/users/:uid debe mostrar la página con los datos del usuario.
+6. localhost:8080/carts/:uid 
+    - Todos los productos disponibles d un usuario
+    - Agregar un botón para eliminar el producto del carrito
+    - Agregar un input numérico para la gestión de la cantidad de unidades a comprar
+    - Agregar un botón para finalizar la compra y borrar todos los productos del carrito
+    - Agregar un botón para cancelar la compra y borrar todos los productos del carrito
 ## Pruebas
 
-- En la vista  `localhost:8080/` se pueden ver los productos en la “landing page” .
-- En la vista `localhost:8080/products/:pid` se puede probar dando clic en la landing page a un producto.
-- En la vista `localhost:8080/users/register.html`, se puede ver el formulario de registro para el usuario, pero no es funcional. 
-- En la vista `http://localhost:8080/users/userInfo.html?uid=xxxxxx`, se puede ver el usuario con el `:uid` 662f29ca694d730c9abace2f
-
-
-## CartsManager
-
-Este Manager se encuentran en las tres persistencias (fs,memory mongo), para el probar para fs y memory en data se creo una carpeta testing en donde se prueba cada manager.
+- En la vista  `localhost:8080/` se pueden ver los productos en la “landing page”, con el next y prev para poder ver los demás productos (Paginación), además de esto aquí se encuentra el filtro, no por palabra exacta sino por letra.
+- En la vista `localhost:8080/products/:pid` se puede probar dando clic en el logo de información y se redirige a la vista de cada producto, además se puede agregar al carrito desde ese punto como en la landing page.
+- En la vista `http://localhost:8080/pages/users/register.html`, se puede ver el formulario de registro para el usuario, y es funcional. 
+- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar email:`coderAdmin@gmail.com` y contraseña: `123456789`
+- En la vista `http://localhost:8080/users/userInfo.html?uid=xxxxxx`, se puede ver el usuario con el `:uid` 663650ece72c2a6d4680166d 
+- En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos en este caso el `user_id` esta `hardcodeado` con el uid 663650ece72c2a6d4680166d,además tener en cuenta que el total que se ve muestra en `harcodeado`.
 
 ### Observaciones
-Es importante aclarar que en fs se creo una carpeta llamada helpers, para cuestión de no repetir código en la lectura y creación del documento, esto se uso tanto para la  clase `ProductsManager`,`UsersManager` y `CartsManager` 
+
+Todas las vistas se realizarón con JS VAINILLA

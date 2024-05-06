@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, json } from "express";
 
 import { cartsManager } from "../../data/mongo/managers/CartsManager.mongo.js";
 
@@ -44,6 +44,7 @@ const read = async (req, res, next) => {
         return next(error);
     }
 }
+
 //Read <- get items by User_id
 async function readOne(req, res, next) {
     try {

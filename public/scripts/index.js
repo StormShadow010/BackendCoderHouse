@@ -1,9 +1,19 @@
-const getData = async () => {
-    let response = await fetch('http://localhost:8080/api/products', { mode: 'no-cors' });
-    let data = await response.json();
-    let products = data.response;
-    // console.log(products);
-    return products; // Add this line to return the products
+
+const getData = async (page, input) => {
+
+    if (input) {
+        let response = await fetch(`http://localhost:8080/api/products/paginate?page=${page}&title=${input}`, { mode: 'no-cors' });
+        let data = await response.json();
+        let products = data.response;
+        return products; // Add this line to return the products
+    } else {
+        let response = await fetch(`http://localhost:8080/api/products/paginate?page=${page}`, { mode: 'no-cors' });
+        let data = await response.json();
+        let products = data.response;
+        return products; // Add this line to return the products
+    }
+
+
 }
 
 const detailProduct = (productId) => {
@@ -66,6 +76,8 @@ const createProductHTML = (product) => {
 };
 
 
+
+
 const showProducts = (productsData) => {
     //Container where the products will be seen
     const containerProducts = document.querySelector("#ContainerProducts")
@@ -83,9 +95,32 @@ const showProducts = (productsData) => {
 
 }
 
-const initApp = async () => {
-    const productsData = await getData();
+const loadNextProducts = async () => {
+    const currentPage = parseInt(document.querySelector("#ContainerProducts").dataset.page) || 1;
+    const productsData = await getData(currentPage + 1);
     showProducts(productsData);
+    document.querySelector("#ContainerProducts").dataset.page = currentPage + 1;
+};
+
+const loadPreviousProducts = async () => {
+    const currentPage = parseInt(document.querySelector("#ContainerProducts").dataset.page) || 1;
+    const productsData = await getData(currentPage - 1);
+    showProducts(productsData);
+    document.querySelector("#ContainerProducts").dataset.page = currentPage - 1;
+
+};
+
+document.getElementById('search').addEventListener('input', async (event) => {
+    const search = event.target.value;
+    const productsData = await getData(1, search);
+    showProducts(productsData);
+});
+
+const initApp = async () => {
+    const productsData = await getData(1);
+    showProducts(productsData);
+    document.querySelector("#next-button").addEventListener("click", loadNextProducts);
+    document.querySelector("#prev-button").addEventListener("click", loadPreviousProducts);
 };
 
 initApp();

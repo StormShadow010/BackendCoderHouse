@@ -12,11 +12,17 @@ class Manager {
     }
     read = async (filterInfo) => {
         try {
-            // Use optional chaining to simplify the code and prevent errors
-            const allData = await this.Model.find(filterInfo || {});
+            const allData = await this.Model.find();
             return allData;
         } catch (error) {
-            // Re-throw the error as an instance of Error for consistency
+            throw new Error(error.message);
+        }
+    };
+    paginate = async ({ filter, opts }) => {
+        try {
+            const allData = await this.Model.paginate(filter, opts);
+            return allData;
+        } catch (error) {
             throw new Error(error.message);
         }
     };

@@ -45,6 +45,32 @@ const read = async (req, res, next) => {
         return next(error);
     }
 }
+//Read <- get all items by Paginate
+const paginateRead = async (req, res, next) => {
+    try {
+        const filter = {}
+        const opts = {}
+        if (req.query.page) {
+            opts.page = req.query.page
+        }
+        if (req.query.title) {
+            filter.title = { $regex: req.query.title, $options: 'i' }; // case-insensitive search
+        }
+        const all = await productsManager.paginate({ filter, opts })
+        return res.json({
+            statusCode: 200,
+            response: all.docs,
+            info: {
+                page: all.page,
+                limit: all.limit,
+                prevPage: all.prevPage,
+                nextPage: all.nextPage,
+            }
+        })
+    } catch (error) {
+        return next(error);
+    }
+}
 //Read <- get product by ID
 async function readOne(req, res, next) {
     try {
@@ -109,6 +135,8 @@ const destroy = async (req, res, next) => {
 productsRouter.post("/", checkMandatoryFieldsProducts, create);
 //Read <- get all products or get for category
 productsRouter.get("/", read);
+//Read <- get all items by Paginate
+productsRouter.get("/paginate", paginateRead);
 //Read <- get product by ID
 productsRouter.get("/:pid", readOne);
 //Update a product

@@ -10,13 +10,33 @@ const detailProduct = (productId) => {
     location.href = `pages/products/product-detail.html?pid=${productId}`
 };
 
+const detailAdd = (productId) => {
+    const productToAdd = {
+        user_id: "663650ece72c2a6d4680166d", //harcodeado user coderAdmin@gmail.com
+        product_id: productId,
+        quantity: 1
+    }
+    fetch('http://localhost:8080/api/carts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productToAdd)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => console.error('Error:', error));
+}
+
 const createProductHTML = (product) => {
     const template = `
         <div class="w-full h-[350px] rounded-md shadow-xl overflow-hidden">
             <div class="flex flex-col">
                 <div class=" flex items-end justify-end h-[280px] w-full bg-contain bg-center bg-no-repeat"
                     style="background-image: url(${`${product.photo}`});">
-                    <button
+                    <button onclick="detailAdd('${product._id}')"
                         class="p-2 rounded-full bg-blue-600 text-white mx-5 mb-2 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
                         <svg class="h-10 w-10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             viewBox="0 0 24 24" stroke="currentColor">

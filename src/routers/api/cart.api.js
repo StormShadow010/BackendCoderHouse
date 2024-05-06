@@ -28,7 +28,8 @@ const create = async (req, res, next) => {
 //Read <- get all items 
 const read = async (req, res, next) => {
     try {
-        const cartItems = await cartsManager.read();
+        const { uid } = req.query;
+        const cartItems = await cartsManager.read({ user_id: uid });
         if (cartItems.length > 0) {
             return res.json({
                 statusCode: 200,
@@ -48,6 +49,7 @@ async function readOne(req, res, next) {
     try {
         const { cid } = req.params;
         const cartItem = await cartsManager.readOne(cid);
+
         if (cartItem) {
             return res.json({
                 statusCode: 200,
@@ -103,15 +105,16 @@ const destroy = async (req, res, next) => {
     }
 }
 
+
 //Create a new cart Item
 cartsRouter.post("/", create);
 //Read <- get all items 
 cartsRouter.get("/", read);
 //Read <- get item by User_id
 cartsRouter.get("/:cid", readOne);
-//Update a cart item by User_id
+//Update a cart item by _id Item
 cartsRouter.put("/:cid", update);
-//Delete a cart item by User_id
+//Delete a cart item by _id Item
 cartsRouter.delete("/:cid", destroy);
 
 export default cartsRouter;

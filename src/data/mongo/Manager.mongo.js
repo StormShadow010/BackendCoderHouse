@@ -10,14 +10,16 @@ class Manager {
             throw error;
         }
     }
-    read = async (category) => {
+    read = async (filterInfo) => {
         try {
-            const allData = await this.Model.find();
+            // Use optional chaining to simplify the code and prevent errors
+            const allData = await this.Model.find(filterInfo || {});
             return allData;
         } catch (error) {
-            throw error;
+            // Re-throw the error as an instance of Error for consistency
+            throw new Error(error.message);
         }
-    }
+    };
     readOne = async (id) => {
         try {
             const itemInvidual = await this.Model.findById(id);

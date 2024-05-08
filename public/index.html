@@ -6,49 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Storm Site</title>
     <link rel="icon" type="image/x-icon" href="./assets/favicons/home.png">
-
 </head>
 
-<body class="bg-[#00337C]">
-    <nav class="flex justify-between bg-gray-900 text-white w-screen">
-        <div class="px-5 xl:px-12 py-6 flex w-full items-center">
+<body>
+    <div class="max-w-1200 w-full min-h-screen bg-[#090F26]">
+        <nav class="grid grid-cols-3 gap-4 bg-[#101c2c]">
+            <!-- Logo -->
+            <div class="flex justify-center items-center">
+                <a href="/"><img src="../../assets/images/logoStore.jpg" alt="Logo" class="h-[80px] w-[80px]"></a>
+            </div>
+            <!-- Menu -->
+            <div class="flex justify-center items-center text-white">
+                <a href="/" class="font-semibold hover:text-red-700 transition duration-300 ease-in-out mx-4">Home</a>
+                <a href="./pages/cart/cart.html"
+                    class="font-semibold hover:text-red-700 transition duration-300 ease-in-out mx-4">Cart</a>
+            </div>
+            <!-- Cart and Login -->
+            <div class="flex justify-center items-center">
+                <a href="./pages/cart/cart.html"><img src="../../assets/icons/cart.png" alt="Cart"
+                        class="h-[50px] w-[50px] mr-2"></a>
+                <a href="./pages/users/login.html"><img src="../../assets/icons/user-login.png" alt="Login"
+                        class="h-[50px] w-[50px] mr-2"></a>
+            </div>
+        </nav>
+        <main class="grid w-full place-items-center bg-gray-900">
+            <div class="flex w-[30rem] rounded bg-white" x-data="{ search: '' }">
+                <input type="search" id="search"
+                    class="w-full border-none bg-transparent px-4 py-1 text-gray-900 focus:outline-none"
+                    placeholder="search" x-model="search" />
+            </div>
+        </main>
+        <div class="w-[90%] mt-[5px] mx-auto bg-[#144272]">
+            <div id="ContainerProducts"
+                class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full p-3">
+            </div>
 
-            <img class="h-[50px] w-auto" src="/assets/images/logoStore.jpg" alt="logo">
-            <!-- Nav Links -->
-            <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-                <li><a class="hover:text-gray-200" href="/">Home</a></li>
-                <li><a class="hover:text-gray-200" href="/users/register.html">User Register</a></li>
-            </ul>
-        </div>
-        <a class=" flex mr-6 items-center" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            <span class="flex absolute -mt-5 ml-4">
-                <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
-                </span>
-            </span>
-        </a>
-        <a class="navbar-burger self-center mr-12" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </a>
+            <div class="flex space-x-10 bg-gray-100 p-2 w-full justify-center">
+                <button id="prev-button"
+                    class="min-w-auto w-32 h-10 bg-red-300 p-2 rounded-xl hover:bg-red-500 transition-colors duration-50 hover:animate-pulse ease-out text-white font-semibold">
+                    Previous
+                </button>
 
-    </nav>
-    <div class="container mx-auto my-10">
-        <div id="mainContainerProducts"
-            class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+
+                <button id="next-button"
+                    class="min-w-auto w-32 h-10 bg-green-300 p-2 rounded-xl hover:bg-green-500 transition-colors duration-50 hover:animate-pulse ease-out text-white font-semibold">
+                    Next
+                </button>
+            </div>
+
         </div>
     </div>
+    <script src="./scripts/index.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </body>
-
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="./index.js"></script>
 
 </html>

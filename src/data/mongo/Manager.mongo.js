@@ -10,14 +10,22 @@ class Manager {
             throw error;
         }
     }
-    read = async (category) => {
+    read = async (filterInfo) => {
         try {
             const allData = await this.Model.find();
             return allData;
         } catch (error) {
-            throw error;
+            throw new Error(error.message);
         }
-    }
+    };
+    paginate = async ({ filter, opts }) => {
+        try {
+            const allData = await this.Model.paginate(filter, opts);
+            return allData;
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    };
     readOne = async (id) => {
         try {
             const itemInvidual = await this.Model.findById(id);

@@ -1,9 +1,70 @@
+import { printIcons } from "./modules/printLayout.js";
+
+//Fetch Session
+let online = await fetch("/api/sessions");
+online = await online.json();
+
+const userProducts = async () => {
+    //Fetch Cart User
+    let cartResponse = await fetch(`/api/carts?uid=${online.user_id}`);
+    cartResponse = await cartResponse.json();
+    let products = cartResponse.response;
+    showProducts(products)
+    return products
+}
+
+const showProducts = (productsData) => {
+    //Container where the products will be seen
+    const containerProducts = document.querySelector("#ContainerProducts")
+    //Every time new ones are created, the container is emptied
+    containerProducts.innerHTML = "";
+
+    productsData.map((product) => {
+        //Create a new div
+        const newDiv = document.createElement("div")
+        //Add a class
+        newDiv.className = `product ${product._id} `
+        newDiv.innerHTML = createProductHTML(product);
+        //Events to decrement, increment, delete
+        //Decrement
+        newDiv.querySelector("#decrementButton").addEventListener("click", async () => {
+            const inputValue = newDiv.querySelector("#quantityProduct")
+            if (parseInt(inputValue.value) > 1) {
+                inputValue.value = parseInt(inputValue.value) - 1;
+                await updateProductQuantity(product._id, inputValue.value);
+            }
+        })
+        //Increment
+        newDiv.querySelector("#incrementButton").addEventListener("click", async () => {
+            const inputValue = newDiv.querySelector("#quantityProduct")
+            inputValue.value = parseInt(inputValue.value) + 1;
+            await updateProductQuantity(product._id, inputValue.value);
+        })
+        //Delete
+        newDiv.querySelector("#deleteProduct").addEventListener("click", async () => {
+            await fetch(`/api/carts/${product._id}`, { method: 'DELETE' });
+            location.reload();
+        })
+
+        //Append to the container
+        containerProducts.appendChild(newDiv)
+    })
+}
+
+const updateProductQuantity = async (cid, quantity) => {
+    await fetch(`/api/carts/${cid}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cid, quantity })
+    });
+    location.reload();
+};
+
 const createProductHTML = (product) => {
     const template = `
         <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
             <img src="${product.product_id.photo}"
                 alt="product-image" class="w-full rounded-lg sm:w-40" />
-
             <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                 <div class="mt-5 sm:mt-0">
                     <h2 class="text-lg font-bold text-gray-900">${product.product_id.title}</h2>
@@ -11,13 +72,13 @@ const createProductHTML = (product) => {
                 </div>
                 <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                     <div class="flex items-center border-gray-100">
-                        <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50" onclick="decrementQuantity('${product._id}')">
+                        <span id="decrementButton" class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
                             - </span>
-                        <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value="${product.quantity}" min="1" id="${product._id}" />
-                        <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onclick="incrementQuantity('${product._id}')">
+                        <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value="${product.quantity}" min="1" id="quantityProduct" />
+                        <span id="incrementButton" class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
                             + </span>
                     </div>
-                    <button onclick="deleteItemCart('${product._id}')" class="flex items-center  justify-center">
+                    <button id="deleteProduct" class="flex items-center  justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor"
                             class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
@@ -32,87 +93,14 @@ const createProductHTML = (product) => {
     return template;
 };
 
-const deleteItemCart = async (cid) => {
-    const response = await fetch(`http://localhost:8080/api/carts/${cid}`, { method: 'DELETE' });
-    location.reload();
-};
-
-const incrementQuantity = async (cid) => {
-    try {
-        const input = document.getElementById(cid);
-        input.value = parseInt(input.value) + 1;
-        await updateProductQuantity(cid, input.value);
-    } catch (error) {
-        console.error('Error incrementing quantity:', error);
-    }
-};
-
-const decrementQuantity = async (cid) => {
-    try {
-        const input = document.getElementById(cid);
-        console.log()
-        if (parseInt(input.value) > 1) {
-            input.value = parseInt(input.value) - 1;
-            await updateProductQuantity(cid, input.value);
-        }
-    } catch (error) {
-        console.error('Error decrementing quantity:', error);
-    }
-};
-
-const updateProductQuantity = async (cid, quantity) => {
-    try {
-        const response = await fetch(`http://localhost:8080/api/carts/${cid}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ cid, quantity })
-        });
-        location.reload();
-    } catch (error) {
-        console.error('Error updating product quantity:', error);
-    }
-};
-
-
-const fetchCartProducts = async () => {
-    try {
-        const cartResponse = await fetch('http://localhost:8080/api/carts?uid=663650ece72c2a6d4680166d', { mode: 'no-cors' });
-        const cartData = await cartResponse.json();
-        const products = cartData.response;
-        console.log(products);
-        return products;
-    } catch (error) {
-        console.error('Error fetching cart products:', error);
-    }
-}
-
-const showProducts = (productsData) => {
-    // //Container where the products will be seen
-    const containerProducts = document.querySelector("#ContainerProducts")
-    // ////Every time new ones are created, the container is emptied
-    containerProducts.innerHTML = "";
-
-    productsData.map((product) => {
-        //Create a new div
-        const newDiv = document.createElement("div")
-        //Add a class
-        newDiv.className = `product ${product._id} `
-        newDiv.innerHTML = createProductHTML(product);
-        containerProducts.appendChild(newDiv)
-    })
-
-}
-
-
-
 const checkoutButton = document.getElementById('checkout-button');
 
 checkoutButton.addEventListener('click', async () => {
     try {
-        const cartResponse = await fetchCartProducts();
+        const cartResponse = await userProducts();
         // Loop through each product in the cart and delete it
         cartResponse.forEach(async (product) => {
-            await fetch(`http://localhost:8080/api/carts/${product._id}`, {
+            await fetch(`/api/carts/${product._id}`, {
                 method: 'DELETE',
             });
         });
@@ -127,10 +115,10 @@ const clearButton = document.getElementById('clearChopping');
 
 clearButton.addEventListener('click', async () => {
     try {
-        const cartResponse = await fetchCartProducts();
+        const cartResponse = await userProducts();
         // Loop through each product in the cart and delete it
         cartResponse.forEach(async (product) => {
-            await fetch(`http://localhost:8080/api/carts/${product._id}`, {
+            await fetch(`/api/carts/${product._id}`, {
                 method: 'DELETE',
             });
         });
@@ -141,9 +129,10 @@ clearButton.addEventListener('click', async () => {
     }
 });
 
-const initApp = async () => {
-    const productsData = await fetchCartProducts();
-    showProducts(productsData);
+
+const initAppCart = () => {
+    printIcons();
+    userProducts();
 };
 
-initApp();
+initAppCart();

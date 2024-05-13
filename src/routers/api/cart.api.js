@@ -111,7 +111,7 @@ const destroy = async (req, res, next) => {
 cartsRouter.post("/", create);
 //Read <- get all items 
 cartsRouter.get("/", read);
-//Read <- get item by User_id
+//Read <- get items by User_id
 cartsRouter.get("/:cid", readOne);
 //Update a cart item by _id Item
 cartsRouter.put("/:cid", update);

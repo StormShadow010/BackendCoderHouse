@@ -53,14 +53,15 @@ const paginateRead = async (req, res, next) => {
         if (req.query.page) {
             opts.page = req.query.page
         }
-        // if (req.query.title) {
-        //     filter.title = { $regex: req.query.title, $options: 'i' }; // case-insensitive search
-        // }
+        if (req.query.title) {
+            filter.title = { $regex: req.query.title, $options: 'i' }; // case-insensitive search
+        }
         const all = await productsManager.paginate({ filter, opts })
         return res.json({
             statusCode: 200,
             response: all.docs,
             info: {
+                totalDocs: all.totalDocs,
                 page: all.page,
                 limit: all.limit,
                 prevPage: all.prevPage,

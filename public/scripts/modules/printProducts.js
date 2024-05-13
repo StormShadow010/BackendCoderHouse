@@ -1,9 +1,4 @@
-export const productsAll = async () => {
-    let page = 1;
-    let response = await fetch(`http://localhost:8080/api/products/paginate?page=${page}}`);
-    let data = await response.json();
-    let products = data.response;
-
+export const productsAll = async (products) => {
     //Container where the products will be seen
     const containerProducts = document.querySelector("#ContainerProducts")
     ////Every time new ones are created, the container is emptied

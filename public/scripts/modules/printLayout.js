@@ -5,7 +5,7 @@ export const printIcons = async () => {
     if (online.statusCode === 200) {
         template = `
         <a href="../../pages/users/userInfo.html?uid=${online.user_id}"> <img src="${online.photo}" class="h-[40px] w-[40px] mr-2"> </a>
-        <a href="./cart.html"><img src="../../assets/icons/cart.png" alt="Cart"
+        <a href="../../pages/cart/cart.html"><img src="../../assets/icons/cart.png" alt="Cart"
                         class="h-[50px] w-[50px] mr-2"></a>
         <button id="signout"><img src="../../assets/icons/logout.png" alt="Login"
                         class="h-[40px] w-[40px] mr-2"></button>

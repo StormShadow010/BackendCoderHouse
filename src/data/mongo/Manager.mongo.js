@@ -12,8 +12,9 @@ class Manager {
     }
     read = async (filterInfo) => {
         try {
-            const allData = await this.Model.find();
+            const allData = await this.Model.find(filterInfo)
             return allData;
+
         } catch (error) {
             throw new Error(error.message);
         }

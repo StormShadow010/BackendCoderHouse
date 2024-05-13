@@ -13,10 +13,10 @@ const create = async (req, res, next) => {
             return res.json({
                 statusCode: 201,
                 response: "CREATED NEW ITEM WITH ID: " + newCartItem._id,
-                message: "Item created successfully",
+                message: "Item added successfully",
             });
         } else {
-            const error = new Error("Error creating a new item");
+            const error = new Error("Error adding item to cart");
             error.statusCode = 404;
             throw error;
         }

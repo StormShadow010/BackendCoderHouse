@@ -43,7 +43,7 @@ const showProducts = (productsData) => {
         //Delete
         newDiv.querySelector("#deleteProduct").addEventListener("click", async () => {
             await fetch(`/api/carts/${product._id}`, { method: 'DELETE' });
-            location.reload();
+            location.reload("/");
         })
 
         //Append to the container
@@ -57,7 +57,6 @@ const updateProductQuantity = async (cid, quantity) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cid, quantity })
     });
-    location.reload();
 };
 
 const createProductHTML = (product) => {

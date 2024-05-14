@@ -20,7 +20,7 @@ export const printIcons = async () => {
             response = await response.json();
             console.log(response);
             if (response.statusCode === 200) {
-                location.replace("/");
+                location.replace("../../index.html");
             }
         });
     } else {

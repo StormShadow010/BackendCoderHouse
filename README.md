@@ -1,10 +1,9 @@
 
-# Segunda entrega del Proyecto final
+# mplementación de sesiones
 
-En esta entrega se evaluará la implementación de mongo como una tercera instancia, en donde tendrán vistas, CRUD del carrito y la parte de paginación.
+En esta entrega se evaluará la implementación de sesiones por medio del Mongo Storage.
 
-
-## Estructura de Datos
+## Estructura de Datos de cada Modelo (Schema)
 
 Cada producto tiene las siguientes propiedades:
 - ***id*** (código identificador de 12bytes y hexadecimal)
@@ -62,10 +61,10 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
     - Un botón para agregar el producto al carrito
     - `hardcodear` un user_id existente para poder para que funcione correctamente
 3. localhost:8080/users/register debe mostrar la página con un formulario para registrar un usuario. (Es funcional)
-4. localhost:8080/users/login debe mostrar la página con un formulario para iniciar sesión (Al ser un usuario existente redigire a la landing Page)
-5. localhost:8080/users/:uid debe mostrar la página con los datos del usuario.
-6. localhost:8080/carts/:uid 
-    - Todos los productos disponibles d un usuario
+4. localhost:8080/users/login debe mostrar la página con un formulario para iniciar sesión (Al ser un usuario existente redigire al login para iniciar sesión)
+5. localhost:8080/users debe mostrar la página con los datos del usuario (debe funcionar sin el parámetro (usar los datos de la session para enviar el id del usuario)).
+6. localhost:8080/carts (debe funcionar sin el parámetro (usar los datos de la session para enviar el id del usuario)) 
+    - Todos los productos disponibles de un usuario por su user_id
     - Agregar un botón para eliminar el producto del carrito
     - Agregar un input numérico para la gestión de la cantidad de unidades a comprar
     - Agregar un botón para finalizar la compra y borrar todos los productos del carrito
@@ -75,10 +74,12 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - En la vista  `localhost:8080/` se pueden ver los productos en la “landing page”, con el next y prev para poder ver los demás productos (Paginación), además de esto aquí se encuentra el filtro, no por palabra exacta sino por letra.
 - En la vista `localhost:8080/products/:pid` se puede probar dando clic en el logo de información y se redirige a la vista de cada producto, además se puede agregar al carrito desde ese punto como en la landing page.
 - En la vista `http://localhost:8080/pages/users/register.html`, se puede ver el formulario de registro para el usuario, y es funcional. 
-- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar email:`coderAdmin@gmail.com` y contraseña: `123456789`
-- En la vista `http://localhost:8080/users/userInfo.html?uid=xxxxxx`, se puede ver el usuario con el `:uid` 663650ece72c2a6d4680166d 
-- En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos en este caso el `user_id` esta `hardcodeado` con el uid 663650ece72c2a6d4680166d,además tener en cuenta que el total que se ve muestra en `harcodeado`.
+- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar email:`coderAdmin@gmail.com` y contraseña: `123456`
+- En la vista `http://localhost:8080/users`, se puede ver el usuario dando clic en la barra de navegación en la foto del perfil agregada a partir del registro, partiendo del uso de la session.
+- En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos por de cada usuario a partir de su `user_id` que se tiene para la session.
 
 ### Observaciones
 
-Todas las vistas se realizarón con JS VAINILLA
+- Todas las vistas se realizarón con JS VAINILLA
+- Usuario de Prueba `email:` coderAdmin@gmail.com y `password:` 123456 (Login)
+- Además se agregaron validaciones para que en caso de no tener session `no sea posible` ver el carrito o agregar al mismo.

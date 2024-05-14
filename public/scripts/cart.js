@@ -45,7 +45,6 @@ const showProducts = (productsData) => {
             await fetch(`/api/carts/${product._id}`, { method: 'DELETE' });
             location.reload("/");
         })
-
         //Append to the container
         containerProducts.appendChild(newDiv)
     })

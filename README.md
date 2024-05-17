@@ -1,5 +1,5 @@
 
-# mplementación de sesiones
+# Refactoreo con passport
 
 En esta entrega se evaluará la implementación de sesiones por medio del Mongo Storage.
 

@@ -1,6 +1,9 @@
 import "dotenv/config.js";
 import express from "express"
 import morgan from "morgan"
+import cookieParser from "cookie-parser";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 
 import { errorHandler, pathHandler } from "./src/middlewares/index.mid.js"
 import indexRouter from "./src/routers/index.router.js"
@@ -16,6 +19,17 @@ const ready = () => {
 }
 server.listen(port, ready)
 //MIDDLEWARES - EXPRESS
+server.use(cookieParser(process.env.SECRET_COOKIE))
+server.use(session({
+  store: new MongoStore({
+    mongoUrl: process.env.MONGO_URI,
+    ttl: 10
+  }),
+  secret: process.env.SECRET_SESSION,
+  resave: true,
+  saveUninitialized: true,
+
+}))
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json());
 server.use(morgan("dev"))

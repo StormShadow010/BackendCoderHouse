@@ -1,15 +1,15 @@
 [
   {
-    "title": "Product 0",
-    "photo": "/assets/icons/imagepreview.png",
-    "category": "Category A",
+    "title": "Mario Kart 8 Deluxe",
+    "photo": "/assets/images/mariokart8.jpg",
+    "category": "Nintendo",
     "price": 100,
     "stock": 100
   },
   {
-    "title": "Product 1",
-    "photo": "/assets/icons/imagepreview.png",
-    "category": "Category B",
+    "title": "Spiderman",
+    "photo": "/assets/images/spiderman.jpg",
+    "category": "PlayStation",
     "price": 200,
     "stock": 100
   },

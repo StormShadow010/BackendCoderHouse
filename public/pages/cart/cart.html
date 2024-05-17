@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicons/cart.png">
 </head>
 
 <body>
@@ -15,20 +16,13 @@
                 <a href="../../index.html"><img src="../../assets/images/logoStore.jpg" alt="Logo"
                         class="h-[80px] w-[80px]"></a>
             </div>
-            <!-- Menu -->
-            <div class="flex justify-center items-center text-white">
-                <a href="../../index.html"
-                    class="font-semibold hover:text-red-700 transition duration-300 ease-in-out mx-4">Home</a>
-                <a href="../cart/cart.html"
-                    class="font-semibold hover:text-red-700 transition duration-300 ease-in-out mx-4">Cart</a>
-            </div>
-            <!-- Cart and Login -->
+            <!-- Store -->
             <div class="flex justify-center items-center">
-                <a href="../cart/cart.html"><img src="../../assets/icons/cart.png" alt="Cart"
-                        class="h-[50px] w-[50px] mr-2"></a>
-                <a href="../users/login.html"><img src="../../assets/icons/user-login.png" alt="Login"
-                        class="h-[50px] w-[50px] mr-2"></a>
+                <a href="../../index.html"> <img src="../../assets/icons/shopping-store.png" alt="Logo"
+                        class="h-[80px] w-[80px]"> </a>
             </div>
+            <!-- Icons -->
+            <div class="flex justify-evenly items-center" id="headerIcons"></div>
         </nav>
 
         <h1 class="mb-10 text-center text-2xl font-bold text-white">Cart Items</h1>
@@ -66,7 +60,7 @@
             Clear Shopping Cart
         </button>
     </div>
-    <script src="../../scripts/cart.js"></script>
+    <script src="../../scripts/cart.js" type="module"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </body>
 

@@ -12,8 +12,9 @@ class Manager {
     }
     read = async (filterInfo) => {
         try {
-            const allData = await this.Model.find();
+            const allData = await this.Model.find(filterInfo)
             return allData;
+
         } catch (error) {
             throw new Error(error.message);
         }
@@ -29,6 +30,14 @@ class Manager {
     readOne = async (id) => {
         try {
             const itemInvidual = await this.Model.findById(id);
+            return itemInvidual;
+        } catch (error) {
+            throw error;
+        }
+    }
+    readByEmail = async (email) => {
+        try {
+            const itemInvidual = await this.Model.findOne({ email });
             return itemInvidual;
         } catch (error) {
             throw error;

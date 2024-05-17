@@ -61,6 +61,7 @@ const paginateRead = async (req, res, next) => {
             statusCode: 200,
             response: all.docs,
             info: {
+                totalDocs: all.totalDocs,
                 page: all.page,
                 limit: all.limit,
                 prevPage: all.prevPage,

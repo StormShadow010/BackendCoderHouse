@@ -1,41 +1,39 @@
-const createNewUser = () => {
-    let email = document.querySelector('input[name="email"]').value;
-    let password = document.querySelector('input[name="password"]').value;
-    let role = document.querySelector('input[name="role"]').value;
-    let photo = document.querySelector('input[name="photo"]').value;
-
-    let dataNewUser = {
-        email: email,
-        password: password,
-        role: role,
-        photo: photo
+const createNewUser = async () => {
+    const data = {
+        email: document.querySelector('#email').value,
+        password: document.querySelector('#password').value,
+        role: document.querySelector('#role').value,
+        photo: document.querySelector('#photo').value
     }
-
-    fetch('http://localhost:8080/api/users', {
+    const opts = {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataNewUser)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.statusCode == 201) {
-                alert("User created")
-                location.replace("../../index.html") //Se redigire a la landing page
-                // Reset input fields
-                document.querySelector('input[name="email"]').value = "";
-                document.querySelector('input[name="password"]').value = "";
-                document.querySelector('input[name="role"]').value = "";
-                document.querySelector('input[name="photo"]').value = "";
-            } else {
-                alert("Email already exists");
-                // Reset input fields
-                document.querySelector('input[name="email"]').value = "";
-                document.querySelector('input[name="password"]').value = "";
-                document.querySelector('input[name="role"]').value = "";
-                document.querySelector('input[name="photo"]').value = "";
-            }
-        })
-        .catch(error => console.error('Error:', error));
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }
+    let response = await fetch("/api/sessions/register", opts);
+    response = await response.json();
+    if (response.statusCode === 201) {
+        Swal.fire({
+            title: response.message,
+            icon: "success",
+            allowOutsideClick: false,
+            timer: 5000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+        });
+        location.replace("../users/login.html");
+        document.querySelector('#email').value = ""
+        document.querySelector('#password').value = ""
+        document.querySelector('#role').value = ""
+        document.querySelector('#photo').value = ""
+    } else {
+        Swal.fire({
+            title: response.message,
+            icon: "error",
+            timer: 5000,
+            timerProgressBar: true,
+            confirmButtonColor: "#ff3b3c",
+            showConfirmButton: false,
+        });
+    }
 }

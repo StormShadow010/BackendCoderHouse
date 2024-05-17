@@ -13,10 +13,10 @@ const create = async (req, res, next) => {
             return res.json({
                 statusCode: 201,
                 response: "CREATED NEW ITEM WITH ID: " + newCartItem._id,
-                message: "Item created successfully",
+                message: "Item added successfully",
             });
         } else {
-            const error = new Error("Error creating a new item");
+            const error = new Error("Error adding item to cart");
             error.statusCode = 404;
             throw error;
         }
@@ -111,7 +111,7 @@ const destroy = async (req, res, next) => {
 cartsRouter.post("/", create);
 //Read <- get all items 
 cartsRouter.get("/", read);
-//Read <- get item by User_id
+//Read <- get items by User_id
 cartsRouter.get("/:cid", readOne);
 //Update a cart item by _id Item
 cartsRouter.put("/:cid", update);

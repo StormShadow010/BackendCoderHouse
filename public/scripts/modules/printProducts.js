@@ -1,22 +1,22 @@
 export const productsAll = async (products) => {
-    //Container where the products will be seen
-    const containerProducts = document.querySelector("#ContainerProducts")
-    ////Every time new ones are created, the container is emptied
-    containerProducts.innerHTML = "";
+  //Container where the products will be seen
+  const containerProducts = document.querySelector("#ContainerProducts");
+  ////Every time new ones are created, the container is emptied
+  containerProducts.innerHTML = "";
 
-    products.map(async (product) => {
-        //Create a new div
-        const newDiv = document.createElement("div")
-        //Add a class
-        newDiv.className = `product ${product._id} `
-        newDiv.innerHTML = createProductHTML(product);
-        containerProducts.appendChild(newDiv)
+  products.map(async (product) => {
+    //Create a new div
+    const newDiv = document.createElement("div");
+    //Add a class
+    newDiv.className = `product ${product._id} `;
+    newDiv.innerHTML = createProductHTML(product);
+    containerProducts.appendChild(newDiv);
 
-        let template = "";
-        let online = await fetch("/api/sessions");
-        online = await online.json();
-        if (online.statusCode === 200) {
-            template = `
+    let template = "";
+    let online = await fetch("/api/sessions");
+    online = await online.json();
+    if (online.statusCode === 200) {
+      template = `
                 <button id="addProduct"
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 mb-2 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
                     <svg class="h-10 w-10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -27,47 +27,51 @@ export const productsAll = async (products) => {
                     </svg>
                 </button>
             `;
-            newDiv.querySelector("#addCartButton").innerHTML = template;
-            newDiv.querySelector('#addProduct').addEventListener('click', async () => {
-                const data = {
-                    user_id: online.user_id,
-                    product_id: product._id,
-                    quantity: 1
-                }
-                const opts = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                }
-                let response = await fetch("/api/carts", opts);
-                response = await response.json();
-                if (response.statusCode === 201) {
-                    Swal.fire({
-                        title: response.message,
-                        icon: "success",
-                        allowOutsideClick: false,
-                        timer: 2000,
-                        timerProgressBar: true,
-                        showConfirmButton: false,
-                    });
-                } else {
-                    Swal.fire({
-                        title: response.message,
-                        icon: "error",
-                        timer: 3000,
-                        timerProgressBar: true,
-                        confirmButtonColor: "#ff3b3c",
-                        showConfirmButton: false,
-                    });
-                }
+      newDiv.querySelector("#addCartButton").innerHTML = template;
+      newDiv
+        .querySelector("#addProduct")
+        .addEventListener("click", async () => {
+          const data = {
+            user_id: online.user_id,
+            product_id: product._id,
+            quantity: 1,
+          };
+          const opts = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          };
+          let response = await fetch("/api/carts", opts);
+          response = await response.json();
+          if (response.statusCode === 201) {
+            Swal.fire({
+              title: response.message,
+              icon: "success",
+              allowOutsideClick: false,
+              timer: 1000,
+              timerProgressBar: true,
+              showConfirmButton: false,
             });
-        }
-        newDiv.querySelector('#infoProduct').addEventListener('click', () => detailProduct(product._id));
-    })
-}
+          } else {
+            Swal.fire({
+              title: response.message,
+              icon: "error",
+              timer: 3000,
+              timerProgressBar: true,
+              confirmButtonColor: "#ff3b3c",
+              showConfirmButton: false,
+            });
+          }
+        });
+    }
+    newDiv
+      .querySelector("#infoProduct")
+      .addEventListener("click", () => detailProduct(product._id));
+  });
+};
 
 const createProductHTML = (product) => {
-    const template = `
+  const template = `
                 <div class="w-full h-[350px] rounded-md shadow-xl overflow-hidden" >
                     <div class="flex flex-col">
                         <div class=" flex items-end justify-end h-[280px] w-full bg-contain bg-center bg-no-repeat"
@@ -85,19 +89,18 @@ const createProductHTML = (product) => {
                         </div>
 
                         <div class="px-5 py-3 bg-white">
-                            <h3 class="text-gray-700 uppercase">${product.title}</h3>
-                            <span class="text-gray-500 mt-2">$${product.price}</span>
+                            <h3 class="text-gray-700 uppercase">${
+                              product.title
+                            }</h3>
+                            <span class="text-gray-500 mt-2">$${
+                              product.price
+                            }</span>
                         </div>
                     </div>
         </ > `;
-    return template;
+  return template;
 };
 
 const detailProduct = (productId) => {
-    location.href = `../../pages/products/product-detail.html?pid=${productId}`
+  location.href = `../../pages/products/product-detail.html?pid=${productId}`;
 };
-
-
-
-
-

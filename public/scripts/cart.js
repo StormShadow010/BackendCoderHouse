@@ -5,61 +5,67 @@ let online = await fetch("/api/sessions");
 online = await online.json();
 
 const userProducts = async () => {
-    //Fetch Cart User
-    let cartResponse = await fetch(`/api/carts?uid=${online.user_id}`);
-    cartResponse = await cartResponse.json();
-    let products = cartResponse.response;
-    showProducts(products)
-    return products
-}
+  //Fetch Cart User
+  let cartResponse = await fetch(`/api/carts?uid=${online.user_id}`);
+  cartResponse = await cartResponse.json();
+  let products = cartResponse.response;
+  showProducts(products);
+  return products;
+};
 
 const showProducts = (productsData) => {
-    //Container where the products will be seen
-    const containerProducts = document.querySelector("#ContainerProducts")
-    //Every time new ones are created, the container is emptied
-    containerProducts.innerHTML = "";
+  //Container where the products will be seen
+  const containerProducts = document.querySelector("#ContainerProducts");
+  //Every time new ones are created, the container is emptied
+  containerProducts.innerHTML = "";
 
-    productsData.map((product) => {
-        //Create a new div
-        const newDiv = document.createElement("div")
-        //Add a class
-        newDiv.className = `product ${product._id} `
-        newDiv.innerHTML = createProductHTML(product);
-        //Events to decrement, increment, delete
-        //Decrement
-        newDiv.querySelector("#decrementButton").addEventListener("click", async () => {
-            const inputValue = newDiv.querySelector("#quantityProduct")
-            if (parseInt(inputValue.value) > 1) {
-                inputValue.value = parseInt(inputValue.value) - 1;
-                await updateProductQuantity(product._id, inputValue.value);
-            }
-        })
-        //Increment
-        newDiv.querySelector("#incrementButton").addEventListener("click", async () => {
-            const inputValue = newDiv.querySelector("#quantityProduct")
-            inputValue.value = parseInt(inputValue.value) + 1;
-            await updateProductQuantity(product._id, inputValue.value);
-        })
-        //Delete
-        newDiv.querySelector("#deleteProduct").addEventListener("click", async () => {
-            await fetch(`/api/carts/${product._id}`, { method: 'DELETE' });
-            location.reload("/");
-        })
-        //Append to the container
-        containerProducts.appendChild(newDiv)
-    })
-}
+  productsData.map((product) => {
+    //Create a new div
+    const newDiv = document.createElement("div");
+    //Add a class
+    newDiv.className = `product ${product._id} `;
+    newDiv.innerHTML = createProductHTML(product);
+    //Events to decrement, increment, delete
+    //Decrement
+    newDiv
+      .querySelector("#decrementButton")
+      .addEventListener("click", async () => {
+        const inputValue = newDiv.querySelector("#quantityProduct");
+        if (parseInt(inputValue.value) > 1) {
+          inputValue.value = parseInt(inputValue.value) - 1;
+          await updateProductQuantity(product._id, inputValue.value);
+        }
+      });
+    //Increment
+    newDiv
+      .querySelector("#incrementButton")
+      .addEventListener("click", async () => {
+        const inputValue = newDiv.querySelector("#quantityProduct");
+        inputValue.value = parseInt(inputValue.value) + 1;
+        await updateProductQuantity(product._id, inputValue.value);
+      });
+    //Delete
+    newDiv
+      .querySelector("#deleteProduct")
+      .addEventListener("click", async () => {
+        await fetch(`/api/carts/${product._id}`, { method: "DELETE" });
+        location.reload("/");
+      });
+    //Append to the container
+    containerProducts.appendChild(newDiv);
+  });
+};
 
 const updateProductQuantity = async (cid, quantity) => {
-    await fetch(`/api/carts/${cid}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cid, quantity })
-    });
+  await fetch(`/api/carts/${cid}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cid, quantity }),
+  });
 };
 
 const createProductHTML = (product) => {
-    const template = `
+  const template = `
         <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
             <img src="${product.product_id.photo}"
                 alt="product-image" class="w-full rounded-lg sm:w-40" />
@@ -87,50 +93,49 @@ const createProductHTML = (product) => {
             </div>
 
         </div>
-    `
-    return template;
+    `;
+  return template;
 };
 
-const checkoutButton = document.getElementById('checkout-button');
+const checkoutButton = document.getElementById("checkout-button");
 
-checkoutButton.addEventListener('click', async () => {
-    try {
-        const cartResponse = await userProducts();
-        // Loop through each product in the cart and delete it
-        cartResponse.forEach(async (product) => {
-            await fetch(`/api/carts/${product._id}`, {
-                method: 'DELETE',
-            });
-        });
-        // Reload the page to show the empty cart
-        location.reload();
-    } catch (error) {
-        console.error('Error checking out:', error);
-    }
+checkoutButton.addEventListener("click", async () => {
+  try {
+    const cartResponse = await userProducts();
+    // Loop through each product in the cart and delete it
+    cartResponse.forEach(async (product) => {
+      await fetch(`/api/carts/${product._id}`, {
+        method: "DELETE",
+      });
+    });
+    // Reload the page to show the empty cart
+    location.reload();
+  } catch (error) {
+    console.error("Error checking out:", error);
+  }
 });
 
-const clearButton = document.getElementById('clearChopping');
+const clearButton = document.getElementById("clearChopping");
 
-clearButton.addEventListener('click', async () => {
-    try {
-        const cartResponse = await userProducts();
-        // Loop through each product in the cart and delete it
-        cartResponse.forEach(async (product) => {
-            await fetch(`/api/carts/${product._id}`, {
-                method: 'DELETE',
-            });
-        });
-        // Reload the page to show the empty cart
-        location.reload();
-    } catch (error) {
-        console.error('Error checking out:', error);
-    }
+clearButton.addEventListener("click", async () => {
+  try {
+    const cartResponse = await userProducts();
+    // Loop through each product in the cart and delete it
+    cartResponse.forEach(async (product) => {
+      await fetch(`/api/carts/${product._id}`, {
+        method: "DELETE",
+      });
+    });
+    // Reload the page to show the empty cart
+    location.reload();
+  } catch (error) {
+    console.error("Error checking out:", error);
+  }
 });
-
 
 const initAppCart = () => {
-    printIcons();
-    userProducts();
+  printIcons();
+  userProducts();
 };
 
 initAppCart();

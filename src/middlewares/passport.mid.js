@@ -14,13 +14,6 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
-        // Check if email and password are provided
-        if (!email || !password) {
-          const error = new Error("Please enter email and password!");
-          error.statusCode = 400;
-          return done(error);
-        }
-
         // Check if the email already exists
         const user = await usersManager.readByEmail(email);
         if (user) {

@@ -36,6 +36,7 @@ export const productsAll = async (products) => {
             product_id: product._id,
             quantity: 1,
           };
+          console.log(data);
           const opts = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -74,7 +75,7 @@ const createProductHTML = (product) => {
   const template = `
                 <div class="w-full h-[350px] rounded-md shadow-xl overflow-hidden" >
                     <div class="flex flex-col">
-                        <div class=" flex items-end justify-end h-[280px] w-full bg-contain bg-center bg-no-repeat"
+                        <div class=" flex items-end justify-end h-[250px] w-full bg-contain bg-center bg-no-repeat"
                             style="background-image: url(${`${product.photo}`});">
                             <div id="addCartButton"></div>
                             <button id="infoProduct"
@@ -92,9 +93,14 @@ const createProductHTML = (product) => {
                             <h3 class="text-gray-700 uppercase">${
                               product.title
                             }</h3>
+                            <div class="flex justify-between">
                             <span class="text-gray-500 mt-2">$${
                               product.price
                             }</span>
+                            <span class="underline decoration-sky-500 mt-2">${
+                              product.category
+                            }</span>
+                            </div>
                         </div>
                     </div>
         </ > `;

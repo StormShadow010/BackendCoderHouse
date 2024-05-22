@@ -79,13 +79,13 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - En la vista `localhost:8080/` se pueden ver los productos en la “landing page”, con el next y prev para poder ver los demás productos (Paginación), además de esto aquí se encuentra el filtro, no por palabra exacta sino por letra.
 - En la vista `localhost:8080/products/:pid` se puede probar dando clic en el logo de información y se redirige a la vista de cada producto, además se puede agregar al carrito desde ese punto como en la landing page.
 - En la vista `http://localhost:8080/pages/users/register.html`, se puede ver el formulario de registro para el usuario, y es funcional.
-- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar email:`coderAdmin@gmail.com` y contraseña: `123456`
+- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar email:`coderAdmin@gmail.com` y contraseña: `123456789`
 - En la vista `http://localhost:8080/users`, se puede ver el usuario dando clic en la barra de navegación en la foto del perfil agregada a partir del registro, partiendo del uso de la session.
 - En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos por de cada usuario a partir de su `user_id`.
 
 ### Observaciones
 
 - Todas las vistas se realizarón con JS VAINILLA
-- Usuario de Prueba `email:` coderAdmin@gmail.com y `password:` 123456 (Login)
+- Usuario de Prueba `email:` coderAdmin@gmail.com y `password:` 123456789 (Login)
 - Además se agregaron validaciones pero implementando la estrategia de `JWT + Passport` para que en caso de no tener token `no sea posible` ver el carrito o agregar al mismo.
 - Además se agregaron las `ALERTAS` de éxito/fracaso de registro/inicio/cierre de sesión funcionales con SweetAlert2.

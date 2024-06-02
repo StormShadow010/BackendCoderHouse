@@ -26,8 +26,10 @@ class CustomRouter {
     });
   }
   responses = (req, res, next) => {
-    //Carts
     res.response201 = (message) => {
+      res.json({ statusCode: 201, message });
+    };
+    res.message201 = (message) => {
       res.json({ statusCode: 201, message });
     };
     res.response200 = (response) => {
@@ -35,6 +37,10 @@ class CustomRouter {
     };
     res.message200 = (message) => {
       res.json({ statusCode: 200, message });
+    };
+
+    res.paginate = (response, info) => {
+      res.json({ statusCode: 200, response, info });
     };
 
     res.error400 = (message) => res.json({ statusCode: 400, message });

@@ -9,7 +9,7 @@ const detailInfoUser = async () => {
 
   let response = await fetch(`/api/users/${uid}`);
   let data = await response.json();
-  console.log(data);
+
   user = data.response;
 
   const imgUser = document.querySelector("#img-user");

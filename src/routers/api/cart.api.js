@@ -17,7 +17,7 @@ const create = async (req, res, next) => {
     const data = req.body;
     const newCartItem = await cartsManager.create(data);
     return newCartItem
-      ? res.response201("Item added successfully")
+      ? res.message201("Item added successfully")
       : res.error404("Error adding item to cart");
   } catch (error) {
     return next(error);

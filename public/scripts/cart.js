@@ -5,7 +5,7 @@ let online = await fetch("/api/sessions");
 online = await online.json();
 const userProducts = async () => {
   //Fetch Cart User
-  let cartResponse = await fetch(`/api/carts?uid=${online.user_id}`);
+  let cartResponse = await fetch(`/api/carts?uid=${online.response.user_id}`);
   cartResponse = await cartResponse.json();
   let products = cartResponse.response;
   showProducts(products);

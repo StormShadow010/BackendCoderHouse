@@ -32,7 +32,7 @@ export const productsAll = async (products) => {
         .querySelector("#addProduct")
         .addEventListener("click", async () => {
           const data = {
-            user_id: online.user_id,
+            user_id: online.response.user_id,
             product_id: product._id,
             quantity: 1,
           };

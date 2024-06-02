@@ -26,8 +26,8 @@ class CustomRouter {
     });
   }
   responses = (req, res, next) => {
-    res.response201 = (message) => {
-      res.json({ statusCode: 201, message });
+    res.response201 = (response) => {
+      res.json({ statusCode: 201, response });
     };
     res.message201 = (message) => {
       res.json({ statusCode: 201, message });

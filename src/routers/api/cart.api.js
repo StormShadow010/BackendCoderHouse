@@ -63,6 +63,7 @@ const update = async (req, res, next) => {
     return next(error);
   }
 };
+
 //Delete a cart item
 const destroy = async (req, res, next) => {
   try {

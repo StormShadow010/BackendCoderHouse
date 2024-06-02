@@ -36,7 +36,6 @@ export const productsAll = async (products) => {
             product_id: product._id,
             quantity: 1,
           };
-          console.log(data);
           const opts = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -44,6 +43,7 @@ export const productsAll = async (products) => {
           };
           let response = await fetch("/api/carts", opts);
           response = await response.json();
+
           if (response.statusCode === 201) {
             Swal.fire({
               title: response.message,

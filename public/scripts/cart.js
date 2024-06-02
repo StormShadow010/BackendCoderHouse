@@ -47,8 +47,34 @@ const showProducts = (productsData) => {
     newDiv
       .querySelector("#deleteProduct")
       .addEventListener("click", async () => {
-        await fetch(`/api/carts/${product._id}`, { method: "DELETE" });
-        location.reload("/");
+        const opts = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        };
+        let response = await fetch(`/api/carts/${product._id}`, opts);
+        response = await response.json();
+
+        if (response.statusCode === 200) {
+          Swal.fire({
+            title: response.message,
+            icon: "success",
+            allowOutsideClick: false,
+            timer: 500,
+            timerProgressBar: true,
+            showConfirmButton: false,
+          }).then(() => {
+            location.reload("/");
+          });
+        } else {
+          Swal.fire({
+            title: response.message,
+            icon: "error",
+            timer: 3000,
+            timerProgressBar: true,
+            confirmButtonColor: "#ff3b3c",
+            showConfirmButton: false,
+          });
+        }
       });
     //Append to the container
     containerProducts.appendChild(newDiv);
@@ -101,14 +127,24 @@ const checkoutButton = document.getElementById("checkout-button");
 checkoutButton.addEventListener("click", async () => {
   try {
     const cartResponse = await userProducts();
+    const opts = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    };
     // Loop through each product in the cart and delete it
     cartResponse.forEach(async (product) => {
-      await fetch(`/api/carts/${product._id}`, {
-        method: "DELETE",
-      });
+      await fetch(`/api/carts/${product._id}`, opts);
     });
-    // Reload the page to show the empty cart
-    location.reload();
+    Swal.fire({
+      title: "Purchase made",
+      icon: "success",
+      allowOutsideClick: false,
+      timer: 1000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+    }).then(() => {
+      location.reload("/");
+    });
   } catch (error) {
     console.error("Error checking out:", error);
   }
@@ -119,14 +155,24 @@ const clearButton = document.getElementById("clearChopping");
 clearButton.addEventListener("click", async () => {
   try {
     const cartResponse = await userProducts();
+    const opts = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    };
     // Loop through each product in the cart and delete it
     cartResponse.forEach(async (product) => {
-      await fetch(`/api/carts/${product._id}`, {
-        method: "DELETE",
-      });
+      await fetch(`/api/carts/${product._id}`, opts);
     });
-    // Reload the page to show the empty cart
-    location.reload();
+    Swal.fire({
+      title: "Emptying shopping cart",
+      icon: "success",
+      allowOutsideClick: false,
+      timer: 1000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+    }).then(() => {
+      location.reload("/");
+    });
   } catch (error) {
     console.error("Error checking out:", error);
   }

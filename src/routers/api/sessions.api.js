@@ -34,7 +34,6 @@ sessionsRouter.post("/login", passportCb("login"), async (req, res, next) => {
 
 sessionsRouter.get("/", passportCb("jwt"), async (req, res, next) => {
   try {
-    console.log(req.user);
     if (req.user.online) {
       return res.json({
         statusCode: 200,

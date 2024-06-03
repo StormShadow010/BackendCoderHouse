@@ -87,6 +87,7 @@ const updateProductQuantity = async (cid, quantity) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ cid, quantity }),
   });
+  location.reload("/");
 };
 
 const createProductHTML = (product) => {
@@ -135,15 +136,27 @@ checkoutButton.addEventListener("click", async () => {
     cartResponse.forEach(async (product) => {
       await fetch(`/api/carts/${product._id}`, opts);
     });
+
+    const optsTicket = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    let response = await fetch(
+      `/api/tickets/${online.response.user_id}`,
+      optsTicket
+    );
+
+    response = await response.json();
     Swal.fire({
-      title: "Purchase made",
+      title: response.message,
       icon: "success",
       allowOutsideClick: false,
       timer: 1000,
       timerProgressBar: true,
       showConfirmButton: false,
     }).then(() => {
-      location.reload("/");
+      location.replace("../../index.html");
     });
   } catch (error) {
     console.error("Error checking out:", error);
@@ -161,13 +174,14 @@ clearButton.addEventListener("click", async () => {
     };
     // Loop through each product in the cart and delete it
     cartResponse.forEach(async (product) => {
-      await fetch(`/api/carts/${product._id}`, opts);
+      await fetch(`/api/carts/all/${product._id}`, opts);
     });
+
     Swal.fire({
       title: "Emptying shopping cart",
       icon: "success",
       allowOutsideClick: false,
-      timer: 1000,
+      timer: 1300,
       timerProgressBar: true,
       showConfirmButton: false,
     }).then(() => {
@@ -178,9 +192,29 @@ clearButton.addEventListener("click", async () => {
   }
 });
 
+const totalCart = async () => {
+  if (online.statusCode === 200) {
+    const opts = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    let totalResponse = await fetch(
+      `/api/tickets/${online.response.user_id}`,
+      opts
+    );
+    totalResponse = await totalResponse.json();
+    document.getElementById("subtotal").innerHTML =
+      "$ " + totalResponse.response[0].subTotal + " USD";
+    document.getElementById("total").innerHTML =
+      "$ " + totalResponse.response[0].total + " USD";
+  }
+};
+
 const initAppCart = () => {
   printIcons();
   userProducts();
+  totalCart();
 };
 
 initAppCart();

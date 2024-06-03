@@ -8,7 +8,7 @@ class CartsRouter extends CustomRouter {
     this.read("/:cid", ["USER"], readOne);
     this.update("/:cid", ["USER"], update);
     this.destroy("/:cid", ["USER"], destroy);
-    this.destroy("/all/:cid", ["USER"], destroyAll);
+    this.destroy("/all/:uid", ["USER"], destroyAll);
   }
 }
 
@@ -81,8 +81,8 @@ const destroy = async (req, res, next) => {
 //Delete all cart items
 const destroyAll = async (req, res, next) => {
   try {
-    const { cid } = req.params;
-    const deleteCartItem = await cartsManager.destroy(cid);
+    const { uid } = req.params;
+    const deleteCartItem = await cartsManager.destroyMany(uid);
     return deleteCartItem
       ? res.message200("Empty shopping cart")
       : res.error404("Error deleting shopping cart");

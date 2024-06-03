@@ -36,7 +36,7 @@ const sumTotal = async (req, res, next) => {
         $project: {
           _id: 0,
           user_id: "$_id",
-          subTotal: "$subTotal",
+          subTotal: { $trunc: ["$subTotal", 3] },
           total: { $trunc: [{ $add: ["$subTotal", 2.99] }, 3] },
           date: new Date(),
         },
@@ -76,7 +76,7 @@ const create = async (req, res, next) => {
         $project: {
           _id: 0,
           user_id: "$_id",
-          subTotal: "$subTotal",
+          subTotal: { $trunc: ["$subTotal", 3] },
           total: { $trunc: [{ $add: ["$subTotal", 2.99] }, 3] },
           date: new Date(),
         },

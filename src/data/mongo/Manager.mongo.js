@@ -45,22 +45,31 @@ class Manager {
   update = async (id, data) => {
     try {
       //new:true return a object updated
-      const itemUpdate = await this.Model.findByIdAndUpdate(id, data, {
+      const itemUpdated = await this.Model.findByIdAndUpdate(id, data, {
         new: true,
       });
-      return itemUpdate;
+      return itemUpdated;
     } catch (error) {
       throw error;
     }
   };
   destroy = async (id) => {
     try {
-      const itemDelete = await this.Model.findByIdAndDelete(id);
-      return itemDelete;
+      const itemDeleted = await this.Model.findByIdAndDelete(id);
+      return itemDeleted;
     } catch (error) {
       throw error;
     }
   };
+  destroyMany = async (id) => {
+    try {
+      const itemsDeleted = await this.Model.deleteMany({ user_id: id });
+      return itemsDeleted;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   aggregate = async (obj) => {
     try {
       const result = await this.Model.aggregate(obj);

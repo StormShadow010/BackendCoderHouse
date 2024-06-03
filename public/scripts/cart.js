@@ -3,6 +3,7 @@ import { printIcons } from "./modules/printLayout.js";
 //Fetch Session
 let online = await fetch("/api/sessions");
 online = await online.json();
+
 const userProducts = async () => {
   //Fetch Cart User
   let cartResponse = await fetch(`/api/carts?uid=${online.response.user_id}`);
@@ -127,29 +128,23 @@ const checkoutButton = document.getElementById("checkout-button");
 
 checkoutButton.addEventListener("click", async () => {
   try {
-    const cartResponse = await userProducts();
-    const opts = {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    };
-    // Loop through each product in the cart and delete it
-    cartResponse.forEach(async (product) => {
-      await fetch(`/api/carts/${product._id}`, opts);
-    });
-
     const optsTicket = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     };
 
-    let response = await fetch(
-      `/api/tickets/${online.response.user_id}`,
-      optsTicket
-    );
+    let promise =await fetch(`/api/tickets/${online.response.user_id}`, optsTicket);
 
-    response = await response.json();
+    const opts = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    };
+     await fetch(`/api/carts/all/${online.response.user_id}`,opts);
+
+    promise = await promise.json();
+
     Swal.fire({
-      title: response.message,
+      title: promise.message,
       icon: "success",
       allowOutsideClick: false,
       timer: 1000,
@@ -167,18 +162,20 @@ const clearButton = document.getElementById("clearChopping");
 
 clearButton.addEventListener("click", async () => {
   try {
-    const cartResponse = await userProducts();
     const opts = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     };
-    // Loop through each product in the cart and delete it
-    cartResponse.forEach(async (product) => {
-      await fetch(`/api/carts/all/${product._id}`, opts);
-    });
+
+    let promise = await fetch(
+      `/api/carts/all/${online.response.user_id}`,
+      opts
+    );
+
+    promise = await promise.json();
 
     Swal.fire({
-      title: "Emptying shopping cart",
+      title: promise.message,
       icon: "success",
       allowOutsideClick: false,
       timer: 1300,

@@ -67,6 +67,7 @@ class CustomRouter {
           ) {
             const user = await usersManager.readByEmail(email);
             //proteger contraseña del usuario!!!
+            delete user.password;
             req.user = user;
             return next();
           } else return res.error403();

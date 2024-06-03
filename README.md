@@ -1,6 +1,6 @@
-# Refactoreo con passport
+# Práctica de integración sobre tu ecommerce
 
-En esta entrega se evaluará la implementación de passport como estrategia.
+En esta entrega se evaluará la implementación del CUSTOM ROUTER, nuevos ENDPOINTS e implementación de agregation.
 
 ## Estructura de Datos de cada Modelo (Schema)
 
@@ -37,6 +37,7 @@ Cada una de esta se construyó con una plantilla de clases, debido a que compart
 - `readOne(id)`: Devuelve un producto\usuario\carrito específico según su ID.
 - `update(id,data)`: Actualizar un producto\usuario\carrito específico según su ID y la data enviada
 - `destroy(id)`: Elimina un producto\usuario\carrito según su ID.
+- `destroyMany(id)`: Elimina todos los productos de usuario por su ID.
 
 Estos métodos manejan errores utilizando `try/catch` más que todo se debe evidenciar en la parte de FileSystem.
 
@@ -71,21 +72,23 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
    - Todos los productos disponibles de un usuario por su user_id
    - Agregar un botón para eliminar el producto del carrito
    - Agregar un input numérico para la gestión de la cantidad de unidades a comprar
-   - Agregar un botón para finalizar la compra y borrar todos los productos del carrito
-   - Agregar un botón para cancelar la compra y borrar todos los productos del carrito
+   - Agregar un botón para finalizar la compra y borrar todos los productos del carrito, esto se realizo por medio del ENDPOINT `GET /api/tickets`, así este mismo guarda el ticket en la BD (Mongo)
+   - Agregar un botón para cancelar la compra y borrar todos los productos del carrito, esto se realizo por medio del ENDPOINT `ELETE /api/carts/all `, logrando borrar todos los productos de un usuario por su respectivo ID.
+   - Se puede ver el calculo total de la compra, esto se realizo por medio del ENDPOINT `GET /api/tickets`, así este mismo guarda el ticket en la BD (Mongo)
 
 ## Pruebas
 
 - En la vista `localhost:8080/` se pueden ver los productos en la “landing page”, con el next y prev para poder ver los demás productos (Paginación), además de esto aquí se encuentra el filtro, no por palabra exacta sino por letra.
 - En la vista `localhost:8080/products/:pid` se puede probar dando clic en el logo de información y se redirige a la vista de cada producto, además se puede agregar al carrito desde ese punto como en la landing page.
 - En la vista `http://localhost:8080/pages/users/register.html`, se puede ver el formulario de registro para el usuario, y es funcional.
-- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar email:`coderAdmin@gmail.com` y contraseña: `123456789`
+- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar email:`coderadmin@gmail.com` y contraseña: `123456789`, este es un usuario de tipo `["USER"]`
 - En la vista `http://localhost:8080/users`, se puede ver el usuario dando clic en la barra de navegación en la foto del perfil agregada a partir del registro, partiendo del uso de la session.
 - En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos por de cada usuario a partir de su `user_id`.
 
 ### Observaciones
 
-- Todas las vistas se realizarón con JS VAINILLA
-- Usuario de Prueba `email:` coderAdmin@gmail.com y `password:` 123456789 (Login)
+- Todas las vistas se realizarón con JS VAINILLA.
+- Usuario de Prueba `email:` coderadmin@gmail.com y `password:` 123456789 (Login), este es un usuario de tipo `["USER"]`.
 - Además se agregaron validaciones pero implementando la estrategia de `JWT + Passport` para que en caso de no tener token `no sea posible` ver el carrito o agregar al mismo.
 - Además se agregaron las `ALERTAS` de éxito/fracaso de registro/inicio/cierre de sesión funcionales con SweetAlert2.
+- En el `CUSTOM ROUTER` se tienen respuestas predeterminadas, así como el manejo de políticas de autenticación/autorización.

@@ -1,120 +1,94 @@
-import { Router, json } from "express";
-
 import { cartsManager } from "../../data/mongo/managers/CartsManager.mongo.js";
+import CustomRouter from "../CustomRouter.js";
 
-const cartsRouter = Router();
+class CartsRouter extends CustomRouter {
+  init() {
+    this.create("/", ["USER"], create);
+    this.read("/", ["USER"], read);
+    this.destroy("/all/:uid", ["USER"], destroyAll);
+    this.update("/:cid", ["USER"], update);
+    this.destroy("/:cid", ["USER"], destroy);
+    this.read("/:cid", ["USER"], readOne);
+  }
+}
 
-//Create a new cart Item
+//Create a new cart Item (user_id)
 const create = async (req, res, next) => {
   try {
     const data = req.body;
     const newCartItem = await cartsManager.create(data);
-    if (newCartItem) {
-      return res.json({
-        statusCode: 201,
-        response: "CREATED NEW ITEM WITH ID: " + newCartItem._id,
-        message: "Item added successfully",
-      });
-    } else {
-      const error = new Error("Error adding item to cart");
-      error.statusCode = 404;
-      throw error;
-    }
+    return newCartItem
+      ? res.message201("Item added successfully")
+      : res.error404("Error adding item to cart");
   } catch (error) {
     return next(error);
   }
 };
 
-//Read <- get all items
+//Read <- get all items by user_id
 const read = async (req, res, next) => {
   try {
     const { uid } = req.query;
     const cartItems = await cartsManager.read({ user_id: uid });
-    if (cartItems.length > 0) {
-      return res.json({
-        statusCode: 200,
-        response: cartItems,
-      });
-    } else {
-      const error = new Error("Not found items");
-      error.statusCode = 404;
-      throw error;
-    }
+    return cartItems.length > 0
+      ? res.response200(cartItems)
+      : res.error404("Not found items");
   } catch (error) {
     return next(error);
   }
 };
 
-//Read <- get items by User_id
-async function readOne(req, res, next) {
+//Read individual cart item
+const readOne = async (req, res, next) => {
   try {
     const { cid } = req.params;
     const cartItem = await cartsManager.readOne(cid);
-
-    if (cartItem) {
-      return res.json({
-        statusCode: 200,
-        response: cartItem,
-      });
-    } else {
-      const error = new Error("Not found product with that ID!");
-      error.statusCode = 404;
-      throw error;
-    }
+    return cartItem
+      ? res.response200(cartItem)
+      : res.error404("Not found product with that ID!");
   } catch (error) {
     return next(error);
   }
-}
+};
 
-//Update a cart item by User_id
+//Update a cart item
 const update = async (req, res, next) => {
   try {
     const { cid } = req.params;
     const data = req.body;
     const updateCartItem = await cartsManager.update(cid, data);
-    if (updateCartItem) {
-      return res.json({
-        statusCode: 200,
-        response: updateCartItem,
-      });
-    } else {
-      const error = new Error("Not found item with that ID to update!");
-      error.statusCode = 404;
-      throw error;
-    }
+    return updateCartItem
+      ? res.response200(updateCartItem)
+      : res.error404("Not found item with that ID to update!");
   } catch (error) {
     return next(error);
   }
 };
-//Delete a cart item by User_id
+
+//Delete a cart item
 const destroy = async (req, res, next) => {
   try {
     const { cid } = req.params;
     const deleteCartItem = await cartsManager.destroy(cid);
-    if (deleteCartItem) {
-      return res.json({
-        statusCode: 200,
-        response: deleteCartItem,
-      });
-    } else {
-      const error = new Error("Not found product with that ID to delete!");
-      error.statusCode = 404;
-      throw error;
-    }
+    return deleteCartItem
+      ? res.message200("Item deleted successfully")
+      : res.error404("Error deleting item");
   } catch (error) {
     return next(error);
   }
 };
 
-//Create a new cart Item
-cartsRouter.post("/", create);
-//Read <- get all items
-cartsRouter.get("/", read);
-//Read <- get items by User_id
-cartsRouter.get("/:cid", readOne);
-//Update a cart item by _id Item
-cartsRouter.put("/:cid", update);
-//Delete a cart item by _id Item
-cartsRouter.delete("/:cid", destroy);
+//Delete all cart items
+const destroyAll = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const deleteCartItem = await cartsManager.destroyMany(uid);
+    return deleteCartItem
+      ? res.message200("Empty shopping cart")
+      : res.error404("Error deleting shopping cart");
+  } catch (error) {
+    return next(error);
+  }
+};
 
-export default cartsRouter;
+export const cartsRouter = new CartsRouter().getRouter();

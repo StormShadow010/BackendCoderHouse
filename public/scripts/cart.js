@@ -3,9 +3,10 @@ import { printIcons } from "./modules/printLayout.js";
 //Fetch Session
 let online = await fetch("/api/sessions");
 online = await online.json();
+
 const userProducts = async () => {
   //Fetch Cart User
-  let cartResponse = await fetch(`/api/carts?uid=${online.user_id}`);
+  let cartResponse = await fetch(`/api/carts?uid=${online.response.user_id}`);
   cartResponse = await cartResponse.json();
   let products = cartResponse.response;
   showProducts(products);
@@ -47,8 +48,34 @@ const showProducts = (productsData) => {
     newDiv
       .querySelector("#deleteProduct")
       .addEventListener("click", async () => {
-        await fetch(`/api/carts/${product._id}`, { method: "DELETE" });
-        location.reload("/");
+        const opts = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        };
+        let response = await fetch(`/api/carts/${product._id}`, opts);
+        response = await response.json();
+
+        if (response.statusCode === 200) {
+          Swal.fire({
+            title: response.message,
+            icon: "success",
+            allowOutsideClick: false,
+            timer: 500,
+            timerProgressBar: true,
+            showConfirmButton: false,
+          }).then(() => {
+            location.reload("/");
+          });
+        } else {
+          Swal.fire({
+            title: response.message,
+            icon: "error",
+            timer: 3000,
+            timerProgressBar: true,
+            confirmButtonColor: "#ff3b3c",
+            showConfirmButton: false,
+          });
+        }
       });
     //Append to the container
     containerProducts.appendChild(newDiv);
@@ -61,6 +88,7 @@ const updateProductQuantity = async (cid, quantity) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ cid, quantity }),
   });
+  location.reload("/");
 };
 
 const createProductHTML = (product) => {
@@ -100,15 +128,31 @@ const checkoutButton = document.getElementById("checkout-button");
 
 checkoutButton.addEventListener("click", async () => {
   try {
-    const cartResponse = await userProducts();
-    // Loop through each product in the cart and delete it
-    cartResponse.forEach(async (product) => {
-      await fetch(`/api/carts/${product._id}`, {
-        method: "DELETE",
-      });
+    const optsTicket = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    let promise =await fetch(`/api/tickets/${online.response.user_id}`, optsTicket);
+
+    const opts = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    };
+     await fetch(`/api/carts/all/${online.response.user_id}`,opts);
+
+    promise = await promise.json();
+
+    Swal.fire({
+      title: promise.message,
+      icon: "success",
+      allowOutsideClick: false,
+      timer: 1000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+    }).then(() => {
+      location.replace("../../index.html");
     });
-    // Reload the page to show the empty cart
-    location.reload();
   } catch (error) {
     console.error("Error checking out:", error);
   }
@@ -118,23 +162,56 @@ const clearButton = document.getElementById("clearChopping");
 
 clearButton.addEventListener("click", async () => {
   try {
-    const cartResponse = await userProducts();
-    // Loop through each product in the cart and delete it
-    cartResponse.forEach(async (product) => {
-      await fetch(`/api/carts/${product._id}`, {
-        method: "DELETE",
-      });
+    const opts = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    let promise = await fetch(
+      `/api/carts/all/${online.response.user_id}`,
+      opts
+    );
+
+    promise = await promise.json();
+
+    Swal.fire({
+      title: promise.message,
+      icon: "success",
+      allowOutsideClick: false,
+      timer: 1300,
+      timerProgressBar: true,
+      showConfirmButton: false,
+    }).then(() => {
+      location.reload("/");
     });
-    // Reload the page to show the empty cart
-    location.reload();
   } catch (error) {
     console.error("Error checking out:", error);
   }
 });
 
+const totalCart = async () => {
+  if (online.statusCode === 200) {
+    const opts = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    let totalResponse = await fetch(
+      `/api/tickets/${online.response.user_id}`,
+      opts
+    );
+    totalResponse = await totalResponse.json();
+    document.getElementById("subtotal").innerHTML =
+      "$ " + totalResponse.response[0].subTotal + " USD";
+    document.getElementById("total").innerHTML =
+      "$ " + totalResponse.response[0].total + " USD";
+  }
+};
+
 const initAppCart = () => {
   printIcons();
   userProducts();
+  totalCart();
 };
 
 initAppCart();

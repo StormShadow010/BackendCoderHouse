@@ -37,7 +37,7 @@ const addCart = async () => {
     // Attach event listeners
     document.querySelector("#addCart").addEventListener("click", async () => {
       const data = {
-        user_id: online.user_id,
+        user_id: online.response.user_id,
         product_id: pid,
         quantity: 1,
       };

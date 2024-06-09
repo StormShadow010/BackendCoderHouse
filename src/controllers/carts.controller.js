@@ -1,19 +1,7 @@
-import { cartsManager } from "../../data/mongo/managers/CartsManager.mongo.js";
-import CustomRouter from "../CustomRouter.js";
-
-class CartsRouter extends CustomRouter {
-  init() {
-    this.create("/", ["USER"], create);
-    this.read("/", ["USER"], read);
-    this.destroy("/all/:uid", ["USER"], destroyAll);
-    this.update("/:cid", ["USER"], update);
-    this.destroy("/:cid", ["USER"], destroy);
-    this.read("/:cid", ["USER"], readOne);
-  }
-}
+import { cartsManager } from "../data/mongo/managers/CartsManager.mongo.js";
 
 //Create a new cart Item (user_id)
-const create = async (req, res, next) => {
+export const create = async (req, res, next) => {
   try {
     const data = req.body;
     const newCartItem = await cartsManager.create(data);
@@ -26,7 +14,7 @@ const create = async (req, res, next) => {
 };
 
 //Read <- get all items by user_id
-const read = async (req, res, next) => {
+export const read = async (req, res, next) => {
   try {
     const { uid } = req.query;
     const cartItems = await cartsManager.read({ user_id: uid });
@@ -39,7 +27,7 @@ const read = async (req, res, next) => {
 };
 
 //Read individual cart item
-const readOne = async (req, res, next) => {
+export const readOne = async (req, res, next) => {
   try {
     const { cid } = req.params;
     const cartItem = await cartsManager.readOne(cid);
@@ -52,7 +40,7 @@ const readOne = async (req, res, next) => {
 };
 
 //Update a cart item
-const update = async (req, res, next) => {
+export const update = async (req, res, next) => {
   try {
     const { cid } = req.params;
     const data = req.body;
@@ -66,7 +54,7 @@ const update = async (req, res, next) => {
 };
 
 //Delete a cart item
-const destroy = async (req, res, next) => {
+export const destroy = async (req, res, next) => {
   try {
     const { cid } = req.params;
     const deleteCartItem = await cartsManager.destroy(cid);
@@ -79,7 +67,7 @@ const destroy = async (req, res, next) => {
 };
 
 //Delete all cart items
-const destroyAll = async (req, res, next) => {
+export const destroyAll = async (req, res, next) => {
   try {
     const { uid } = req.params;
     const deleteCartItem = await cartsManager.destroyMany(uid);
@@ -90,5 +78,3 @@ const destroyAll = async (req, res, next) => {
     return next(error);
   }
 };
-
-export const cartsRouter = new CartsRouter().getRouter();

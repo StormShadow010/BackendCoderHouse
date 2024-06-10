@@ -1,10 +1,17 @@
-import { productsManager } from "../data/mongo/managers/ProductsManager.mongo.js";
+import {
+  createService,
+  destroyService,
+  paginateService,
+  readOneService,
+  readService,
+  updateService,
+} from "../services/products.service.js";
 
 //Create a new product
 export const create = async (req, res, next) => {
   try {
     const data = req.body;
-    const newProduct = await productsManager.create(data);
+    const newProduct = await createService(data);
     return newProduct
       ? res.message201("Product created successfully")
       : res.error404("Error creating a new product");
@@ -17,7 +24,7 @@ export const create = async (req, res, next) => {
 export const read = async (req, res, next) => {
   try {
     const { category } = req.query;
-    const products = await productsManager.read({ category: category });
+    const products = await readService({ category: category });
     return products.length > 0
       ? res.response200(products)
       : res.error404("Not found data!");
@@ -37,7 +44,7 @@ export const paginateRead = async (req, res, next) => {
     if (req.query.title) {
       filter.title = { $regex: req.query.title, $options: "i" }; // case-insensitive search
     }
-    const all = await productsManager.paginate({ filter, opts });
+    const all = await paginateService({ filter, opts });
     const info = {
       totalDocs: all.totalDocs,
       page: all.page,
@@ -56,7 +63,7 @@ export const paginateRead = async (req, res, next) => {
 export const readOne = async (req, res, next) => {
   try {
     const { pid } = req.params;
-    const product = await productsManager.readOne(pid);
+    const product = await readOneService(pid);
     return product
       ? res.response200(product)
       : res.error404("Not found product with that ID!");
@@ -70,7 +77,7 @@ export const update = async (req, res, next) => {
   try {
     const { pid } = req.params;
     const data = req.body;
-    const updateProduct = await productsManageructsManager.update(pid, data);
+    const updateProduct = await updateService(pid, data);
     return updateProduct
       ? res.response200(updateProduct)
       : res.error404("Not found product with that ID to update!");
@@ -83,7 +90,7 @@ export const update = async (req, res, next) => {
 export const destroy = async (req, res, next) => {
   try {
     const { pid } = req.params;
-    const deleteProduct = await productsManager.destroy(pid);
+    const deleteProduct = await destroyService(pid);
     return deleteProduct
       ? res.response200(deleteProduct)
       : res.error404("Not found product with that ID to delete!");

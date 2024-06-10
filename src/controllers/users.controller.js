@@ -1,10 +1,16 @@
-import { usersManager } from "../data/mongo/managers/UsersManager.mongo.js";
+import {
+  createService,
+  readOneService,
+  readService,
+  updateService,
+  destroyService,
+} from "../services/users.service.js";
 
 //Create a new user
 export const create = async (req, res, next) => {
   try {
     const data = req.body;
-    const newUser = await usersManager.create(data);
+    const newUser = await createService(data);
     return newUser
       ? res.message201("")
       : res.error404("User created successfully");
@@ -17,7 +23,7 @@ export const create = async (req, res, next) => {
 export const read = async (req, res, next) => {
   try {
     const { role } = req.query;
-    const users = await usersManager.read(role);
+    const users = await readService(role);
     return users.length > 0
       ? res.response200(users)
       : res.error404("Not found role/data!");
@@ -30,7 +36,7 @@ export const read = async (req, res, next) => {
 export const readOne = async (req, res, next) => {
   try {
     const { uid } = req.params;
-    const user = await usersManager.readOne(uid);
+    const user = await readOneService(uid);
     return user
       ? res.response200(user)
       : res.error404("Not found user with that ID!");
@@ -44,7 +50,7 @@ export const update = async (req, res, next) => {
   try {
     const { uid } = req.params;
     const data = req.body;
-    const updateUser = await usersManager.update(uid, data);
+    const updateUser = await updateService(uid, data);
     return updateUser
       ? res.response200(updateUser)
       : res.error404("Not found user with that ID to update!");
@@ -56,7 +62,7 @@ export const update = async (req, res, next) => {
 export const destroy = async (req, res, next) => {
   try {
     const { uid } = req.params;
-    const deleteUser = await usersManager.destroy(uid);
+    const deleteUser = await destroyService(uid);
     return deleteUser
       ? res.response200(deleteUser)
       : res.error404("Not found user with that ID to delete!");

@@ -1,10 +1,10 @@
-import { usersManager } from "../data/mongo/managers/UsersManager.mongo.js";
+import usersRepository from "../repositories/users.rep.js";
 import { verifyPassword } from "../utils/hashPassword/hashPassword.js";
 
 export const isValidPass = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user = await usersManager.readByEmail(email);
+    const user = await usersRepository.readByEmailRepository(email);
     const verify = verifyPassword(password, user.password);
     if (verify) {
       return next();

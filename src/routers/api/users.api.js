@@ -1,6 +1,6 @@
 import { Router } from "express";
 // import usersManager from "../../data/fs/UsersManager.fs.js";
-import { usersManager } from "../../data/mongo/managers/indexManager.mongo.js";
+// import { usersManager } from "../../data/mongo/managers/indexManager.mongo.js";
 import { checkMandatoryFieldsUsers } from "../../middlewares/checkMandatoryFieldsUsers.mid.js";
 import CustomRouter from "../CustomRouter.js";
 import {

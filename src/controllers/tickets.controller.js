@@ -1,5 +1,5 @@
-import { cartsManager } from "../data/mongo/managers/CartsManager.mongo.js";
 import { Types } from "mongoose";
+import cartsManager from "../data/mongo/CartsManager.mongo.js";
 
 //Calculate the total sum of the products in the cart (user_id)
 export const sumTotal = async (req, res, next) => {

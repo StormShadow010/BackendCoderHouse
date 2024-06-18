@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { verifyToken } from "../utils/token/token.util.js";
-import { usersManager } from "../data/mongo/managers/UsersManager.mongo.js";
+import usersRepository from "../repositories/users.rep.js";
 
 class CustomRouter {
   //Build and configure each router instance
@@ -65,8 +65,8 @@ class CustomRouter {
             (policies.includes("USER") && role === 0) ||
             (policies.includes("ADMIN") && role === 1)
           ) {
-            const user = await usersManager.readByEmail(email);
-            //proteger contraseña del usuario!!!
+            const user = await usersRepository.readByEmailRepository(email);
+            // Protect user password!!!
             delete user.password;
             req.user = user;
             return next();

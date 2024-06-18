@@ -1,12 +1,13 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
-import { usersManager } from "../data/mongo/managers/UsersManager.mongo.js";
 import {
   createHash,
   verifyPassword,
 } from "../utils/hashPassword/hashPassword.js";
 import { createToken } from "../utils/token/token.util.js";
+import variablesEnviroment from "../utils/env/env.util.js";
+import usersRepository from "../repositories/users.rep.js";
 
 passport.use(
   "register",
@@ -15,7 +16,7 @@ passport.use(
     async (req, email, password, done) => {
       try {
         // Check if the email already exists
-        const user = await usersManager.readByEmail(email);
+        const user = await usersRepository.readByEmailRepository(email);
         if (user) {
           const error = new Error("Bad auth from register!");
           error.statusCode = 401;
@@ -25,7 +26,7 @@ passport.use(
         // Create the user
         const hashPassword = createHash(password); // Hash the password
         req.body.password = hashPassword; // Reassign the hashed password
-        const newUser = await usersManager.create(req.body);
+        const newUser = await usersRepository.createRepository(req.body);
         return done(null, newUser);
       } catch (error) {
         return done(error);
@@ -40,7 +41,7 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
-        const user = await usersManager.readByEmail(email);
+        const user = await usersRepository.readByEmailRepository(email);
         if (!user) {
           const error = new Error("Bad auth from login!");
           error.statusCode = 401;
@@ -76,7 +77,7 @@ passport.use(
       jwtFromRequest: ExtractJwt.fromExtractors([
         (req) => req?.cookies["token"],
       ]),
-      secretOrKey: process.env.SECRET_JWT,
+      secretOrKey: variablesEnviroment.SECRET_JWT,
     },
     (data, done) => {
       try {

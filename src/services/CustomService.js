@@ -1,18 +1,18 @@
 class Service {
-  constructor(manager) {
-    this.manager = manager;
+  constructor(repository) {
+    this.repository = repository;
   }
   createService = async (data) => {
     try {
-      const newUser = await this.manager.create(data);
-      return newUser;
+      const newItem = await this.repository.createRepository(data);
+      return newItem;
     } catch (error) {
       throw error;
     }
   };
   readService = async (filterInfo) => {
     try {
-      const allData = await this.manager.read(filterInfo);
+      const allData = await this.repository.readRepository(filterInfo);
       return allData;
     } catch (error) {
       throw error;
@@ -20,7 +20,15 @@ class Service {
   };
   readOneService = async (uid) => {
     try {
-      const itemInvidual = await this.manager.readOne(uid);
+      const itemInvidual = await this.repository.readOneRepository(uid);
+      return itemInvidual;
+    } catch (error) {
+      throw error;
+    }
+  };
+  readByEmailService = async (email) => {
+    try {
+      const itemInvidual = await this.manager.readByEmailRepository(email);
       return itemInvidual;
     } catch (error) {
       throw error;
@@ -28,7 +36,7 @@ class Service {
   };
   updateService = async (uid, data) => {
     try {
-      const itemUpdated = await this.manager.update(uid, data);
+      const itemUpdated = await this.repository.updateRepository(uid, data);
       return itemUpdated;
     } catch (error) {
       throw error;
@@ -36,7 +44,15 @@ class Service {
   };
   destroyService = async (uid) => {
     try {
-      const itemDeleted = await this.manager.destroy(uid);
+      const itemDeleted = await this.repository.destroyRepository(uid);
+      return itemDeleted;
+    } catch (error) {
+      throw error;
+    }
+  };
+  destroyAllService = async (uid) => {
+    try {
+      const itemDeleted = await this.repository.destroyAllRepository(uid);
       return itemDeleted;
     } catch (error) {
       throw error;
@@ -44,16 +60,19 @@ class Service {
   };
   paginateService = async ({ filter, opts }) => {
     try {
-      const allData = await this.manager.paginate({ filter, opts });
+      const allData = await this.repository.paginateRepository({
+        filter,
+        opts,
+      });
       return allData;
     } catch (error) {
       throw error;
     }
   };
-  destroyAllService = async (uid) => {
+  aggregateService = async (obj) => {
     try {
-      const itemDeleted = await this.manager.destroyMany(uid);
-      return itemDeleted;
+      const result = await this.manager.aggregateRepository(obj);
+      return result;
     } catch (error) {
       throw error;
     }

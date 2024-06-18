@@ -18,14 +18,6 @@ class Manager {
       throw new Error(error.message);
     }
   };
-  paginate = async ({ filter, opts }) => {
-    try {
-      const allData = await this.Model.paginate(filter, opts);
-      return allData;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  };
   readOne = async (id) => {
     try {
       const itemInvidual = await this.Model.findById(id);
@@ -69,7 +61,14 @@ class Manager {
       throw error;
     }
   };
-
+  paginate = async ({ filter, opts }) => {
+    try {
+      const allData = await this.Model.paginate(filter, opts);
+      return allData;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
   aggregate = async (obj) => {
     try {
       const result = await this.Model.aggregate(obj);

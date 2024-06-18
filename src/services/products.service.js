@@ -1,7 +1,7 @@
+import productsRepository from "../repositories/products.rep.js";
 import Service from "./CustomService.js";
-import { productsManager } from "../data/mongo/managers/ProductsManager.mongo.js";
 
-const productsService = new Service(productsManager);
+const productsService = new Service(productsRepository);
 export const {
   createService,
   readService,

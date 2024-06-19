@@ -13,7 +13,7 @@ class CustomRouter {
     return this.router;
   }
   //Initialize inherited property classes (sub-routers)
-  init() {}
+  init() { }
   //Handle middleware and final callbacks
   applyCbs(callbacks) {
     return callbacks.map((callback) => async (...params) => {
@@ -66,7 +66,7 @@ class CustomRouter {
             (policies.includes("ADMIN") && role === 1)
           ) {
             const user = await usersRepository.readByEmailRepository(email);
-            // Protect user password!!!
+            // Protect user password!!
             delete user.password;
             req.user = user;
             return next();

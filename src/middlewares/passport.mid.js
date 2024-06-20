@@ -22,7 +22,6 @@ passport.use(
           error.statusCode = 401;
           return done(error);
         }
-
         // Create the user
         const hashPassword = createHash(password); // Hash the password
         req.body.password = hashPassword; // Reassign the hashed password

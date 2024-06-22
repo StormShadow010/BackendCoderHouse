@@ -3,7 +3,13 @@ import argsUtil from "../args/args.util.js";
 
 const environment = argsUtil.env;
 
-const path = environment === "dev" ? "./.env.dev" : "./.env.prod";
+const path =
+  environment === "dev"
+    ? "./.env.dev"
+    : environment === "prod"
+    ? "./.env.prod"
+    : "./.env.test";
+
 config({ path });
 
 const variablesEnviroment = {

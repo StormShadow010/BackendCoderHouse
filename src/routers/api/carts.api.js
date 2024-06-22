@@ -10,7 +10,7 @@ import CustomRouter from "../CustomRouter.js";
 
 class CartsRouter extends CustomRouter {
   init() {
-    this.create("/", ["PUBLIC"], create);
+    this.create("/", ["USER"], create);
     this.read("/", ["USER"], read);
     this.destroy("/all/:uid", ["USER"], destroyAll);
     this.update("/:cid", ["USER"], update);

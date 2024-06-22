@@ -1,20 +1,20 @@
-import argsUtil from "../utils/args/args.util.js";
 import crypto from "crypto";
+
+import argsUtil from "../../utils/args/args.util.js";
 
 const persistence = argsUtil.persistence;
 
-class ProductsDto {
+class CreateCartsDto {
   constructor(data) {
     persistence !== "mongo" &&
       (this._id = crypto.randomBytes(12).toString("hex"));
-    this.title = data.title;
-    this.photo = data.photo || "/assets/icons/imagepreview.png";
-    this.category = data.category || "Action";
-    this.price = data.price || 1;
-    this.stock = data.images || 1;
+    this.user_id = data.user_id;
+    this.product_id = data.product_id;
+    this.quantity = data.quantity || 1;
+    this.state = data.state || "reserved";
     persistence !== "mongo" && (this.createdAt = new Date());
     persistence !== "mongo" && (this.updatedAt = new Date());
   }
 }
 
-export default ProductsDto;
+export default CreateCartsDto;

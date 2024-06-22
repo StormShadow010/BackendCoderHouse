@@ -1,6 +1,6 @@
 //DAO - Assign corresponding manager
 import dao from "../data/dao.factory.js";
-import ProductsDto from "../dto/products.dto.js";
+import CreateProductsDto from "../dto/create/products.dto.create.js";
 import UpdateProductsDto from "../dto/update/products.dto.update.js";
 
 const { productsManager } = dao;
@@ -11,7 +11,7 @@ class ProductsRepository {
   }
   createRepository = async (data) => {
     try {
-      data = new ProductsDto(data);
+      data = new CreateProductsDto(data);
       const newItem = await this.manager.create(data);
       return newItem;
     } catch (error) {

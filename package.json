@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "node ./server.js",
-    "dev": "nodemon ./server.js --env dev",
-    "argv": "nodemon ./server.js -p 8080 --env=prod --persistence memory",
-    "memory": "nodemon ./server.js -p 8081 --env=prod --persistence memory",
-    "fs": "nodemon ./server.js -p 8082 --env=prod --persistence fs"
+    "dev": "nodemon ./server.js --env dev --persistence mongo",
+    "prod": "nodemon ./server.js --env prod --persistence mongo",
+    "test": "nodemon ./server.js  --env test --persistence fs",
+    "memory": "nodemon ./server.js --env test --persistence memory"
   },
   "keywords": [],
   "author": "",

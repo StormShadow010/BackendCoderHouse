@@ -29,5 +29,12 @@
     "email": "admin@gmail.com",
     "password": "$2b$10$5XZWGj1avWBEe.wXIjftKOMxO7buKvScREgdPYHCJOnTcyxcDM5jC",
     "role": 1
+  },
+  {
+    "_id": "664d3af0cf4aafc90e23c8c0",
+    "photo": "https://styles.redditmedia.com/t5_5blkvq/styles/communityIcon_t5ji6wuld2z71.jpg?format=pjpg&s=1672be49333cd14749784be8bbc3c968a033d8e0",
+    "email": "coderadmin@gmail.com",
+    "password": "$2b$10$xpdSgFCcNV1Sd7L3R6FqfOFRFw0Er13Z/0IIe1AWkhlQvBhjGZ1bq",
+    "role": 0
   }
 ]

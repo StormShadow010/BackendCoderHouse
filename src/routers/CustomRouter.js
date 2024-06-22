@@ -13,7 +13,7 @@ class CustomRouter {
     return this.router;
   }
   //Initialize inherited property classes (sub-routers)
-  init() { }
+  init() {}
   //Handle middleware and final callbacks
   applyCbs(callbacks) {
     return callbacks.map((callback) => async (...params) => {
@@ -60,7 +60,9 @@ class CustomRouter {
       else {
         try {
           token = verifyToken(token);
+
           const { role, email } = token;
+
           if (
             (policies.includes("USER") && role === 0) ||
             (policies.includes("ADMIN") && role === 1)

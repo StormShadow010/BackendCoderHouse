@@ -22,5 +22,12 @@
     "email": "user4@example.com",
     "password": "<PASSWORD>",
     "role": "0"
+  },
+  {
+    "_id": "665bc7666a0730d3472c8277",
+    "photo": "https://cdn-icons-png.freepik.com/512/9703/9703596.png",
+    "email": "admin@gmail.com",
+    "password": "$2b$10$5XZWGj1avWBEe.wXIjftKOMxO7buKvScREgdPYHCJOnTcyxcDM5jC",
+    "role": 1
   }
 ]

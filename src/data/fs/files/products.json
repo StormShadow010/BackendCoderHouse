@@ -278,5 +278,64 @@
     "category": "PlayStation",
     "price": 59.99,
     "stock": 28
+  },
+  {
+    "id": "2b5d5ee095901da0fbe2bcc8",
+    "title": "new one 100",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "id": "f28e1010d9aa9e07885b6480",
+    "title": "new one 101",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "_id": "9ae2c0d40181a4d1860e81d9",
+    "title": "new one 102",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1,
+    "colors": [
+      ""
+    ],
+    "createdAt": "2024-06-22T04:50:38.922Z",
+    "updatedAt": "2024-06-22T04:50:38.922Z"
+  },
+  {
+    "_id": "95bb316f2fa7a941c4dba1f0",
+    "title": "new one 103",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1,
+    "createdAt": "2024-06-22T04:51:00.074Z",
+    "updatedAt": "2024-06-22T04:51:00.074Z"
+  },
+  {
+    "_id": "47d46163a1eb4421ad024eb8",
+    "title": "new one 110",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1,
+    "createdAt": "2024-06-22T05:33:13.969Z",
+    "updatedAt": "2024-06-22T05:33:13.969Z"
+  },
+  {
+    "_id": "fd6964b1894da79a8c2300ee",
+    "title": "new one 111",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1,
+    "createdAt": "2024-06-22T05:33:49.538Z",
+    "updatedAt": "2024-06-22T05:33:49.538Z"
   }
 ]

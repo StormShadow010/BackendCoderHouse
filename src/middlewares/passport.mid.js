@@ -47,6 +47,7 @@ passport.use(
           return done(error);
         }
         const verify = verifyPassword(password, user.password);
+
         if (verify) {
           const data = {
             email,

@@ -12,8 +12,8 @@ export const create = async (req, res, next) => {
     const data = req.body;
     const newUser = await createService(data);
     return newUser
-      ? res.message201("")
-      : res.error404("User created successfully");
+      ? res.message201("User created successfully")
+      : res.error404("Problems creating user");
   } catch (error) {
     return next(error);
   }

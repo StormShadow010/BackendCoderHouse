@@ -12,7 +12,6 @@ class CartsRepository {
   createRepository = async (data) => {
     try {
       data = new CreateCartsDto(data);
-      console.log(data);
       const newItem = await this.manager.create(data);
       return newItem;
     } catch (error) {

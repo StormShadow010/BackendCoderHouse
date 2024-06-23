@@ -17,19 +17,9 @@ class UsersManager {
 
   create = async (data) => {
     try {
-      const { photo, email, password, role } = data;
-      // if (!email || !password) throw new Error("Email and password are required!!");
-      //Create object for new user
-      const newUser = {
-        id: crypto.randomBytes(12).toString("hex"),
-        photo: photo || "/assets/icons/avatar.png",
-        email,
-        password,
-        role: role || 0,
-      };
       let fileTotal = await readFile(this.path);
-      await createFileNP(this.path, fileTotal, newUser);
-      return newUser;
+      await createFileNP(this.path, fileTotal, data);
+      return data;
     } catch (error) {
       throw error;
     }
@@ -48,7 +38,7 @@ class UsersManager {
   readOne = async (id) => {
     try {
       let fileTotal = await readFile(this.path);
-      let itemId = fileTotal.find((item) => item.id === id);
+      let itemId = fileTotal.find((item) => item._id === id);
       return itemId;
     } catch (error) {
       throw error;
@@ -70,7 +60,7 @@ class UsersManager {
       let fileTotal = JSON.parse(
         await fs.promises.readFile(this.path, "utf-8")
       );
-      const user = fileTotal.find((user) => user.id === id);
+      const user = fileTotal.find((user) => user._id === id);
       if (user) {
         Object.assign(user, data);
         await createFile(this.path, fileTotal);
@@ -88,7 +78,7 @@ class UsersManager {
 
       if (userDelete) {
         console.log("User deleted:", userDelete);
-        let usersFilter = fileTotal.filter((users) => users.id !== id);
+        let usersFilter = fileTotal.filter((users) => users._id !== id);
         await createFile(this.path, usersFilter);
       }
       return userDelete;

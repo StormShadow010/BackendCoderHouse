@@ -5,7 +5,7 @@ export const printIcons = async () => {
 
   if (online.statusCode === 200) {
     template = `
-        <a href="../../pages/users/userInfo.html?uid=${online.response.user_id}"> <img src="${online.response.photo}" class="h-[40px] w-[40px] mr-2"> </a>
+        <a href="../../pages/users/userInfo.html"> <img src="${online.response.photo}" class="h-[40px] w-[40px] mr-2"> </a>
         <a href="../../pages/cart/cart.html"><img src="../../assets/icons/cart.png" alt="Cart"
                         class="h-[50px] w-[50px] mr-2"></a>
         <button id="signout"><img src="../../assets/icons/logout.png" alt="Login"
@@ -29,7 +29,7 @@ export const printIcons = async () => {
           };
           let response = await fetch("/api/auth/signout", opts);
           response = await response.json();
-
+          console.log(response);
           if (response.statusCode === 200) {
             location.replace("../../index.html");
           }

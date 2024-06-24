@@ -1,12 +1,12 @@
 import { printIcons } from "./modules/printLayout.js";
 
 //Fetch Session
-let online = await fetch("/api/sessions");
+let online = await fetch("/api/auth");
 online = await online.json();
 
 const userProducts = async () => {
   //Fetch Cart User
-  let cartResponse = await fetch(`/api/carts?uid=${online.response.user_id}`);
+  let cartResponse = await fetch(`/api/carts?uid=${online.response._id}`);
   cartResponse = await cartResponse.json();
   let products = cartResponse.response;
   showProducts(products);
@@ -133,13 +133,16 @@ checkoutButton.addEventListener("click", async () => {
       headers: { "Content-Type": "application/json" },
     };
 
-    let promise =await fetch(`/api/tickets/${online.response.user_id}`, optsTicket);
+    let promise = await fetch(
+      `/api/tickets/${online.response._id}`,
+      optsTicket
+    );
 
     const opts = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     };
-     await fetch(`/api/carts/all/${online.response.user_id}`,opts);
+    await fetch(`/api/carts/all/${online.response._id}`, opts);
 
     promise = await promise.json();
 
@@ -167,10 +170,7 @@ clearButton.addEventListener("click", async () => {
       headers: { "Content-Type": "application/json" },
     };
 
-    let promise = await fetch(
-      `/api/carts/all/${online.response.user_id}`,
-      opts
-    );
+    let promise = await fetch(`/api/carts/all/${online.response._id}`, opts);
 
     promise = await promise.json();
 
@@ -197,7 +197,7 @@ const totalCart = async () => {
     };
 
     let totalResponse = await fetch(
-      `/api/tickets/${online.response.user_id}`,
+      `/api/tickets/${online.response._id}`,
       opts
     );
     totalResponse = await totalResponse.json();

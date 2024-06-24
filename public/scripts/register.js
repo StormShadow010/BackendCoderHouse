@@ -1,6 +1,7 @@
 const createNewUser = async () => {
   // Crear el objeto data
   const data = {
+    username: document.querySelector("#name").value.trim(),
     email: document.querySelector("#email").value.trim(),
     password: document.querySelector("#password").value.trim(),
     role: document.querySelector("#role").value.trim(),
@@ -17,7 +18,7 @@ const createNewUser = async () => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(filteredData),
   };
-  let response = await fetch("/api/sessions/register", opts);
+  let response = await fetch("/api/auth/register", opts);
   response = await response.json();
 
   if (response.statusCode === 201) {

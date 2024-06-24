@@ -1,5 +1,3 @@
-import { verifyToken } from "../utils/token/token.util.js";
-
 //Register user
 export const register = async (req, res, next) => {
   try {
@@ -23,7 +21,6 @@ export const login = (req, res, next) => {
 //Online User
 export const online = async (req, res, next) => {
   try {
-    console.log(req);
     return req.cookies.token
       ? res.response200(req.user)
       : res.error404("Invalid credentials from signout!");
@@ -35,7 +32,7 @@ export const online = async (req, res, next) => {
 //Log out user
 export const signout = async (req, res, next) => {
   try {
-    return req.token
+    return req.cookies.token
       ? res.clearCookie("token").message200("Signed out!")
       : res.error404("Invalid credentials from signout!");
   } catch (error) {

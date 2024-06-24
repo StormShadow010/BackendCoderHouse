@@ -28,7 +28,7 @@ class Manager {
   };
   readByEmail = async (email) => {
     try {
-      const itemInvidual = await this.Model.findOne({ email });
+      const itemInvidual = await this.Model.findOne({ email }).lean();
       return itemInvidual;
     } catch (error) {
       throw error;

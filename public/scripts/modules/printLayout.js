@@ -1,6 +1,6 @@
 export const printIcons = async () => {
   let template = "";
-  let online = await fetch("/api/sessions");
+  let online = await fetch("/api/auth");
   online = await online.json();
 
   if (online.statusCode === 200) {
@@ -27,7 +27,7 @@ export const printIcons = async () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
           };
-          let response = await fetch("/api/sessions/signout", opts);
+          let response = await fetch("/api/auth/signout", opts);
           response = await response.json();
 
           if (response.statusCode === 200) {

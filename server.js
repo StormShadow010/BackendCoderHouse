@@ -3,11 +3,12 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-import { errorHandler, pathHandler } from "./src/middlewares/index.mid.js";
 import indexRouter from "./src/routers/index.router.js";
 import __dirname from "./utils.js";
 import argsUtil from "./src/utils/args/args.util.js";
 import variablesEnviroment from "./src/utils/env/env.util.js";
+import errorHandler from "./src/middlewares/errorHandler.mid.js";
+import pathHandler from "./src/middlewares/pathHandler.mid.js";
 
 //HTTP Server
 const server = express();

@@ -1,6 +1,5 @@
 import { checkMandatoryFieldsProducts } from "../../middlewares/checkMandatoryFieldsProducts.mid.js";
 import passportCb from "../../middlewares/passportCb.mid.js";
-import { isValidAdmin } from "../../middlewares/isValidAdmin.mid.js";
 import CustomRouter from "../CustomRouter.js";
 import {
   create,
@@ -17,7 +16,6 @@ class ProductsRouter extends CustomRouter {
       "/",
       ["ADMIN"],
       passportCb("jwt"),
-      isValidAdmin,
       checkMandatoryFieldsProducts,
       create
     );

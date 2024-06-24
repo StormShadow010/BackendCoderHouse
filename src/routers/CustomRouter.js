@@ -49,6 +49,7 @@ class CustomRouter {
     res.error403 = () =>
       res.json({ statusCode: 403, message: "Forbidden from policies!" });
     res.error404 = (message) => res.json({ statusCode: 404, message });
+
     return next();
   };
 

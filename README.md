@@ -1,6 +1,6 @@
-# Práctica de integración sobre tu ecommerce
+# Reestructura de nuestro servidor
 
-En esta entrega se evaluará la implementación del CUSTOM ROUTER, nuevos ENDPOINTS e implementación de agregation.
+En esta entrega se evaluará la implementación de las capas de enrutamiento, control, servicios y data en el servidor.
 
 ## Estructura de Datos de cada Modelo (Schema)
 

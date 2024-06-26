@@ -14,7 +14,7 @@ import pathHandler from "./src/middlewares/pathHandler.mid.js";
 const server = express();
 const port = variablesEnviroment.PORT || argsUtil.p;
 const ready = () => {
-  console.log("Server ready on port:" + port);
+  console.log("Server ready on port :" + port);
 };
 server.listen(port, ready);
 

@@ -1,10 +1,12 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
+import crypto from "crypto";
 import { verifyPassword } from "../utils/hashPassword/hashPassword.js";
 import { createToken } from "../utils/token/token.util.js";
 import variablesEnviroment from "../utils/env/env.util.js";
 import authRepository from "../repositories/auth.rep.js";
+import sendEmailLogin from "../utils/mail/mailingLogin.util.js";
 
 passport.use(
   "register",
@@ -33,18 +35,27 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
-        const user = await authRepository.readByEmailRepository(email);
+        let user = await authRepository.readByEmailRepository(email);
         if (!user) {
           const error = new Error("Bad auth from login!");
           error.statusCode = 401;
           return done(error);
         }
         const verify = verifyPassword(password, user.password);
-        if (!verify) {
+        if (!verify || !user.verify) {
           const error = new Error("Invalid credentials!");
           error.statusCode = 401;
           return done(error);
         }
+        const codeOnline = crypto.randomBytes(3).toString("hex");
+        user = await authRepository.updateRepository(user._id, {
+          code: codeOnline,
+        });
+        await sendEmailLogin({
+          email: user.email,
+          name: user.username,
+          code: user.code,
+        });
         // Protect user password!!
         delete user.password;
         const token = createToken(user);

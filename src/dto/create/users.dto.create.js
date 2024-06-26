@@ -16,7 +16,6 @@ class CreateUsersDto {
     this.photo = data.photo || "/assets/icons/avatar.png";
     this.verify = false;
     this.code = crypto.randomBytes(6).toString("hex");
-    // const verifyCode = crypto.randomBytes(6).toString("hex");
     persistence !== "mongo" && (this.createdAt = new Date());
     persistence !== "mongo" && (this.updatedAt = new Date());
   }

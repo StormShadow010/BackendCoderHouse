@@ -66,7 +66,6 @@ const createNewUser = async () => {
         },
         allowOutsideClick: () => !Swal.isLoading(),
       }).then((result) => {
-        console.log(result);
         if (result.isConfirmed) {
           Swal.fire({
             title: result.value.message,
@@ -75,6 +74,13 @@ const createNewUser = async () => {
             timer: 2000,
             timerProgressBar: true,
             showConfirmButton: false,
+          }).then(() => {
+            document.querySelector("#name").value = "";
+            document.querySelector("#email").value = "";
+            document.querySelector("#password").value = "";
+            document.querySelector("#role").value = "";
+            document.querySelector("#photo").value = "";
+            location.replace("../users/login.html");
           });
         } else if (result.isDismissed) {
           destroyUser(data.email).then((response) => {

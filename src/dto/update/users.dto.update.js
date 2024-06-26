@@ -9,6 +9,7 @@ class UpdateUsersDto {
     if (data.password) this.password = createHash(data.password);
     if (data.photo) this.photo = data.photo;
     if (data.verify) this.verify = data.verify;
+    if (data.code) this.code = data.code;
     persistence !== "mongo" && (this.updatedAt = new Date());
   }
 }

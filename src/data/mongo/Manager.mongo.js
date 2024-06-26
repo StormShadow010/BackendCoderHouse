@@ -39,7 +39,7 @@ class Manager {
       //new:true return a object updated
       const itemUpdated = await this.Model.findByIdAndUpdate(id, data, {
         new: true,
-      });
+      }).lean();
       return itemUpdated;
     } catch (error) {
       throw error;

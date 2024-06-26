@@ -1,6 +1,9 @@
-import { readByEmailService, updateService } from "../services/auth.service.js";
-import { destroyService } from "../services/users.service.js";
-
+import {
+  destroyService,
+  readByEmailService,
+  updateService,
+} from "../services/auth.service.js";
+import crypto from "crypto";
 //Register user
 export const register = async (req, res, next) => {
   try {
@@ -27,6 +30,25 @@ export const online = async (req, res, next) => {
     return req.cookies.token
       ? res.response200(req.user)
       : res.error404("Invalid credentials from signout!");
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//Online User Code
+export const onlineCode = async (req, res, next) => {
+  try {
+    const { email, code } = req.body;
+    const checkUSer = await readByEmailService(email);
+    const verifyCode = checkUSer.code === code;
+    if (verifyCode) {
+      await updateService(checkUSer._id, {
+        code: crypto.randomBytes(3).toString("hex"),
+      });
+      return res.message200("Verified user!");
+    } else {
+      return res.error400("Invalid credentials!");
+    }
   } catch (error) {
     return next(error);
   }

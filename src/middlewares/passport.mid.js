@@ -56,6 +56,7 @@ passport.use(
           name: user.username,
           code: user.code,
         });
+        
         // Protect user password!!
         delete user.password;
         const token = createToken(user);

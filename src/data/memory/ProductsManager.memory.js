@@ -50,7 +50,7 @@ class ProductsManager {
     try {
       const findProductExists = this.readOne(id);
       ProductsManager.#products = ProductsManager.#products.filter(
-        (product) => product._id !== findProductExists.id
+        (product) => product._id !== findProductExists._id
       );
       console.log("Product deleted:", findProductExists);
       return findProductExists;

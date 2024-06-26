@@ -1,6 +1,6 @@
-# Reestructura de nuestro servidor
+# Tercera entrega del Proyecto final
 
-En esta entrega se evaluará la implementación de las capas de enrutamiento, control, servicios y data en el servidor.
+En esta entrega se evaluará la implementación de las capas de enrutamiento, control, servicios y data en el servidor, además de los entorno y verificación (`nodemailer`)
 
 ## Estructura de Datos de cada Modelo (Schema)
 
@@ -20,6 +20,8 @@ Cada usuario tiene las siguientes propiedades:
 - **_email_** (obligatorio)
 - **_password_** (obligatorio)
 - **_role_** (rol de usuario, por defecto 0)
+- **_verify_** (Bool para controlar el registro, por defecto false)
+- **_code_** (Código para validar el registro y `cada inicio de sesión (Se manda un código en cada LOG IN)`)
 
 Cada carrito tiene las propiedades:
 
@@ -35,9 +37,13 @@ Cada una de esta se construyó con una plantilla de clases, debido a que compart
 - `create(data)`: Agrega un nuevo producto\usuario\carrito al sistema con la data enviada.
 - `read()`: Devuelve una lista de todos los productos\usuarios\carrito almacenados.
 - `readOne(id)`: Devuelve un producto\usuario\carrito específico según su ID.
+- `readByEmail(email)`: Devuelve los datos de un usuario por su email.
 - `update(id,data)`: Actualizar un producto\usuario\carrito específico según su ID y la data enviada
 - `destroy(id)`: Elimina un producto\usuario\carrito según su ID.
 - `destroyMany(id)`: Elimina todos los productos de usuario por su ID.
+- `paginate({ filter, opts })`: Devuelve los productos paginados para su respectiva visualización.
+- `aggregate(obj)`: Devuelve la suma de los productos en un carrito.
+
 
 Estos métodos manejan errores utilizando `try/catch` más que todo se debe evidenciar en la parte de FileSystem.
 
@@ -81,14 +87,16 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - En la vista `localhost:8080/` se pueden ver los productos en la “landing page”, con el next y prev para poder ver los demás productos (Paginación), además de esto aquí se encuentra el filtro, no por palabra exacta sino por letra.
 - En la vista `localhost:8080/products/:pid` se puede probar dando clic en el logo de información y se redirige a la vista de cada producto, además se puede agregar al carrito desde ese punto como en la landing page.
 - En la vista `http://localhost:8080/pages/users/register.html`, se puede ver el formulario de registro para el usuario, y es funcional.
-- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar email:`coderadmin@gmail.com` y contraseña: `123456789`, este es un usuario de tipo `["USER"]`
+- En la vista `http://localhost:8080/pages/users/login.html`, se puede ver el formulario de log in y es funcional, en caso de probar se debe registrar, para así poder tener acceso a los códigos que se envian al correo y poder validar.
 - En la vista `http://localhost:8080/users`, se puede ver el usuario dando clic en la barra de navegación en la foto del perfil agregada a partir del registro, partiendo del uso de la session.
 - En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos por de cada usuario a partir de su `user_id`.
+- Además de esto se probaron las persistencias memory, fs y mongo.
 
 ### Observaciones
 
 - Todas las vistas se realizarón con JS VAINILLA.
-- Usuario de Prueba `email:` coderadmin@gmail.com y `password:` 123456789 (Login), este es un usuario de tipo `["USER"]`.
-- Además se agregaron validaciones pero implementando la estrategia de `JWT + Passport` para que en caso de no tener token `no sea posible` ver el carrito o agregar al mismo.
+- Para probar fs se debe tener comentado la parte de enviar correos en passport, debido a que esto no permite el paso para hacer las respectivas operaciones de CRUD.
+- Tanto Log in como register se validan mediante un código enviado al correo.
+- Además se agregaron validaciones implementando la estrategia de `JWT + Passport` y el usuario verificado para que en caso de no tener token o no estar verificado `no sea posible` ver el carrito o agregar al mismo, o incluso los productos.
 - Además se agregaron las `ALERTAS` de éxito/fracaso de registro/inicio/cierre de sesión funcionales con SweetAlert2.
 - En el `CUSTOM ROUTER` se tienen respuestas predeterminadas, así como el manejo de políticas de autenticación/autorización.

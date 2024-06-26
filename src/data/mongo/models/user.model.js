@@ -7,7 +7,7 @@ const schema = new Schema(
     username: {
       type: String,
       required: true,
-      unique: true, //No repeate value in database
+      // unique: true, //No repeate value in database
       index: true,
       default: "USER",
     },

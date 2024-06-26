@@ -26,10 +26,9 @@ const schema = new Schema(
       default: 0,
       index: true,
     },
-    photo: {
-      type: String,
-      default: "/assets/icons/avatar.png",
-    },
+    photo: { type: String, default: "/assets/icons/avatar.png" },
+    verify: { type: Boolean, default: false },
+    code: { type: String, required: true },
   },
   { timestamps: true }
 );

@@ -28,7 +28,8 @@ class Service {
   };
   readByEmailService = async (email) => {
     try {
-      const itemInvidual = await this.manager.readByEmailRepository(email);
+      console.log(email);
+      const itemInvidual = await this.repository.readByEmailRepository(email);
       return itemInvidual;
     } catch (error) {
       throw error;
@@ -71,7 +72,7 @@ class Service {
   };
   aggregateService = async (obj) => {
     try {
-      const result = await this.manager.aggregateRepository(obj);
+      const result = await this.repository.aggregateRepository(obj);
       return result;
     } catch (error) {
       throw error;

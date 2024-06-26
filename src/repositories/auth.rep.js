@@ -2,6 +2,7 @@
 import dao from "../data/dao.factory.js";
 import CreateUsersDto from "../dto/create/users.dto.create.js";
 import UpdateUsersDto from "../dto/update/users.dto.update.js";
+import sendEmail from "../utils/mail/mailing.util.js";
 
 const { usersManager } = dao;
 
@@ -12,6 +13,11 @@ class AuthRepository {
   createRepository = async (data) => {
     try {
       data = new CreateUsersDto(data);
+      await sendEmail({
+        email: data.email,
+        name: data.username,
+        code: data.code,
+      });
       const newItem = await this.manager.create(data);
       return newItem;
     } catch (error) {

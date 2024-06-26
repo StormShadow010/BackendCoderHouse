@@ -6,7 +6,7 @@ class UsersManager {
     try {
       //Add new user to array uers
       UsersManager.#users.push(data);
-      console.log("User added:", data);
+      return data
     } catch (error) {
       console.log(error);
     }
@@ -22,16 +22,25 @@ class UsersManager {
 
   readOne = (id) => {
     try {
-      const productById = UsersManager.#users.find(
-        (product) => product._id === id
+      const userById = UsersManager.#users.find(
+        (user) => user._id === id
       );
-      if (!productById) {
+      if (!userById) {
         throw new Error("User not found!!");
       } else {
-        return productById;
+        return userById;
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  readByEmail = async (email) => {
+    try {
+      const userFound = UsersManager.#users.find(user => user.email === email)
+      return userFound;
+    } catch (error) {
+      throw error;
     }
   };
 

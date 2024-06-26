@@ -17,7 +17,7 @@ const sendEmailLogin = async (data) => {
     await transport.sendMail({
       from: `CODER STORE STORM <${variablesEnviroment.GOOGLE_EMAIL}>`,
       to: data.email,
-      subject: `USER ${data.name.toUpperCase()} REGISTERED!`,
+      subject: `Verification code`,
       html: `
       <h1>Verification code!<h1>
       <p>Code: ${data.code}</p>

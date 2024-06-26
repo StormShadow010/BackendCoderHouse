@@ -1,10 +1,11 @@
 class CartsManager {
-  static #products = [];
+  static #carts = [];
   create(data) {
     try {
-      //Add new product to array products
-      CartsManager.#products.push(data);
+      //Add new product to array carts
+      CartsManager.#carts.push(data);
       console.log("Cart Item added:", data);
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -12,7 +13,7 @@ class CartsManager {
 
   read = () => {
     try {
-      return CartsManager.#products;
+      return CartsManager.#carts;
     } catch (error) {
       console.log(error);
     }
@@ -20,8 +21,8 @@ class CartsManager {
 
   readOne = (id) => {
     try {
-      const cartItemById = CartsManager.#products.find(
-        (item) => item.id === id
+      const cartItemById = CartsManager.#carts.find(
+        (item) => item._id === id
       );
       if (!cartItemById) {
         throw new Error("Cart Item not found!!");
@@ -46,10 +47,11 @@ class CartsManager {
   destroy = (id) => {
     try {
       const findCartItemExists = this.readOne(id);
-      CartsManager.#products = CartsManager.#products.filter(
-        (product) => product.id !== findCartItemExists.id
+      CartsManager.#carts = CartsManager.#carts.filter(
+        (product) => product._id !== findCartItemExists._id
       );
       console.log("Cart Item deleted:", findCartItemExists);
+      return findCartItemExists;
     } catch (error) {
       console.log(error);
     }

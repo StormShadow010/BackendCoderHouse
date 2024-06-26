@@ -7,6 +7,7 @@ class ProductsManager {
       //Add new product to array products
       ProductsManager.#products.push(data);
       console.log("Product added:", data);
+      return data
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +24,7 @@ class ProductsManager {
   readOne = (id) => {
     try {
       const productById = ProductsManager.#products.find(
-        (product) => product.id === id
+        (product) => product._id === id
       );
       if (!productById) {
         throw new Error("Product not found!!");
@@ -49,9 +50,10 @@ class ProductsManager {
     try {
       const findProductExists = this.readOne(id);
       ProductsManager.#products = ProductsManager.#products.filter(
-        (product) => product.id !== findProductExists.id
+        (product) => product._id !== findProductExists.id
       );
       console.log("Product deleted:", findProductExists);
+      return findProductExists;
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { verifyToken } from "../utils/token/token.util.js";
-import { usersManager } from "../data/mongo/managers/UsersManager.mongo.js";
+import usersRepository from "../repositories/users.rep.js";
 
 class CustomRouter {
   //Build and configure each router instance
@@ -49,6 +49,7 @@ class CustomRouter {
     res.error403 = () =>
       res.json({ statusCode: 403, message: "Forbidden from policies!" });
     res.error404 = (message) => res.json({ statusCode: 404, message });
+
     return next();
   };
 
@@ -60,13 +61,15 @@ class CustomRouter {
       else {
         try {
           token = verifyToken(token);
+
           const { role, email } = token;
+
           if (
             (policies.includes("USER") && role === 0) ||
             (policies.includes("ADMIN") && role === 1)
           ) {
-            const user = await usersManager.readByEmail(email);
-            //proteger contraseña del usuario!!!
+            const user = await usersRepository.readByEmailRepository(email);
+            // Protect user password!!
             delete user.password;
             req.user = user;
             return next();

@@ -1,7 +1,7 @@
-import { cartsManager } from "../data/mongo/managers/CartsManager.mongo.js";
+import cartsRepository from "../repositories/carts.rep.js";
 import Service from "./CustomService.js";
 
-const cartsService = new Service(cartsManager);
+const cartsService = new Service(cartsRepository);
 export const {
   createService,
   readService,

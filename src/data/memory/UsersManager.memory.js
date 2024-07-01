@@ -1,22 +1,12 @@
-import crypto from "crypto";//Create id random with hexa
+import crypto from "crypto"; //Create id random with hexa
 
 class UsersManager {
   static #users = [];
   create(data) {
     try {
-      const { photo, email, password, role } = data;
-      if (!email || !password) throw new Error("Email and password are required!!");
-      //Create object for new user
-      const newUser = {
-        id: crypto.randomBytes(12).toString("hex"),
-        photo: photo || "https://unsplash.com",
-        email,
-        password,
-        role: role || 0
-      };
       //Add new user to array uers
-      UsersManager.#users.push(newUser);
-      console.log("User added:", newUser);
+      UsersManager.#users.push(data);
+      return data
     } catch (error) {
       console.log(error);
     }
@@ -32,16 +22,25 @@ class UsersManager {
 
   readOne = (id) => {
     try {
-      const productById = UsersManager.#users.find(
-        (product) => product.id === id
+      const userById = UsersManager.#users.find(
+        (user) => user._id === id
       );
-      if (!productById) {
+      if (!userById) {
         throw new Error("User not found!!");
       } else {
-        return productById;
+        return userById;
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  readByEmail = async (email) => {
+    try {
+      const userFound = UsersManager.#users.find(user => user.email === email)
+      return userFound;
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -49,11 +48,11 @@ class UsersManager {
     try {
       const userToUpdate = this.readOne(id);
       Object.assign(userToUpdate, data);
-      return userToUpdate
+      return userToUpdate;
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   destroy = (id) => {
     try {
@@ -66,8 +65,7 @@ class UsersManager {
       console.log(error);
     }
   };
-};
+}
 
-
-const usersManager = new UsersManager()
-export default usersManager
+const usersManager = new UsersManager();
+export default usersManager;

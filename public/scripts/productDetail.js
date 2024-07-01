@@ -24,7 +24,7 @@ const productDetailInfo = async () => {
 
 const addCart = async () => {
   let template = "";
-  let online = await fetch("/api/sessions");
+  let online = await fetch("/api/auth");
   online = await online.json();
   if (online.statusCode === 200) {
     template = `
@@ -37,7 +37,7 @@ const addCart = async () => {
     // Attach event listeners
     document.querySelector("#addCart").addEventListener("click", async () => {
       const data = {
-        user_id: online.response.user_id,
+        user_id: online.response._id,
         product_id: pid,
         quantity: 1,
       };

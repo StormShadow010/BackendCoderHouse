@@ -1,13 +1,13 @@
 import { printIcons } from "./modules/printLayout.js";
 
 //Get User ID from Params
-let url = new URL(window.location.href);
-let uid = url.searchParams.get("uid");
+let online = await fetch("/api/auth");
+online = await online.json();
 
 const detailInfoUser = async () => {
   let user;
 
-  let response = await fetch(`/api/users/${uid}`);
+  let response = await fetch(`/api/users/${online.response._id}`);
   let data = await response.json();
 
   user = data.response;
@@ -15,6 +15,7 @@ const detailInfoUser = async () => {
   const imgUser = document.querySelector("#img-user");
   imgUser.src = user.photo;
   document.getElementById("email-user").innerHTML = "Email:" + user.email;
+  document.getElementById("username").innerHTML = user.username;
   document.getElementById("password-user").innerHTML =
     "Password:" + user.password;
   document.getElementById("role-user").innerHTML = "Role:" + user.role;

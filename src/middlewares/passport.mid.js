@@ -1,12 +1,12 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
-import { usersManager } from "../data/mongo/managers/UsersManager.mongo.js";
-import {
-  createHash,
-  verifyPassword,
-} from "../utils/hashPassword/hashPassword.js";
+import crypto from "crypto";
+import { verifyPassword } from "../utils/hashPassword/hashPassword.js";
 import { createToken } from "../utils/token/token.util.js";
+import variablesEnviroment from "../utils/env/env.util.js";
+import authRepository from "../repositories/auth.rep.js";
+import sendEmailLogin from "../utils/mail/mailingLogin.util.js";
 
 passport.use(
   "register",
@@ -14,18 +14,13 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
-        // Check if the email already exists
-        const user = await usersManager.readByEmail(email);
-        if (user) {
-          const error = new Error("Bad auth from register!");
-          error.statusCode = 401;
+        const checkUSer = await authRepository.readByEmailRepository(email);
+        if (checkUSer) {
+          const error = new Error("Invalid credentials!");
+          error.statusCode = 400;
           return done(error);
         }
-
-        // Create the user
-        const hashPassword = createHash(password); // Hash the password
-        req.body.password = hashPassword; // Reassign the hashed password
-        const newUser = await usersManager.create(req.body);
+        const newUser = await authRepository.createRepository(req.body);
         return done(null, newUser);
       } catch (error) {
         return done(error);
@@ -40,28 +35,33 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
-        const user = await usersManager.readByEmail(email);
+        let user = await authRepository.readByEmailRepository(email);
         if (!user) {
           const error = new Error("Bad auth from login!");
           error.statusCode = 401;
           return done(error);
         }
         const verify = verifyPassword(password, user.password);
-        if (verify) {
-          const data = {
-            email,
-            role: user.role,
-            photo: user.photo,
-            _id: user._id,
-            online: true,
-          };
-          const token = createToken(data);
-          data.token = token;
-          return done(null, data);
+        if (!verify || !user.verify) {
+          const error = new Error("Invalid credentials!");
+          error.statusCode = 401;
+          return done(error);
         }
-        const error = new Error("Invalid credentials");
-        error.statusCode = 401;
-        return done(error);
+        const codeOnline = crypto.randomBytes(3).toString("hex");
+        user = await authRepository.updateRepository(user._id, {
+          code: codeOnline,
+        });
+        await sendEmailLogin({
+          email: user.email,
+          name: user.username,
+          code: user.code,
+        });
+        
+        // Protect user password!!
+        delete user.password;
+        const token = createToken(user);
+        req.token = token;
+        return done(null, user);
       } catch (error) {
         return done(error);
       }
@@ -76,7 +76,7 @@ passport.use(
       jwtFromRequest: ExtractJwt.fromExtractors([
         (req) => req?.cookies["token"],
       ]),
-      secretOrKey: process.env.SECRET_JWT,
+      secretOrKey: variablesEnviroment.SECRET_JWT,
     },
     (data, done) => {
       try {

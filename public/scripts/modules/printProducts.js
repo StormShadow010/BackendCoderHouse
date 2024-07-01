@@ -13,7 +13,7 @@ export const productsAll = async (products) => {
     containerProducts.appendChild(newDiv);
 
     let template = "";
-    let online = await fetch("/api/sessions");
+    let online = await fetch("/api/auth");
     online = await online.json();
     if (online.statusCode === 200) {
       template = `
@@ -32,7 +32,7 @@ export const productsAll = async (products) => {
         .querySelector("#addProduct")
         .addEventListener("click", async () => {
           const data = {
-            user_id: online.response.user_id,
+            user_id: online.response._id,
             product_id: product._id,
             quantity: 1,
           };

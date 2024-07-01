@@ -1,4 +1,4 @@
-import passport from "passport";
+import passport from "./passport.mid.js";
 
 //es una funcion que depende de la estrategia a implementar y que devuelve:
 //el error si ocurre
@@ -16,6 +16,7 @@ function passportCb(strategy) {
         req.user = user;
         return next();
       }
+
       return res.json({
         statusCode: info.statusCode || 401,
         message: info.message ? info.message : info.toString,

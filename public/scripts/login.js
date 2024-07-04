@@ -69,7 +69,7 @@ const onLogin = async () => {
     });
   } else {
     Swal.fire({
-      title: "Login Failed",
+      title: response.message,
       width: 300,
       padding: "0.2em",
       color: "#FF0000",

@@ -1,6 +1,6 @@
-# Tercera entrega del Proyecto final
+# Mocking y manejo de errores
 
-En esta entrega se evaluará la implementación de las capas de enrutamiento, control, servicios y data en el servidor, además de los entorno y verificación (`nodemailer`)
+En esta entrega se evaluará la implementación del uso de Mocks (faker js), manejo de errores (Custom error) y la implementación de gzip+brotli.
 
 ## Estructura de Datos de cada Modelo (Schema)
 
@@ -43,7 +43,6 @@ Cada una de esta se construyó con una plantilla de clases, debido a que compart
 - `destroyMany(id)`: Elimina todos los productos de usuario por su ID.
 - `paginate({ filter, opts })`: Devuelve los productos paginados para su respectiva visualización.
 - `aggregate(obj)`: Devuelve la suma de los productos en un carrito.
-
 
 Estos métodos manejan errores utilizando `try/catch` más que todo se debe evidenciar en la parte de FileSystem.
 
@@ -100,3 +99,4 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - Además se agregaron validaciones implementando la estrategia de `JWT + Passport` y el usuario verificado para que en caso de no tener token o no estar verificado `no sea posible` ver el carrito o agregar al mismo, o incluso los productos.
 - Además se agregaron las `ALERTAS` de éxito/fracaso de registro/inicio/cierre de sesión funcionales con SweetAlert2.
 - En el `CUSTOM ROUTER` se tienen respuestas predeterminadas, así como el manejo de políticas de autenticación/autorización.
+- En el `CUSTOM ERROR` se tienen respuestas predeterminadas para errores más que todo para la parte del passport, debido a que en el `CUSTOM ROUTER` ya se cuenta con respuestas predeterminadas.

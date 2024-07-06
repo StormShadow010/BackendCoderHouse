@@ -7,6 +7,8 @@ import { createToken } from "../utils/token/token.util.js";
 import variablesEnviroment from "../utils/env/env.util.js";
 import authRepository from "../repositories/auth.rep.js";
 import sendEmailLogin from "../utils/mail/mailingLogin.util.js";
+import CustomError from "../utils/errors/CustomError.js";
+import errors from "../utils/errors/erros.dictionary.js";
 
 passport.use(
   "register",
@@ -16,8 +18,7 @@ passport.use(
       try {
         const checkUSer = await authRepository.readByEmailRepository(email);
         if (checkUSer) {
-          const error = new Error("Invalid credentials!");
-          error.statusCode = 400;
+          const error = CustomError.new(errors.invalid);
           return done(error);
         }
         const newUser = await authRepository.createRepository(req.body);
@@ -37,14 +38,12 @@ passport.use(
       try {
         let user = await authRepository.readByEmailRepository(email);
         if (!user) {
-          const error = new Error("Bad auth from login!");
-          error.statusCode = 401;
+          const error = CustomError.new(errors.auth);
           return done(error);
         }
         const verify = verifyPassword(password, user.password);
         if (!verify || !user.verify) {
-          const error = new Error("Invalid credentials!");
-          error.statusCode = 401;
+          const error = CustomError.new(errors.invalid);
           return done(error);
         }
         const codeOnline = crypto.randomBytes(3).toString("hex");
@@ -56,7 +55,7 @@ passport.use(
           name: user.username,
           code: user.code,
         });
-        
+
         // Protect user password!!
         delete user.password;
         const token = createToken(user);
@@ -83,8 +82,7 @@ passport.use(
         if (data) {
           return done(null, data);
         } else {
-          const error = new Error("Forbidden from jwt!");
-          error.statusCode = 403;
+          const error = CustomError.new(errors.jwterror);
           return done(error);
         }
       } catch (error) {

@@ -12,7 +12,7 @@ class CreateProductsDto {
     this.photo = data.photo || "/assets/icons/imagepreview.png";
     this.category = data.category || "Action";
     this.price = data.price || 1;
-    this.stock = data.images || 1;
+    this.stock = data.stock || 1;
     persistence !== "mongo" && (this.createdAt = new Date());
     persistence !== "mongo" && (this.updatedAt = new Date());
   }

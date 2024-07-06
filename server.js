@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import compression from "express-compression";
 
 import indexRouter from "./src/routers/index.router.js";
 import __dirname from "./utils.js";
@@ -25,6 +26,11 @@ server.use(express.static(__dirname + "/public"));
 server.use(morgan("dev"));
 server.use(cookieParser(variablesEnviroment.SECRET_COOKIE));
 server.use(cors({ origin: true, credentials: true }));
+server.use(
+  compression({
+    brotli: { enabled: true, zlib: {} },
+  })
+);
 //ROUTER MAIN
 server.use("/", indexRouter);
 //MIDDLEWARES - OWN

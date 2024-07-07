@@ -1,0 +1,11 @@
+[31merror[39m: POST - /api/auth/register - 16:44:45 - Invalid Credential
+error: POST - /api/auth/register - 16:45:15 - Invalid Credential
+error: POST - /api/auth/register - 16:45:20 - Invalid Credential
+error: POST - /api/auth/register - 16:56:07 - Invalid Credential
+error: POST - /api/auth/register - 16:56:10 - Invalid Credential
+error: POST - /api/auth/register - 16:56:43 - Invalid Credential
+error: POST - /api/auth/register - 16:56:46 - Invalid Credential
+error: POST - /api/auth/register - 16:56:47 - Invalid Credential
+error: POST - /api/auth/register - 16:56:49 - Invalid Credential
+error: POST - /api/auth/register - 400 - 16:59:25 - Invalid Credential
+error: POST - 400 - /api/auth/register -  - 16:59:53 - Invalid Credential

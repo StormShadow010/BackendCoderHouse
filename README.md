@@ -1,6 +1,6 @@
-# Mocking y manejo de errores
+# Implementación de logger
 
-En esta entrega se evaluará la implementación del uso de Mocks (faker js), manejo de errores (Custom error) y la implementación de gzip+brotli.
+En esta entrega se evaluará la implementación de logger con un sistema de niveles que tenga la siguiente prioridad (de menor a mayor): http, info, error, fatal.
 
 ## Estructura de Datos de cada Modelo (Schema)
 
@@ -78,7 +78,7 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
    - Agregar un botón para eliminar el producto del carrito
    - Agregar un input numérico para la gestión de la cantidad de unidades a comprar
    - Agregar un botón para finalizar la compra y borrar todos los productos del carrito, esto se realizo por medio del ENDPOINT `GET /api/tickets`, así este mismo guarda el ticket en la BD (Mongo)
-   - Agregar un botón para cancelar la compra y borrar todos los productos del carrito, esto se realizo por medio del ENDPOINT `ELETE /api/carts/all `, logrando borrar todos los productos de un usuario por su respectivo ID.
+   - Agregar un botón para cancelar la compra y borrar todos los productos del carrito, esto se realizo por medio del ENDPOINT `DELETE /api/carts/all`, logrando borrar todos los productos de un usuario por su respectivo ID.
    - Se puede ver el calculo total de la compra, esto se realizo por medio del ENDPOINT `GET /api/tickets`, así este mismo guarda el ticket en la BD (Mongo)
 
 ## Pruebas
@@ -90,6 +90,7 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - En la vista `http://localhost:8080/users`, se puede ver el usuario dando clic en la barra de navegación en la foto del perfil agregada a partir del registro, partiendo del uso de la session.
 - En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos por de cada usuario a partir de su `user_id`.
 - Además de esto se probaron las persistencias memory, fs y mongo.
+- En modo `Producción y Desarrollo` se puede probar la parte de `LOGIN` y `REGISTER` para generar errores, pero solo en modo `Producción` y que estos se carguen en el archivo `errors.log`, en los otros lados debido a que se cuenta con respuesta predeterminadas no se implemento el logger, pero se tienen respuestas a partir del nivel http tanto para dev como prod.
 
 ### Observaciones
 

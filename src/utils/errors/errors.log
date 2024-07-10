@@ -1,2 +1,5 @@
-error: POST - 401 - /api/auth/login - 20:44:33 - Bad auth
 
+
+error: POST - 401 - /api/auth/login - 21:00:46 - Bad auth
+fatal: Fatal Log
+error: Error Log

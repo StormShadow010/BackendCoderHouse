@@ -90,7 +90,7 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - En la vista `http://localhost:8080/users`, se puede ver el usuario dando clic en la barra de navegación en la foto del perfil agregada a partir del registro, partiendo del uso de la session.
 - En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos por de cada usuario a partir de su `user_id`.
 - Además de esto se probaron las persistencias memory, fs y mongo.
-- En modo `Producción y Desarrollo` se puede probar la parte de `LOGIN` y `REGISTER` para generar errores, pero solo en modo `Producción` y que estos se carguen en el archivo `errors.log`, en los otros lados debido a que se cuenta con respuesta predeterminadas no se implemento el logger, pero se tienen respuestas a partir del nivel http tanto para dev como prod.
+- En modo `Producción y Desarrollo` se puede probar la parte de `LOGIN` y `REGISTER` para generar errores, pero solo en modo `Producción` se cargan los errores en el archivo `errors.log`, y en los otros endspoints no se implemento debido a que se cuenta con respuesta predeterminadas, pero se tienen respuestas a partir del nivel http.
 
 ### Observaciones
 

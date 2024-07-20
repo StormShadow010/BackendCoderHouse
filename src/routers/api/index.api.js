@@ -4,7 +4,7 @@ import { productsRouter } from "./products.api.js";
 import { cartsRouter } from "./carts.api.js";
 import { ticketsRouter } from "./tickets.api.js";
 import authRouter from "./auth.api.js";
-
+import loggerRouter from "./loggers.api.js";
 
 class ApiRouter extends CustomRouter {
   init() {
@@ -13,6 +13,7 @@ class ApiRouter extends CustomRouter {
     this.use("/carts", cartsRouter);
     this.use("/tickets", ticketsRouter);
     this.use("/auth", authRouter);
+    this.use("/loggers", loggerRouter);
   }
 }
 

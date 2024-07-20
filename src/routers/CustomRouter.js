@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { verifyToken } from "../utils/token/token.util.js";
 import usersRepository from "../repositories/users.rep.js";
+import winstonLog from "../utils/winston/winston.util.js";
 
 class CustomRouter {
   //Build and configure each router instance

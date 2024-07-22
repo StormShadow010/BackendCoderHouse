@@ -79,6 +79,8 @@ const sendCode = async () => {
           document.getElementById("separator1").classList.add("xl:h-full");
           document.getElementById("separator1").classList.add("bg-white");
           document.getElementById("separator1").classList.add("ml-6");
+          document.getElementById("emailReset").classList.remove("xl:w-[60%]");
+          document.getElementById("emailReset").classList.add("xl:w-full");
 
           Swal.fire({
             position: "center",
@@ -99,6 +101,7 @@ const sendCode = async () => {
           document.getElementById("separator1").classList.remove("xl:h-full");
           document.getElementById("separator1").classList.remove("bg-white");
           document.getElementById("separator1").classList.remove("ml-6");
+
           Swal.fire({
             position: "center",
             icon: "error",

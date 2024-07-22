@@ -17,9 +17,9 @@ const resetPasswordMail = async (data) => {
     await transport.sendMail({
       from: `CODER STORE STORM <${variablesEnviroment.GOOGLE_EMAIL}>`,
       to: data.email,
-      subject: `Verification code`,
+      subject: `Verification code! (Reset Password)`,
       html: `
-      <h1>Verification code!<h1>
+      <h1>Verification code! (Reset Password)<h1>
       <p>Code: ${data.code}</p>
       `,
     });

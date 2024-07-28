@@ -1,4 +1,4 @@
-# Práctica de integración sobre tu ecommerce
+# Documentar API
 
 En esta entrega se evaluará la implementación de un reset de la contraseña, a partir de la implementación de dos rutas
 

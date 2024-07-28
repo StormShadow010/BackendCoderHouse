@@ -6,6 +6,8 @@ import {
   verifyCode,
   destroyUser,
   onlineCode,
+  resetPassword,
+  updatePassword,
 } from "../../controllers/auth.controller.js";
 import passportCb from "../../middlewares/passportCb.mid.js";
 import CustomRouter from "../CustomRouter.js";
@@ -19,6 +21,8 @@ class AuthRouter extends CustomRouter {
     this.create("/verify", ["PUBLIC"], verifyCode);
     this.destroy("/destroy", ["PUBLIC"], destroyUser);
     this.create("/verifyCode", ["PUBLIC"], onlineCode);
+    this.create("/password", ["PUBLIC"], resetPassword);
+    this.update("/password", ["PUBLIC"], updatePassword);
   }
 }
 

@@ -1,6 +1,11 @@
-# Implementación de logger
+# Práctica de integración sobre tu ecommerce
 
-En esta entrega se evaluará la implementación de logger con un sistema de niveles que tenga la siguiente prioridad (de menor a mayor): http, info, error, fatal.
+En esta entrega se evaluará la implementación de un reset de la contraseña, a partir de la implementación de dos rutas
+
+- POST /api/sessions/password para que envíe un correo con los permisos necesarios para formatear la contraseña.
+- PUT /api/sessions/password para que permita actualizar la contraseña.
+
+Tener presenté que para mi caso estoy trabajando con auth y no con sessions
 
 ## Estructura de Datos de cada Modelo (Schema)
 
@@ -80,6 +85,7 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
    - Agregar un botón para finalizar la compra y borrar todos los productos del carrito, esto se realizo por medio del ENDPOINT `GET /api/tickets`, así este mismo guarda el ticket en la BD (Mongo)
    - Agregar un botón para cancelar la compra y borrar todos los productos del carrito, esto se realizo por medio del ENDPOINT `DELETE /api/carts/all`, logrando borrar todos los productos de un usuario por su respectivo ID.
    - Se puede ver el calculo total de la compra, esto se realizo por medio del ENDPOINT `GET /api/tickets`, así este mismo guarda el ticket en la BD (Mongo)
+7. http://localhost:8080/pages/users/resetPassword formulario para cambiar la contraseña, en el que primero se envía un código al correo, después de confirmar ese código se habilita el formulario para cambiar la contraseña, la cual debe ser de mínimo 6 caracteres y debe ser diferente a la actual.
 
 ## Pruebas
 
@@ -91,6 +97,7 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - En la vista `http://localhost:8080/pages/cart/cart.html`, se puede ver el total de productos por de cada usuario a partir de su `user_id`.
 - Además de esto se probaron las persistencias memory, fs y mongo.
 - En modo `Producción y Desarrollo` se puede probar la parte de `LOGIN` y `REGISTER` para generar errores, pero solo en modo `Producción` se cargan los errores en el archivo `errors.log`, y en los otros endspoints no se implemento debido a que se cuenta con respuesta predeterminadas, pero se tienen respuestas a partir del nivel http.
+- En la vista `http://localhost:8080/pages/users/resetPassword.html`, se ingresa el correo (EL cual debe existir en la base de datos) y después de confirmar el código enviado al correo se habilita un formulario para el cambio de la contraseña.
 
 ### Observaciones
 
@@ -101,3 +108,4 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - Además se agregaron las `ALERTAS` de éxito/fracaso de registro/inicio/cierre de sesión funcionales con SweetAlert2.
 - En el `CUSTOM ROUTER` se tienen respuestas predeterminadas, así como el manejo de políticas de autenticación/autorización.
 - En el `CUSTOM ERROR` se tienen respuestas predeterminadas para errores más que todo para la parte del passport, debido a que en el `CUSTOM ROUTER` ya se cuenta con respuestas predeterminadas.
+- SE pide las rutas con sessions, pero en mi caso estoy trabajando esa rutas con auth.

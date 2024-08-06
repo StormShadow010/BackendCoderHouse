@@ -1,9 +1,10 @@
-# Documentar API
+# Módulos de Testing para proyecto final
 
 En esta entrega se evaluará:
 
-- Documentar el proyecto final, con los recursos, parámetros, consultas, cuerpos, encabezamientos y respuestas correspondientes.
-- En esta entrega como mínimo documentar CRUD de Product.
+- Testear el proyecto final, con los recursos, parámetros, consultas, cuerpos, encabezamientos y respuestas correspondientes.
+- En esta entrega como mínimo testear CRUD de Product.
+- Testear el “stress” de un flujo con al menos tres operaciones.
 
 Tener presenté que para mi caso estoy trabajando con auth y no con sessions
 

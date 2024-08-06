@@ -77,6 +77,8 @@ export const update = async (req, res, next) => {
   try {
     const { pid } = req.params;
     const data = req.body;
+    console.log(pid, data);
+
     const updateProduct = await updateService(pid, data);
     return updateProduct
       ? res.response200(updateProduct)

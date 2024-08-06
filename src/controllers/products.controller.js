@@ -44,6 +44,9 @@ export const paginateRead = async (req, res, next) => {
     if (req.query.title) {
       filter.title = { $regex: req.query.title, $options: "i" }; // case-insensitive search
     }
+    if (req.query.category) {
+      filter.category = { $regex: req.query.category, $options: "i" }; // case-insensitive search
+    }
     const all = await paginateService({ filter, opts });
     const info = {
       totalDocs: all.totalDocs,

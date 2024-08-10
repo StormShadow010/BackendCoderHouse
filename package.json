@@ -10,16 +10,24 @@
     "prod": "nodemon ./server.js --env prod --persistence mongo",
     "test": "nodemon ./server.js  --env test --persistence fs",
     "memory": "nodemon ./server.js --env test --persistence memory",
-    "mockproducts": "node ./src/mocks/products.mock.js --env dev"
+    "mockproducts": "node ./src/mocks/products.mock.js --env dev",
+    "performance": "artillery run ./test/artillery/flow.yaml --output ./test/artillery/flow.json",
+    "report": "artillery report ./test/artillery/flow.json",
+    "super": "mocha ./test/supertest --env dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "nodemon": "^3.1.0"
+    "artillery": "^2.0.19",
+    "chai": "^5.1.1",
+    "mocha": "^10.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.0.0"
   },
   "dependencies": {
+    "artillery-plugin-metrics-by-endpoint": "^1.13.0",
     "bcrypt": "^5.1.1",
     "commander": "^12.1.0",
     "connect-mongo": "^5.1.0",

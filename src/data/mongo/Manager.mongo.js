@@ -12,7 +12,7 @@ class Manager {
   };
   read = async (filterInfo) => {
     try {
-      const allData = await this.Model.find(filterInfo);
+      const allData = await this.Model.find(filterInfo).lean();
       return allData;
     } catch (error) {
       throw new Error(error.message);

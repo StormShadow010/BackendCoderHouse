@@ -19,7 +19,7 @@ class AuthRouter extends CustomRouter {
     this.read("/", ["USER", "ADMIN"], online);
     this.create("/signout", ["USER", "ADMIN"], signout);
     this.create("/verify", ["PUBLIC"], verifyCode);
-    this.destroy("/destroy", ["PUBLIC"], destroyUser);
+    this.destroy("/:uid", ["PUBLIC"], destroyUser);
     this.create("/verifyCode", ["PUBLIC"], onlineCode);
     this.create("/password", ["PUBLIC"], resetPassword);
     this.update("/password", ["PUBLIC"], updatePassword);

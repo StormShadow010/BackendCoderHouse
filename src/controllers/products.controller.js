@@ -37,17 +37,29 @@ export const read = async (req, res, next) => {
 export const paginateRead = async (req, res, next) => {
   try {
     const filter = {};
-    const opts = { page: 1, limit: 10, lean: true, sort: { title: 1 } };
+    const opts = {
+      page: 1,
+      limit: 10,
+      lean: true,
+      sort: { title: 1 },
+      collation: { locale: "en", strength: 2 },
+    };
+
     if (req.query.page) {
       opts.page = req.query.page;
     }
     if (req.query.title) {
-      filter.title = { $regex: req.query.title, $options: "i" }; // case-insensitive search
+      filter.title = { $regex: req.query.title, $options: "i" }; // Búsqueda insensible a mayúsculas/minúsculas
     }
     if (req.query.category) {
-      filter.category = { $regex: req.query.category, $options: "i" }; // case-insensitive search
+      filter.category = { $regex: req.query.category, $options: "i" }; // Búsqueda insensible a mayúsculas/minúsculas
     }
+    if (req.query.supplier_id) {
+      filter.supplier_id = req.query.supplier_id; // Filtra por ID del proveedor
+    }
+
     const all = await paginateService({ filter, opts });
+
     const info = {
       totalDocs: all.totalDocs,
       page: all.page,
@@ -56,6 +68,7 @@ export const paginateRead = async (req, res, next) => {
       prevPage: all.prevPage,
       nextPage: all.nextPage,
     };
+
     return res.paginate(all.docs, info);
   } catch (error) {
     return next(error);

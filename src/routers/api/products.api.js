@@ -12,13 +12,7 @@ import {
 
 class ProductsRouter extends CustomRouter {
   init() {
-    this.create(
-      "/",
-      ["ADMIN"],
-      passportCb("jwt"),
-      checkMandatoryFieldsProducts,
-      create
-    );
+    this.create("/", ["ADMIN", "PREMIUM"], passportCb("jwt"), create);
     this.read("/", ["PUBLIC"], read);
     this.read("/paginate", ["PUBLIC"], paginateRead);
     this.read("/:pid", ["PUBLIC"], readOne);

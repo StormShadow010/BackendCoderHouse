@@ -65,7 +65,8 @@ class CustomRouter {
 
           if (
             (policies.includes("USER") && role === 0) ||
-            (policies.includes("ADMIN") && role === 1)
+            (policies.includes("ADMIN") && role === 1) ||
+            (policies.includes("PREMIUM") && role === 2)
           ) {
             const user = await usersRepository.readByEmailRepository(email);
             // Protect user password!!

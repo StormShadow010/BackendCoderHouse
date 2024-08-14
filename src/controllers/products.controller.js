@@ -33,9 +33,12 @@ export const read = async (req, res, next) => {
   }
 };
 
-//Read <- get all items by Paginate
+//Read <- get all items by Paginate according Role
 export const paginateRead = async (req, res, next) => {
   try {
+    const userID = req.headers["user-id"];
+    const role = req.headers["user-role"];
+
     const filter = {};
     const opts = {
       page: 1,
@@ -54,10 +57,59 @@ export const paginateRead = async (req, res, next) => {
     if (req.query.category) {
       filter.category = { $regex: req.query.category, $options: "i" }; // Búsqueda insensible a mayúsculas/minúsculas
     }
-    if (req.query.supplier_id) {
-      filter.supplier_id = req.query.supplier_id; // Filtra por ID del proveedor
+    // if (userOnline.role == 2) {
+    //   filter.supplier_id = { $ne: userOnline._id }; // Filtra todos los products menos ID del proveedor
+    // }
+    if (role == 2) {
+      filter.supplier_id = { $ne: userID };
     }
 
+    const all = await paginateService({ filter, opts });
+
+    const info = {
+      totalDocs: all.totalDocs,
+      page: all.page,
+      totalPages: all.totalPages,
+      limit: all.limit,
+      prevPage: all.prevPage,
+      nextPage: all.nextPage,
+    };
+
+    return res.paginate(all.docs, info);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//Read <- get all items by Paginate according Role
+export const paginateManage = async (req, res, next) => {
+  try {
+    const userID = req.headers["user-id"];
+    const role = req.headers["user-role"];
+
+    const filter = {};
+    const opts = {
+      page: 1,
+      limit: 10,
+      lean: true,
+      sort: { title: 1 },
+      collation: { locale: "en", strength: 2 },
+    };
+    if (req.query.page) {
+      opts.page = req.query.page;
+    }
+    if (req.query.title) {
+      filter.title = { $regex: req.query.title, $options: "i" }; // Búsqueda insensible a mayúsculas/minúsculas
+    }
+    if (req.query.category) {
+      filter.category = { $regex: req.query.category, $options: "i" }; // Búsqueda insensible a mayúsculas/minúsculas
+    }
+    if (role == 2) {
+      filter.supplier_id = userID;
+    }
+    // if (req.query.userOnline && userOnline.role == 2) {
+    //   filter.supplier_id = userOnline._id; // Filtra por ID del proveedor
+    // }
     const all = await paginateService({ filter, opts });
 
     const info = {
@@ -93,7 +145,6 @@ export const update = async (req, res, next) => {
   try {
     const { pid } = req.params;
     const data = req.body;
-    console.log(pid, data);
 
     const updateProduct = await updateService(pid, data);
     return updateProduct

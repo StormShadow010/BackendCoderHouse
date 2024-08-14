@@ -20,7 +20,7 @@ class Manager {
   };
   readOne = async (id) => {
     try {
-      const itemInvidual = await this.Model.findById(id);
+      const itemInvidual = await this.Model.findById(id).lean();
       return itemInvidual;
     } catch (error) {
       throw error;

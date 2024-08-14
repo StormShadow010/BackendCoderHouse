@@ -48,6 +48,34 @@ const showProducts = async (products) => {
     const newDiv = document.createElement("div");
     newDiv.className = `product ${product._id}`;
     newDiv.innerHTML = createProductHTML(product);
+    // Add click event listener for updating and deleting product
+    newDiv.querySelector("#updateProduct").addEventListener("click", () => {
+      console.log("Updating product:", product._id);
+    });
+    newDiv
+      .querySelector("#deleteProduct")
+      .addEventListener("click", async () => {
+        const opts = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        };
+
+        let deletePromise = await fetch(`/api/products/${product._id}`, opts);
+
+        deletePromise = await deletePromise.json();
+        console.log("Deleting product:", deletePromise);
+
+        if (deletePromise.statusCode === 200) {
+          location.replace("../products/productsMe.html");
+        }
+      });
+
+    // Add click event listener for navigating to product details page
+    // newDiv.addEventListener("click", () => {
+    //   location.href = `../products/productDetails.html?productId=${product._id}`;
+    // });
+
+    // Append the new product to the container
     containerProducts.appendChild(newDiv);
   });
 };
@@ -57,9 +85,17 @@ const PageProducts = async () => {
   const url = new URL(window.location.href);
   const page = url.searchParams.get("page") || 1;
 
-  let response = await fetch(
-    `/api/products/paginate?supplier_id=${online.response._id}&page=${page}`
-  );
+  const urlPromise = `/api/products/me?page=${page}`;
+  const opts = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "User-ID": online.response?._id || "",
+      "User-Role": online.response?.role || "",
+    },
+  };
+  let response = await fetch(urlPromise, opts);
+
   response = await response.json();
 
   showProducts(response.response);

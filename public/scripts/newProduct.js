@@ -30,7 +30,7 @@ const createNewProduct = async () => {
 
   if (promise.statusCode === 201) {
     Swal.fire({
-      title: "Producto creado correctamente",
+      title: "Product created successfully",
       icon: "success",
       allowOutsideClick: false,
       timer: 2000,
@@ -40,7 +40,7 @@ const createNewProduct = async () => {
     });
   } else {
     Swal.fire({
-      title: "Error al crear el producto",
+      title: "Error creating product",
       icon: "error",
       allowOutsideClick: false,
       timer: 2000,

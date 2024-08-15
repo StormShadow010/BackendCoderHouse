@@ -50,7 +50,7 @@ const showProducts = async (products) => {
     newDiv.innerHTML = createProductHTML(product);
     // Add click event listener for updating and deleting product
     newDiv.querySelector("#updateProduct").addEventListener("click", () => {
-      console.log("Updating product:", product._id);
+      location.href = `../products/updateProduct.html?pid=${product._id}`;
     });
     newDiv
       .querySelector("#deleteProduct")
@@ -61,12 +61,18 @@ const showProducts = async (products) => {
         };
 
         let deletePromise = await fetch(`/api/products/${product._id}`, opts);
-
         deletePromise = await deletePromise.json();
-        console.log("Deleting product:", deletePromise);
 
         if (deletePromise.statusCode === 200) {
-          location.replace("../products/productsMe.html");
+          Swal.fire({
+            title: "Producto eliminado correctamente",
+            icon: "success",
+            allowOutsideClick: false,
+            timer: 2000,
+            timerProgressBar: true,
+          }).then(() => {
+            location.replace("../products/productsMe.html");
+          });
         }
       });
 

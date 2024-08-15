@@ -9,6 +9,7 @@ const schema = new Schema(
       type: String,
       required: true,
       index: true,
+      unique: true, //No repeate value in database
     },
     photo: {
       type: String,

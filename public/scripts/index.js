@@ -19,6 +19,14 @@ const handleSearchInput = (event) => {
 let online = await fetch("/api/auth");
 online = await online.json();
 
+const productsMenu = document.getElementById("productsMenu");
+
+if (online.statusCode !== 200) {
+  productsMenu.classList.add("hidden");
+} else {
+  productsMenu.classList.remove("hidden");
+}
+
 searchInput.addEventListener("keyup", handleSearchInput);
 clearInput.addEventListener("click", handleClearFilter);
 

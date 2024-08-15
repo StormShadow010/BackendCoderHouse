@@ -14,8 +14,10 @@ export const productsAll = async (products) => {
 
     let template = "";
     let online = await fetch("/api/auth");
+
     online = await online.json();
-    if (online.statusCode === 200) {
+    console.log(online);
+    if (online.statusCode === 200 && online.response.role != 1) {
       template = `
                 <button id="addProduct"
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 mb-2 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">

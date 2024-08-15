@@ -27,6 +27,26 @@ const createNewProduct = async () => {
   let promise = await fetch(`/api/products`, opts);
 
   promise = await promise.json();
+
+  if (promise.statusCode === 201) {
+    Swal.fire({
+      title: "Producto creado correctamente",
+      icon: "success",
+      allowOutsideClick: false,
+      timer: 2000,
+      timerProgressBar: true,
+    }).then(() => {
+      location.replace("../products/productsMe.html");
+    });
+  } else {
+    Swal.fire({
+      title: "Error al crear el producto",
+      icon: "error",
+      allowOutsideClick: false,
+      timer: 2000,
+      timerProgressBar: true,
+    });
+  }
 };
 
 // Exponer la función globalmente

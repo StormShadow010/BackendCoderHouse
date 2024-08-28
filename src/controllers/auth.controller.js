@@ -16,11 +16,32 @@ export const register = async (req, res, next) => {
 };
 
 //Login user
-export const login = (req, res, next) => {
+export const login = async (req, res, next) => {
   try {
-    return res
-      .cookie("token", req.token, { signedCookie: true })
-      .message200("Login successful");
+    const { email } = req.body;
+    const checkUSer = await readByEmailService(email);
+    return checkUSer
+      ? res.message200("Hello")
+      : res.error400("Invalid credentials!");
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//Verify code for register
+export const verifyCodeLogin = async (req, res, next) => {
+  try {
+    const { email, code } = req.body;
+    const checkUSer = await readByEmailService(email);
+    const verifyCode = checkUSer.code === code;
+    if (verifyCode) {
+      // await updateService(checkUSer._id, { verify: verifyCode });
+      return res
+        .cookie("token", req.token, { signedCookie: true })
+        .message200("LHYe D!");
+    } else {
+      return res.error400("Invalid credentials!");
+    }
   } catch (error) {
     return next(error);
   }

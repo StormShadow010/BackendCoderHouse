@@ -46,10 +46,10 @@ passport.use(
           const error = CustomError.new(errors.invalid);
           return done(error);
         }
-        const codeOnline = crypto.randomBytes(3).toString("hex");
-        user = await authRepository.updateRepository(user._id, {
-          code: codeOnline,
-        });
+        // const codeOnline = crypto.randomBytes(3).toString("hex");
+        // user = await authRepository.updateRepository(user._id, {
+        //   code: codeOnline,
+        // });
         await sendEmailLogin({
           email: user.email,
           name: user.username,

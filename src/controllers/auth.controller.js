@@ -35,7 +35,7 @@ export const verifyCodeLogin = async (req, res, next) => {
     const checkUSer = await readByEmailService(email);
     const verifyCode = checkUSer.code === code;
     if (verifyCode) {
-      // await updateService(checkUSer._id, { verify: verifyCode });
+      await updateService(checkUSer._id, { verify: verifyCode });
       return res
         .cookie("token", req.token, { signedCookie: true })
         .message200("LHYe D!");

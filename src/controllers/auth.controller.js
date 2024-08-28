@@ -98,6 +98,7 @@ export const verifyCode = async (req, res, next) => {
       await updateService(checkUSer._id, { verify: verifyCode });
       return res.message200("Created and verified User!");
     } else {
+      await destroyService(checkUSer._id);
       return res.error400("Invalid credentials!");
     }
   } catch (error) {

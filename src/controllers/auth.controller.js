@@ -50,7 +50,10 @@ export const verifyCodeLogin = async (req, res, next) => {
 //Online User
 export const online = async (req, res, next) => {
   try {
-    return req.cookies.token
+    const authHeader = req.headers["authorization"];
+    let token = authHeader.split(" ")[1];
+
+    return token
       ? res.response200(req.user)
       : res.error404("Invalid credentials from signout!");
   } catch (error) {

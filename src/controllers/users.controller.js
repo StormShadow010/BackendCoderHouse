@@ -22,8 +22,7 @@ export const create = async (req, res, next) => {
 //Read <- get all users or get for role
 export const read = async (req, res, next) => {
   try {
-    const { role } = req.query;
-    const users = await readService(role);
+    const users = await readService();
     return users.length > 0
       ? res.response200(users)
       : res.error404("Not found role/data!");
@@ -51,6 +50,7 @@ export const update = async (req, res, next) => {
     const { uid } = req.params;
     const data = req.body;
     const updateUser = await updateService(uid, data);
+
     return updateUser
       ? res.response200(updateUser)
       : res.error404("Not found user with that ID to update!");

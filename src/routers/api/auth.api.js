@@ -10,17 +10,18 @@ import {
   updatePassword,
   verifyCodeLogin,
 } from "../../controllers/auth.controller.js";
+import codeGenerator from "../../middlewares/codeGenerator.mid.js";
 import passportCb from "../../middlewares/passportCb.mid.js";
 import CustomRouter from "../CustomRouter.js";
 
 class AuthRouter extends CustomRouter {
   init() {
     this.create("/register", ["PUBLIC"], passportCb("register"), register);
-    this.create("/login", ["PUBLIC"], login);
+    this.create("/login", ["PUBLIC"], codeGenerator, login);
     this.read("/", ["USER", "ADMIN", "PREMIUM"], online);
-    this.create("/signout", ["USER", "ADMIN"], signout);
+    this.create("/signout", ["USER", "PREMIUM", "ADMIN"], signout);
     this.create("/verify", ["PUBLIC"], verifyCode);
-    this.destroy("/:uid", ["PUBLIC"], destroyUser);
+    this.destroy("/:uid", ["ADMIN"], destroyUser);
     this.create(
       "/verifyLogin",
       ["PUBLIC"],

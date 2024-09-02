@@ -6,6 +6,7 @@ import {
 import crypto from "crypto";
 import resetPasswordMail from "../utils/mail/mailingResetPassword.js";
 import { verifyPassword } from "../utils/hashPassword/hashPassword.js";
+import sendEmailLogin from "../utils/mail/mailingLogin.util.js";
 //Register user
 export const register = async (req, res, next) => {
   try {
@@ -36,9 +37,10 @@ export const verifyCodeLogin = async (req, res, next) => {
     const verifyCode = checkUSer.code === code;
     if (verifyCode) {
       await updateService(checkUSer._id, { verify: verifyCode });
+
       return res
         .cookie("token", req.token, { signedCookie: true })
-        .message200("LHYe D!");
+        .message200("Login Succesfully");
     } else {
       return res.error400("Invalid credentials!");
     }
@@ -83,7 +85,11 @@ export const onlineCode = async (req, res, next) => {
 //Log out user
 export const signout = async (req, res, next) => {
   try {
-    return req.cookies.token
+    const authHeader = req.headers["authorization"];
+    // Extrae el token
+    let token = authHeader.split(" ")[1];
+
+    return token
       ? res.clearCookie("token").message200("Signed out!")
       : res.error404("Invalid credentials from signout!");
   } catch (error) {

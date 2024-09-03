@@ -39,11 +39,7 @@ export const verifyCodeLogin = async (req, res, next) => {
       await updateService(checkUSer._id, { verify: verifyCode });
 
       return res
-        .cookie("token", req.token, {
-          httpOnly: true,
-          signed: true, // Esta es la opción correcta para firmar la cookie
-          sameSite: "None",
-        })
+        .cookie("token", req.token, { signed: true })
         .message200("Login Succesfully");
     } else {
       return res.error400("Invalid credentials!");

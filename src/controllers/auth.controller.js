@@ -22,7 +22,7 @@ export const login = async (req, res, next) => {
     const { email } = req.body;
     const checkUSer = await readByEmailService(email);
     return checkUSer
-      ? res.message200("Hello")
+      ? res.message200("Login Successfully")
       : res.error400("Invalid credentials!");
   } catch (error) {
     return next(error);
@@ -52,8 +52,7 @@ export const verifyCodeLogin = async (req, res, next) => {
 //Online User
 export const online = async (req, res, next) => {
   try {
-    const authHeader = req.headers["authorization"];
-    let token = authHeader.split(" ")[1];
+    let token = req.cookies["token"];
 
     return token
       ? res.response200(req.user)

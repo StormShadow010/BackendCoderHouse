@@ -16,7 +16,7 @@ export const productsAll = async (products) => {
     let online = await fetch("/api/auth");
 
     online = await online.json();
-    console.log(online);
+
     if (online.statusCode === 200 && online.response.role != 1) {
       template = `
                 <button id="addProduct"

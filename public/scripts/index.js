@@ -18,7 +18,6 @@ const handleSearchInput = (event) => {
 //Fetch Session
 let online = await fetch("/api/auth");
 online = await online.json();
-console.log(online);
 
 const productsMenu = document.getElementById("productsMenu");
 

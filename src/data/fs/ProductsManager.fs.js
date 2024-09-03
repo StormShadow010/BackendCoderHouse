@@ -69,7 +69,6 @@ class ProductsManager {
       let productDelete = await this.readOne(id);
 
       if (productDelete) {
-        console.log("Product deleted:", productDelete);
         let productsFilter = fileTotal.filter((product) => product._id !== id);
         await createFile(this.path, productsFilter);
       }

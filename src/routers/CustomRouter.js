@@ -55,21 +55,21 @@ class CustomRouter {
   policies = (policies) => async (req, res, next) => {
     if (policies.includes("PUBLIC")) return next();
     else {
-      const authHeader = req.headers["authorization"];
+      // console.log(req);
+      // const authHeader = req.headers["authorization"];
+      // // Verifica que authHeader exista antes de intentar usar split
+      // if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      //   return res.error401();
+      // }
 
-      // Verifica que authHeader exista antes de intentar usar split
-      if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        return res.error401();
-      }
-
-      // Extrae el token
-      let token = authHeader.split(" ")[1];
+      // // Extrae el token
+      // let token = authHeader.split(" ")[1];
+      let token = req.cookies["token"];
+      if (!token) return res.error401();
 
       try {
         token = verifyToken(token);
-
         const { role, email } = token;
-
         if (
           (policies.includes("USER") && role === 0) ||
           (policies.includes("ADMIN") && role === 1) ||

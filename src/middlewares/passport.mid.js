@@ -65,7 +65,7 @@ passport.use(
   new JWTStrategy(
     {
       jwtFromRequest: ExtractJwt.fromExtractors([
-        (req) => req?.headers["authorization"].split(" ")[1],
+        (req) => req?.cookies["token"],
       ]),
       secretOrKey: variablesEnviroment.SECRET_JWT,
     },

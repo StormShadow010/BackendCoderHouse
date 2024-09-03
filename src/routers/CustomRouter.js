@@ -55,7 +55,7 @@ class CustomRouter {
   policies = (policies) => async (req, res, next) => {
     if (policies.includes("PUBLIC")) return next();
     else {
-      // console.log(req);
+      console.log(req);
       // const authHeader = req.headers["authorization"];
       // // Verifica que authHeader exista antes de intentar usar split
       // if (!authHeader || !authHeader.startsWith("Bearer ")) {

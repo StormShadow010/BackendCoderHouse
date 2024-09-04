@@ -6,13 +6,10 @@ import CheckoutProduct from "../dto/create/checkOutProduct.create.js";
 
 const stripe = new Stripe(variablesEnviroment.STRIPE_SECRET_KEY);
 
-export const createPaymentRepository = async (user_id) => {
+const checkoutRepository = async (filter) => {
   try {
-    let productsOnCart = await cartsManager.read({ user_id });
-    CheckoutProduct;
-    productsOnCart = productsOnCart.map(
-      (product) => new CheckoutProduct(product)
-    );
+    let productsOnCart = await cartsManager.read(filter);
+    productsOnCart = productsOnCart.map((each) => new CheckoutProduct(each));
     console.log(productsOnCart);
     const line_items = productsOnCart;
     const mode = "payment";
@@ -27,3 +24,5 @@ export const createPaymentRepository = async (user_id) => {
     throw error;
   }
 };
+
+export default checkoutRepository;

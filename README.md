@@ -1,10 +1,23 @@
-# Módulos de Testing para proyecto final
+# Práctica de integración sobre tu ecommerce
 
 En esta entrega se evaluará:
 
-- Testear el proyecto final, con los recursos, parámetros, consultas, cuerpos, encabezamientos y respuestas correspondientes.
-- En esta entrega como mínimo testear CRUD de Product.
-- Testear el “stress” de un flujo con al menos tres operaciones.
+- Establecer un nuevo rol: usuario premium. El mismo podrá vender y gestionar sus productos y comprar productos de otros usuarios.
+- Agregar el campo supplier_id al modelo Product para referenciarse con el usuario “proveedor” del producto.
+  Modificar todos los productos de la base de datos para, la mitad sea de un administrador y la otra mitad de un usuario premium (elegir cual).
+
+- Modificar las políticas de autenticación para validar el rol "PREM".
+- Definir e implementar el middleware correspondiente para que:
+  Un administrador pueda gestionar (actualizar/eliminar) cualquier producto de cualquier proveedor.
+  Un usuario premium sólo pueda gestionar sus productos.
+  Definir e implementar el middleware correspondiente para que:
+  Un administrador no pueda comprar productos ni el premium comprar sus productos.
+  -Modificar la ruta GET /api/products para que:
+  Un usuario común o admin pueda ver todos los productos
+  Un usuario premium vea todos los productos menos sus productos.
+- Definir la ruta GET /api/products/me para que:
+  Un usuario premium vea todos sus productos.
+- Definir los diferentes tipos de logueado
 
 Tener presenté que para mi caso estoy trabajando con auth y no con sessions
 
@@ -18,6 +31,7 @@ Cada producto tiene las siguientes propiedades:
 - **_category_** (categoria del producto, dar valores por defecto)
 - **_price_** (precio, por defecto 1)
 - **_stock_** (unidades disponibles, por defecto 1)
+- **_supplier_id_** (Dato del usuario premium o administrador que le corresponde la creación del producto)
 
 Cada usuario tiene las siguientes propiedades:
 
@@ -87,8 +101,8 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
    - Agregar un botón para cancelar la compra y borrar todos los productos del carrito, esto se realizo por medio del ENDPOINT `DELETE /api/carts/all`, logrando borrar todos los productos de un usuario por su respectivo ID.
    - Se puede ver el calculo total de la compra, esto se realizo por medio del ENDPOINT `GET /api/tickets`, así este mismo guarda el ticket en la BD (Mongo)
 7. localhost:8080/pages/users/resetPassword formulario para cambiar la contraseña, en el que primero se envía un código al correo, después de confirmar ese código se habilita el formulario para cambiar la contraseña, la cual debe ser de mínimo 6 caracteres y debe ser diferente a la actual.
-
-8. localhost:8080/api/docs se puede ver la implementación de swagger en donde por ahora se tiene el CRUD de los productos, se debe tener en cuenta que para la creación, actualización y borrado de un producto se debe iniciar sesión puede ser en otra pestaña como `[ADMIN]`.
+8. localhost:8080/api/docs se puede ver la implementación de swagger en donde por ahora se tiene el CRUD de los productos, se debe tener en cuenta que para la creación, actualización y borrado de un producto se debe iniciar sesión puede ser en otra pestaña como `[ADMIN]`.\
+9. Se puede hacer la creación de un producto y ver con los permisos tanto en la página principal `http://localhost:8080/index.html` y cada proveedor o administrador puede actualizar o borrar en la vista `http://localhost:8080/pages/products/productsMe.html`, pasando primero eso sí por una logueo.
 
 ## Pruebas
 

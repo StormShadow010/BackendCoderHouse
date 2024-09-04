@@ -3,7 +3,7 @@ import { create, sumTotal } from "../../controllers/tickets.controller.js";
 
 class TicketsRouter extends CustomRouter {
   init() {
-    this.read("/:uid", ["USER", "ADMIN"], sumTotal);
+    this.read("/:uid", ["USER", "PREMIUM", "ADMIN"], sumTotal);
     this.create("/:uid", ["USER", "ADMIN"], create);
   }
 }

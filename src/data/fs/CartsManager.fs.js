@@ -26,28 +26,28 @@ class CartsManager {
 
   read = async ({ user_id }) => {
     try {
-      let filteredData=[]
+      let filteredData = [];
       let carts = await readFile(this.path);
       const cartsUID = carts.filter((item) => item.user_id === user_id);
-      // console.log(filteredData);
-      let users=await readFile("./src/data/fs/files/users.json");
+      let users = await readFile("./src/data/fs/files/users.json");
       let products = await readFile("./src/data/fs/files/products.json");
-      
 
-      cartsUID.forEach(carts => {
-        const cartAdd={
-          _id:carts._id,
-          user_id:{},
-          product_id:{},
-          quantity:carts.quantity,
-          state:carts.state,
-          createdAt:carts.createdAt,
-          updatedAt:carts.updatedAt
-        }
-        const user = users.find(user => user._id === carts.user_id);
-        const product = products.find(product => product._id === carts.product_id);
-        cartAdd.user_id=user;
-        cartAdd.product_id=product;
+      cartsUID.forEach((carts) => {
+        const cartAdd = {
+          _id: carts._id,
+          user_id: {},
+          product_id: {},
+          quantity: carts.quantity,
+          state: carts.state,
+          createdAt: carts.createdAt,
+          updatedAt: carts.updatedAt,
+        };
+        const user = users.find((user) => user._id === carts.user_id);
+        const product = products.find(
+          (product) => product._id === carts.product_id
+        );
+        cartAdd.user_id = user;
+        cartAdd.product_id = product;
         filteredData.push(cartAdd);
       });
       return filteredData;
@@ -88,7 +88,6 @@ class CartsManager {
       let cartDelete = await this.readOne(id);
 
       if (cartDelete) {
-        console.log("Item cart deleted:", cartDelete);
         let cartsFilter = fileTotal.filter((product) => product._id !== id);
         await createFile(this.path, cartsFilter);
       }

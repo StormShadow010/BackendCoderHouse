@@ -5,11 +5,11 @@ export const printIcons = async () => {
 
   if (online.statusCode === 200) {
     template = `
-        <a href="../../pages/users/userInfo.html"> <img src="${online.response.photo}" class="h-[40px] w-[40px] mr-2"> </a>
+        <a href="../../pages/users/userInfo.html"> <img src="${online.response.photo}" class="h-[35px] w-[35px] mr-6"> </a>
         <a href="../../pages/cart/cart.html"><img src="../../assets/icons/cart.png" alt="Cart"
-                        class="h-[50px] w-[50px] mr-2"></a>
+                        class="h-[35px] w-[35px] mr-6"></a>
         <button id="signout"><img src="../../assets/icons/logout.png" alt="Login"
-                        class="h-[40px] w-[40px] mr-2"></button>
+                        class="h-[35px] w-[35px] mr-6"></button>
         `;
     document.querySelector("#headerIcons").innerHTML = template;
     document.querySelector("#signout").addEventListener("click", async () => {

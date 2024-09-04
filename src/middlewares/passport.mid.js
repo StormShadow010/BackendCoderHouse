@@ -37,6 +37,7 @@ passport.use(
     async (req, email, password, done) => {
       try {
         let user = await authRepository.readByEmailRepository(email);
+
         if (!user) {
           const error = CustomError.new(errors.auth);
           return done(error);
@@ -46,15 +47,6 @@ passport.use(
           const error = CustomError.new(errors.invalid);
           return done(error);
         }
-        const codeOnline = crypto.randomBytes(3).toString("hex");
-        user = await authRepository.updateRepository(user._id, {
-          code: codeOnline,
-        });
-        await sendEmailLogin({
-          email: user.email,
-          name: user.username,
-          code: user.code,
-        });
 
         // Protect user password!!
         delete user.password;

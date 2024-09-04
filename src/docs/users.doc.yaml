@@ -1,0 +1,638 @@
+components:
+  schemas:
+    Auth:
+      type: object
+      properties:
+        username:
+          description: Name of the user
+          type: string
+        email:
+          description: Email of the user
+          type: string
+        password:
+          description: Password of the user
+          type: string
+        role:
+          description: Role of the user
+          type: number
+          format: number
+        photo:
+          description: Photo of the user
+          type: integer
+        verify:
+          description: Verify code User
+          type: boolean
+        code:
+          description: Code for login User
+          type: string
+      example:
+        username: Premium1
+        email: premium1@gmail.com
+        password: hola1234
+        role: 2
+        photo: /assets/icons/avatar.png
+        verify: true
+        code: 123456
+  responses:
+    message200:
+      description: Success message
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request to success
+                type: number
+              message:
+                description: Descriptive text with the success of the operation
+                type: string
+            example:
+              statusCode: 200
+              message: Verified User!
+    response200one:
+      description: Success response with one item
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for success returning data
+                type: number
+              response:
+                description: Object with the requested resource data
+                $ref: "#/components/schemas/Product"
+            example:
+              statusCode: 200
+              response:
+                username: Premium1
+                email: premium1@gmail.com
+                role: 2
+                photo: /assets/icons/avatar.png
+                verify: true
+                code: 123456
+    response200all:
+      description: Success response with all items
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for success returning data
+                type: number
+              response:
+                description: Array of objects of the requested resource
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+            example:
+              statusCode: 200
+              response:
+                - username: Premium1
+                  email: premium1@gmail.com
+                  role: 2
+                  photo: /assets/icons/avatar.png
+                  verify: true
+                  code: 123456
+                - username: Premium2
+                  email: premium2@gmail.com
+                  role: 2
+                  photo: /assets/icons/avatar.png
+                  verify: true
+                  code: 789012321
+    message201:
+      description: Product creation success message
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for successful creation
+                type: number
+              message:
+                description: Descriptive text with success in creation
+                type: string
+            example:
+              statusCode: 201
+              message: User created successfully
+    response201:
+      description: Success response with created item
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for successful creation
+                type: number
+              response:
+                description: Object with data created successfully
+                $ref: "#/components/schemas/Product"
+            example:
+              statusCode: 201
+              response:
+                username: Premium2
+                email: premium2@gmail.com
+                role: 2
+                photo: /assets/icons/avatar.png
+                verify: true
+                code: 789012321
+    paginate:
+      description: Paginated response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request to success returning paginated data
+                type: number
+              response:
+                description: Array of paged and sorted objects of the requested resource
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+              info:
+                description: Pagination data
+                type: object
+                properties:
+                  totalDocs:
+                    description: Total number of documents
+                    type: integer
+                  page:
+                    description: Current page number
+                    type: integer
+                  totalPages:
+                    description: Total number of pages
+                    type: integer
+                  limit:
+                    description: Number of items per page
+                    type: integer
+                  prevPage:
+                    description: Indicator if there is a previous page
+                    type: boolean
+                  nextPage:
+                    description: Indicator if there is a next page
+                    type: boolean
+            example:
+              statusCode: 200
+              response:
+                - title: Example 1
+                  photo: A photo of a product
+                  category: Nintendo
+                  price: 50.99
+                  stock: 100
+                - title: Example 2
+                  photo: A photo of a product
+                  category: PlayStation
+                  price: 25.10
+                  stock: 10
+              info:
+                totalDocs: 40
+                page: 1
+                totalPages: 4
+                limit: 10
+                prevPage: false
+                nextPage: true
+    error400:
+      description: Client error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request failing due to customer problems
+                type: number
+              message:
+                description: Descriptive text with error message from the client
+                type: string
+            example:
+              statusCode: 400
+              message: Bad request. Please check your request and try again.
+    error401:
+      description: Authentication error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the authentication failure request
+                type: number
+              message:
+                description: Descriptive text with authentication error message
+                type: string
+            example:
+              statusCode: 401
+              message: Bad auth from policies!
+    error403:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for authorization failure
+                type: number
+              message:
+                description: Descriptive text with authorization error message
+                type: string
+            example:
+              statusCode: 403
+              message: Forbidden from policies!
+    error404:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for failure due to not finding what was requested
+                type: number
+              message:
+                description: Descriptive text with error message indicating that the resource was not found
+                type: string
+            example:
+              statusCode: 404
+              message: Resource not found. Please check the URL and try again.
+    error500:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code for server errors
+                type: number
+              message:
+                description: Descriptive text with error message from the server
+                type: string
+            example:
+              statusCode: 500
+              message: CODER API ERROR.
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+
+paths:
+  /api/auth/login:
+    post:
+      summary: Login User
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email of the user
+                  example: premium2@gmail.com
+                password:
+                  type: string
+                  description: Password of the user
+                  example: hola1234
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/message200"
+        400:
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        401:
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        403:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"
+  /api/auth/verifyLogin:
+    post:
+      summary: Code for login (Must)
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email of the user
+                  example: premium2@gmail.com
+                password:
+                  type: string
+                  description: Password of the user
+                  example: hola1234
+                code:
+                  type: string
+                  description: Verification code for login
+                  example: 789012321
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/message200"
+        400:
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        401:
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        403:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"
+  /api/auth/register:
+    post:
+      summary: Register a user
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Name of the user
+                  example: Juan
+                email:
+                  type: string
+                  description: Email of the user
+                  example: premium2@gmail.com
+                password:
+                  type: string
+                  description: Password of the user
+                  example: hola1234
+                photo:
+                  type: string
+                  description: URL of the photo
+                  example: https://images.vexels.com/media/users/3/144131/isolated/preview/29576a7e0442960346703d3ecd6bac04-picture-doodle-icon.png
+      responses:
+        201:
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/message201"
+        400:
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        401:
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        403:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"
+  /api/auth/verify:
+    post:
+      summary: Created and verified User
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email of the user
+                  example: premium2@gmail.com
+                code:
+                  type: string
+                  description: Verification code for login
+                  example: 789012321
+        responses:
+          200:
+            description: Created and verified User
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/responses/message200"
+          400:
+            description: Invalid or incomplete data
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/responses/error400"
+          401:
+            description: Authentication failed
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/responses/error401"
+          403:
+            description: Authorization failed
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/responses/error403"
+          500:
+            description: Server error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/responses/error500"
+  /api/auth:
+    get:
+      summary: Check the online user
+      security:
+        - cookieAuth: []
+      tags:
+        - User
+      responses:
+        200:
+          description: Created and verified User
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/response200one"
+        400:
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        401:
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        403:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"
+
+  /api/auth/password:
+    post:
+      summary: Reset Password
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email of the user
+                  example: premium2@gmail.com
+      responses:
+        200:
+          description: Check your email the code to reset the password!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/response200one"
+        400:
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        401:
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        403:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"
+    put:
+      summary: Reset Password
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email of the user
+                  example: premium2@gmail.com
+                password:
+                  type: string
+                  description: New password of the user
+                  example: hola12345
+      responses:
+        200:
+          description: Check your email the code to reset the password!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/response200one"
+        400:
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        401:
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        403:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"

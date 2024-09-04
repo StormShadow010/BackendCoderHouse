@@ -19,6 +19,11 @@ const schema = new Schema(
       type: Number,
       required: true,
     },
+    supplier_id: {
+      type: Types.ObjectId,
+      ref: "users",
+      index: true,
+    },
     state: {
       type: String,
       enum: ["reserved", "paid", "delivered"],
@@ -39,6 +44,13 @@ schema.pre("find", function () {
 schema.pre("findOne", function () {
   this.populate({ path: "product_id" });
   this.populate({ path: "user_id" });
+});
+schema.pre("find", function () {
+  this.populate("supplier_id");
+});
+
+schema.pre("findOne", function () {
+  this.populate({ path: "supplier_id" });
 });
 
 export const Cart = model(collection, schema);

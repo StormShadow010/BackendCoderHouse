@@ -25,6 +25,7 @@ export const read = async (req, res, next) => {
   try {
     const { uid } = req.query;
     const cartItems = await readService({ user_id: uid });
+
     return cartItems
       ? res.response200(cartItems)
       : res.error404("Not found items");

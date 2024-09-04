@@ -274,10 +274,10 @@ paths:
   /api/products:
     post:
       summary: Create a new product
-      tags:
-        - Product
       security:
         - cookieAuth: []
+      tags:
+        - Product
       requestBody:
         required: true
         description: The product object to be created

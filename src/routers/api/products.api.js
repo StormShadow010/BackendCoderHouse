@@ -8,22 +8,25 @@ import {
   read,
   readOne,
   update,
+  paginateManage,
 } from "../../controllers/products.controller.js";
+import authorizationManagement from "../../middlewares/authorization.mid.js";
 
 class ProductsRouter extends CustomRouter {
   init() {
-    this.create(
-      "/",
-      ["ADMIN"],
-      passportCb("jwt"),
-      checkMandatoryFieldsProducts,
-      create
-    );
+    this.create("/", ["ADMIN", "PREMIUM"], passportCb("jwt"), create);
     this.read("/", ["PUBLIC"], read);
+    this.read("/me", ["ADMIN", "PREMIUM"], paginateManage);
     this.read("/paginate", ["PUBLIC"], paginateRead);
     this.read("/:pid", ["PUBLIC"], readOne);
-    this.update("/:pid", ["ADMIN"], update);
-    this.destroy("/:pid", ["ADMIN"], destroy);
+    this.update(
+      "/:pid",
+      ["ADMIN", "PREMIUM"],
+      passportCb("jwt"),
+      authorizationManagement,
+      update
+    );
+    this.destroy("/:pid", ["ADMIN", "PREMIUM"], destroy);
   }
 }
 

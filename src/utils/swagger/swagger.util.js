@@ -4,8 +4,8 @@ const swaggerOptions = {
   definition: {
     openapi: "3.1.0",
     info: {
-      title: "Storm Store",
-      description: "Documentation of API",
+      title: "Storm Store API",
+      description: "Documentation of Storm Store API",
     },
   },
   apis: [`${__dirname}/src/docs/*.yaml`],

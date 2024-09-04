@@ -10,6 +10,7 @@ class CreateCartsDto {
       (this._id = crypto.randomBytes(12).toString("hex"));
     this.user_id = data.user_id;
     this.product_id = data.product_id;
+    this.supplier_id = data.supplier_id || "";
     this.quantity = data.quantity || 1;
     this.state = data.state || "reserved";
     persistence !== "mongo" && (this.createdAt = new Date());

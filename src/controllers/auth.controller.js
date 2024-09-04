@@ -6,6 +6,7 @@ import {
 import crypto from "crypto";
 import resetPasswordMail from "../utils/mail/mailingResetPassword.js";
 import { verifyPassword } from "../utils/hashPassword/hashPassword.js";
+import sendEmailLogin from "../utils/mail/mailingLogin.util.js";
 //Register user
 export const register = async (req, res, next) => {
   try {
@@ -16,11 +17,37 @@ export const register = async (req, res, next) => {
 };
 
 //Login user
-export const login = (req, res, next) => {
+export const login = async (req, res, next) => {
   try {
-    return res
-      .cookie("token", req.token, { signedCookie: true })
-      .message200("Login successful");
+    const { email } = req.body;
+    const checkUSer = await readByEmailService(email);
+    return checkUSer
+      ? res.message200("Login Successfully")
+      : res.error400("Invalid credentials!");
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//Verify code for register
+export const verifyCodeLogin = async (req, res, next) => {
+  try {
+    const { email, code } = req.body;
+    const checkUSer = await readByEmailService(email);
+    const verifyCode = checkUSer.code === code;
+    if (verifyCode) {
+      await updateService(checkUSer._id, { verify: verifyCode });
+
+      return res
+        .cookie("token", req.token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "None",
+        })
+        .message200("Login Succesfully");
+    } else {
+      return res.error400("Invalid credentials!");
+    }
   } catch (error) {
     return next(error);
   }
@@ -29,7 +56,9 @@ export const login = (req, res, next) => {
 //Online User
 export const online = async (req, res, next) => {
   try {
-    return req.cookies.token
+    let token = req.cookies["token"];
+
+    return token
       ? res.response200(req.user)
       : res.error404("Invalid credentials from signout!");
   } catch (error) {
@@ -59,7 +88,11 @@ export const onlineCode = async (req, res, next) => {
 //Log out user
 export const signout = async (req, res, next) => {
   try {
-    return req.cookies.token
+    const authHeader = req.headers["authorization"];
+    // Extrae el token
+    let token = authHeader.split(" ")[1];
+
+    return token
       ? res.clearCookie("token").message200("Signed out!")
       : res.error404("Invalid credentials from signout!");
   } catch (error) {
@@ -77,6 +110,7 @@ export const verifyCode = async (req, res, next) => {
       await updateService(checkUSer._id, { verify: verifyCode });
       return res.message200("Created and verified User!");
     } else {
+      await destroyService(checkUSer._id);
       return res.error400("Invalid credentials!");
     }
   } catch (error) {

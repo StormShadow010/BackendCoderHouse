@@ -1,7 +1,7 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 import mongossePaginate from "mongoose-paginate-v2";
 
-let collection = "products";
+const collection = "products";
 
 const schema = new Schema(
   {
@@ -9,6 +9,7 @@ const schema = new Schema(
       type: String,
       required: true,
       index: true,
+      unique: true, //No repeate value in database
     },
     photo: {
       type: String,
@@ -26,11 +27,25 @@ const schema = new Schema(
       type: Number,
       default: 1,
     },
+    supplier_id: {
+      type: Types.ObjectId,
+      ref: "users",
+      required: true,
+      index: true,
+    },
   },
   {
     timestamps: true,
   }
 );
+
+schema.pre("find", function () {
+  this.populate("supplier_id");
+});
+
+schema.pre("findOne", function () {
+  this.populate({ path: "supplier_id" });
+});
 
 schema.plugin(mongossePaginate);
 

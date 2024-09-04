@@ -12,7 +12,7 @@ class UsersRouter extends CustomRouter {
   init() {
     this.create("/", ["PUBLIC"], checkMandatoryFieldsUsers, create);
     this.read("/", ["ADMIN"], read);
-    this.read("/:uid", ["USER", "ADMIN"], readOne);
+    this.read("/:uid", ["ADMIN"], readOne);
     this.update("/:uid", ["ADMIN"], update);
     this.destroy("/:uid", ["ADMIN"], destroy);
   }

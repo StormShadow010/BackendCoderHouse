@@ -182,7 +182,7 @@ const newPasswordChange = async () => {
   };
   let response = await fetch("/api/auth/password", opts);
   response = await response.json();
-  console.log(response);
+
   if (response.statusCode === 200) {
     Swal.fire({
       position: "center",

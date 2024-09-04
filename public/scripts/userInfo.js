@@ -9,6 +9,7 @@ const detailInfoUser = async () => {
 
   let response = await fetch(`/api/users/${online.response._id}`);
   let data = await response.json();
+  console.log(data);
 
   user = data.response;
 

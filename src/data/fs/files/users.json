@@ -1,0 +1,38 @@
+[
+  {
+    "photo": "/assets/icons/avatar.png",
+    "email": "user1@example.com",
+    "password": "<PASSWORD>",
+    "role": "1"
+  },
+  {
+    "photo": "/assets/icons/avatar.png",
+    "email": "user2@example.com",
+    "password": "<PASSWORD>",
+    "role": "0"
+  },
+  {
+    "photo": "/assets/icons/avatar.png",
+    "email": "user3@example.com",
+    "password": "<PASSWORD>",
+    "role": "1"
+  },
+  {
+    "photo": "/assets/icons/avatar.png",
+    "email": "user4@example.com",
+    "password": "<PASSWORD>",
+    "role": "0"
+  },
+  {
+    "_id": "06b58e26f802b6f5b2d59fb7",
+    "username": "USER",
+    "email": "admin@gmail.com",
+    "password": "$2b$10$oIdoktFJoXHjNIxwLouX5.KYfVcRw3cSsPbK5DcAA5ujOMvmhMHXe",
+    "role": 1,
+    "photo": "/assets/icons/avatar.png",
+    "verify": true,
+    "code": "23de66",
+    "createdAt": "2024-06-26T17:40:08.658Z",
+    "updatedAt": "2024-06-26T20:36:39.562Z"
+  }
+]

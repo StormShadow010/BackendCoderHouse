@@ -13,7 +13,7 @@ const checkoutRepository = async (filter) => {
     console.log(productsOnCart);
     const line_items = productsOnCart;
     const mode = "payment";
-    const success_url = "http://localhost:8080/thanks.html";
+    const success_url = "http://localhost:8080";
     const intent = await stripe.checkout.sessions.create({
       line_items,
       mode,

@@ -56,6 +56,8 @@ class CustomRouter {
     if (policies.includes("PUBLIC")) return next();
     else {
       console.log(req.cookies);
+      console.log(req.user);
+
       // const authHeader = req.headers["authorization"];
       // // Verifica que authHeader exista antes de intentar usar split
       // if (!authHeader || !authHeader.startsWith("Bearer ")) {

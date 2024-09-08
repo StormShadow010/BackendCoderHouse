@@ -7,13 +7,16 @@ import CheckoutProduct from "../dto/create/checkOutProduct.create.js";
 const stripe = new Stripe(variablesEnviroment.STRIPE_SECRET_KEY);
 
 const checkoutRepository = async (filter) => {
+  console.log(filter);
+
   try {
     let productsOnCart = await cartsManager.read(filter);
     productsOnCart = productsOnCart.map((each) => new CheckoutProduct(each));
     console.log(productsOnCart);
     const line_items = productsOnCart;
     const mode = "payment";
-    const success_url = "http://localhost:8080";
+    const success_url =
+      "https://backendcoderhouse-jt1v.onrender.com/carts/thanks";
     const intent = await stripe.checkout.sessions.create({
       line_items,
       mode,

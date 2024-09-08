@@ -1,3 +1,28 @@
 error: POST - 401 - /api/auth/login - 21:00:46 - Bad auth
 fatal: Fatal Log
 error: Error Log
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:38:08 PM - Invalid integer: 1998.9999999999998
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:38:59 PM - Invalid integer: 1998.9999999999998
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:41:25 PM - The `line_items` parameter is required in payment mode.
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:42:04 PM - The `line_items` parameter is required in payment mode.
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:42:20 PM - The `line_items` parameter is required in payment mode.
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:42:37 PM - The `line_items` parameter is required in payment mode.
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:43:01 PM - The `line_items` parameter is required in payment mode.
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:43:33 PM - Invalid integer: 1998.9999999999998
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:44:26 PM - Invalid integer: 1998.9999999999998
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:46:15 PM - Cannot read properties of null (reading 'map')
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:46:45 PM - The `line_items` parameter is required in payment mode.
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:56:10 PM - Cast to ObjectId failed for value "{ filter: new ObjectId('66ddd511e07d9641178bee9a') }" (type Object) at path "_id" for model "carts"
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:58:49 PM - Cast to ObjectId failed for value "{ user_id: new ObjectId('66ddd511e07d9641178bee9a') }" (type Object) at path "_id" for model "carts"
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:59:13 PM - Cast to ObjectId failed for value "{ user_id: new ObjectId('66ddd511e07d9641178bee9a') }" (type Object) at path "_id" for model "carts"
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 12:59:49 PM - Cast to ObjectId failed for value "{ user_id: undefined }" (type Object) at path "_id" for model "carts"
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:00:04 PM - UID is not defined
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:00:11 PM - Cast to ObjectId failed for value "{ user_id: '66ddd52ae07d9641178bee9d' }" (type Object) at path "_id" for model "carts"
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:01:20 PM - response is not defined
+error: POST - undefined - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:04:19 PM - Cast to ObjectId failed for value "{ user_id: '66ddd52ae07d9641178bee9d' }" (type Object) at path "_id" for model "carts"
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:05:40 PM - Invalid integer: 1998.9999999999998
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:07:22 PM - Invalid integer: 1998.9999999999998
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:35:56 PM - The `line_items` parameter is required in payment mode.
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:38:45 PM - The `line_items` parameter is required in payment mode.
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:39:30 PM - The `line_items` parameter is required in payment mode.
+error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:39:58 PM - The `line_items` parameter is required in payment mode.

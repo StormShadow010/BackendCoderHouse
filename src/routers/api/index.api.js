@@ -15,7 +15,7 @@ class ApiRouter extends CustomRouter {
     this.use("/tickets", ticketsRouter);
     this.use("/auth", authRouter);
     this.use("/loggers", loggerRouter);
-    // this.use("/checkout", checkoutRouter);
+    this.use("/checkout", checkoutRouter);
   }
 }
 

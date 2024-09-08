@@ -3,7 +3,7 @@ import CustomRouter from "../CustomRouter.js";
 
 class CheckoutRouter extends CustomRouter {
   init() {
-    this.create("/", ["USER", "PREMIUM", "ADMIN"], createPayment);
+    this.create("/", ["USER", "PREMIUM"], createPayment);
   }
 }
 

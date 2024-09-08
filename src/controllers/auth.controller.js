@@ -91,7 +91,13 @@ export const signout = async (req, res, next) => {
     console.log(req.cookies.token);
 
     return req.cookies.token
-      ? res.clearCookie("token").message200("Signed out!")
+      ? res
+          .clearCookie("token", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "None",
+          })
+          .message200("Signed out!")
       : res.error404("Invalid credentials from signout!");
   } catch (error) {
     return next(error);

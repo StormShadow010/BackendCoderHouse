@@ -88,8 +88,6 @@ export const onlineCode = async (req, res, next) => {
 //Log out user
 export const signout = async (req, res, next) => {
   try {
-    console.log(req.cookies.token);
-
     return req.cookies.token
       ? res
           .clearCookie("token", {

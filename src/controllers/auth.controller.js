@@ -88,11 +88,7 @@ export const onlineCode = async (req, res, next) => {
 //Log out user
 export const signout = async (req, res, next) => {
   try {
-    const authHeader = req.headers["authorization"];
-    // Extrae el token
-    let token = authHeader.split(" ")[1];
-
-    return token
+    return req.cookies.token
       ? res.clearCookie("token").message200("Signed out!")
       : res.error404("Invalid credentials from signout!");
   } catch (error) {

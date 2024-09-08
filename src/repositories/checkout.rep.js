@@ -7,8 +7,6 @@ import CheckoutProduct from "../dto/create/checkOutProduct.create.js";
 const stripe = new Stripe(variablesEnviroment.STRIPE_SECRET_KEY);
 
 const checkoutRepository = async (filter) => {
-  console.log(filter);
-
   try {
     let productsOnCart = await cartsManager.read(filter);
     productsOnCart = productsOnCart.map((each) => new CheckoutProduct(each));

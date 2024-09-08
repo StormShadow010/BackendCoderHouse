@@ -26,3 +26,6 @@ error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:35:56 PM - Th
 error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:38:45 PM - The `line_items` parameter is required in payment mode.
 error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:39:30 PM - The `line_items` parameter is required in payment mode.
 error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:39:58 PM - The `line_items` parameter is required in payment mode.
+error: POST - undefined - /api/auth/login - 4:49:43 PM - Cannot read properties of null (reading 'password')
+error: POST - undefined - /api/auth/login - 4:50:14 PM - Cannot read properties of null (reading 'password')
+error: POST - undefined - /api/auth/login - 4:50:17 PM - Cannot read properties of null (reading 'password')

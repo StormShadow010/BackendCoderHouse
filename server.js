@@ -32,7 +32,7 @@ server.use(winstonMid);
 server.use(cookieParser(variablesEnviroment.SECRET_COOKIE));
 server.use(
   cors({
-    origin: "https://coder-house-backend-project-frontend-3xnz.vercel.app",
+    origin: "https://coder-house-backend-project-frontend-cvwi.vercel.app",
     credentials: true,
   })
 );

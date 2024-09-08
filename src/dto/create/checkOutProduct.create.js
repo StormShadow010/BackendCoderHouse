@@ -1,7 +1,5 @@
 class CheckoutProduct {
   constructor(data) {
-    console.log(data);
-
     this.price_data = {
       product_data: { name: data.product_id.title },
       currency: "usd",

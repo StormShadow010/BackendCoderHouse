@@ -30,18 +30,18 @@ server.use(express.urlencoded({ extended: true }));
 server.use(express.static(__dirname + "/public"));
 server.use(winstonMid);
 server.use(cookieParser(variablesEnviroment.SECRET_COOKIE));
-// server.use(
-//   cors({
-//     origin: "https://coder-house-backend-project-frontend-cvwi.vercel.app",
-//     credentials: true,
-//   })
-// );
 server.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://coder-house-backend-project-frontend-cvwi.vercel.app",
     credentials: true,
   })
 );
+// server.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     credentials: true,
+//   })
+// );
 server.use("/api/docs", serve, setup(specs));
 server.use(
   compression({

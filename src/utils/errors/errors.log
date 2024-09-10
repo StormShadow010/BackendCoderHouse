@@ -29,3 +29,4 @@ error: POST - 400 - /api/checkout?uid=66ddd52ae07d9641178bee9d - 1:39:58 PM - Th
 error: POST - undefined - /api/auth/login - 4:49:43 PM - Cannot read properties of null (reading 'password')
 error: POST - undefined - /api/auth/login - 4:50:14 PM - Cannot read properties of null (reading 'password')
 error: POST - undefined - /api/auth/login - 4:50:17 PM - Cannot read properties of null (reading 'password')
+error: PUT - 400 - /api/products/664c96a5ffa0ef392971867b - 8:40:15 PM - Unexpected token '"', ""string"" is not valid JSON

@@ -19,12 +19,16 @@ components:
         stock:
           description: Description of the quantity
           type: integer
+        supplier_id:
+          description: Id provided by the supplier
+          type: string
       example:
         title: Example 1
         photo: A photo of a product
         category: Nintendo
         price: 50.99
         stock: 100
+        supplier_id: 123456789
   responses:
     message200:
       description: Success message

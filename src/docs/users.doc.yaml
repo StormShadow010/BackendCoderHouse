@@ -62,7 +62,7 @@ components:
                 type: number
               response:
                 description: Object with the requested resource data
-                $ref: "#/components/schemas/Product"
+                $ref: "#/components/schemas/Auth"
             example:
               statusCode: 200
               response:
@@ -86,7 +86,7 @@ components:
                 description: Array of objects of the requested resource
                 type: array
                 items:
-                  $ref: "#/components/schemas/Product"
+                  $ref: "#/components/schemas/Auth"
             example:
               statusCode: 200
               response:
@@ -103,7 +103,7 @@ components:
                   verify: true
                   code: 789012321
     message201:
-      description: Product creation success message
+      description: Auth creation success message
       content:
         application/json:
           schema:
@@ -130,7 +130,7 @@ components:
                 type: number
               response:
                 description: Object with data created successfully
-                $ref: "#/components/schemas/Product"
+                $ref: "#/components/schemas/Auth"
             example:
               statusCode: 201
               response:
@@ -154,7 +154,7 @@ components:
                 description: Array of paged and sorted objects of the requested resource
                 type: array
                 items:
-                  $ref: "#/components/schemas/Product"
+                  $ref: "#/components/schemas/Auth"
               info:
                 description: Pagination data
                 type: object
@@ -608,6 +608,44 @@ paths:
       responses:
         200:
           description: Check your email the code to reset the password!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/response200one"
+        400:
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        401:
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        403:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"
+  /api/auth/signout:
+    post:
+      summary: Log out
+      security:
+        - cookieAuth: []
+      tags:
+        - User
+      responses:
+        200:
+          description: Signed out!
           content:
             application/json:
               schema:

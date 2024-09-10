@@ -1,0 +1,336 @@
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        user_id:
+          description: User ID
+          type: string
+        product_id:
+          description: Product ID
+          type: string
+        quantity:
+          description: Quantity of the product
+          type: number
+          format: integer
+        supplier_id:
+          description: Id provided by the supplier
+          type: string
+      example:
+        user_id: 66ddd4bbe07d9641178bee97
+        product_id: 664c96a5ffa0ef392971867b
+        quantity: 1
+        supplier_id: 66ddd4abe07d9641178bee94
+  responses:
+    message200:
+      description: Success message
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request to success
+                type: number
+              message:
+                description: Descriptive text with the success of the operation
+                type: string
+            example:
+              statusCode: 200
+              message: Cart found successfully
+    response200one:
+      description: Success response with one item
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for success returning data
+                type: number
+              response:
+                description: Object with the requested resource data
+                $ref: "#/components/schemas/Cart"
+            example:
+              statusCode: 200
+              response:
+                user_id: 66de21161a319b56eb70b09e
+                product_id: 664c96a5ffa0ef392971868f
+                quantity: 1
+                supplier_id: 66ddd4bbe07d9641178bee97
+    response200all:
+      description: Success response with all items
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for success returning data
+                type: number
+              response:
+                description: Array of objects of the requested resource
+                type: array
+                items:
+                  $ref: "#/components/schemas/Cart"
+            example:
+              statusCode: 200
+              response:
+                - user_id: 66de21161a319b56eb70b09e
+                  product_id: 664c96a5ffa0ef392971868f
+                  quantity: 1
+                  supplier_id: 66ddd4bbe07d9641178bee97
+                - user_id: 66de21161a319b56eb70b09e
+                  product_id: 664c96a5ffa0ef392971868f
+                  quantity: 1
+                  supplier_id: 66ddd4bbe07d9641178bee97
+    message201:
+      description: Cart creation success message
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for successful creation
+                type: number
+              message:
+                description: Descriptive text with success in creation
+                type: string
+            example:
+              statusCode: 201
+              message: "Cart created successfully"
+    response201:
+      description: Success response with created item
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for successful creation
+                type: number
+              response:
+                description: Object with data created successfully
+                $ref: "#/components/schemas/Cart"
+            example:
+              statusCode: 201
+              response:
+                user_id: 66de21161a319b56eb70b09e
+                product_id: 664c96a5ffa0ef392971868f
+                quantity: 1
+                supplier_id: 66ddd4bbe07d9641178bee97
+    error400:
+      description: Client error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request failing due to customer problems
+                type: number
+              message:
+                description: Descriptive text with error message from the client
+                type: string
+            example:
+              statusCode: 400
+              message: Bad request. Please check your request and try again.
+    error401:
+      description: Authentication error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the authentication failure request
+                type: number
+              message:
+                description: Descriptive text with authentication error message
+                type: string
+            example:
+              statusCode: 401
+              message: Bad auth from policies!
+    error403:
+      description: Authorization error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for authorization failure
+                type: number
+              message:
+                description: Descriptive text with authorization error message
+                type: string
+            example:
+              statusCode: 403
+              message: Forbidden from policies!
+    error404:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code corresponding to the request for failure due to not finding what was requested
+                type: number
+              message:
+                description: Descriptive text with error message indicating that the resource was not found
+                type: string
+            example:
+              statusCode: 404
+              message: Resource not found. Please check the URL and try again.
+    error500:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                description: Status code for server errors
+                type: number
+              message:
+                description: Descriptive text with error message from the server
+                type: string
+            example:
+              statusCode: 500
+              message: CODER API ERROR.
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+paths:
+  /api/carts:
+    post:
+      summary: Create a new item cart
+      security:
+        - cookieAuth: []
+      tags:
+        - Cart
+      requestBody:
+        required: true
+        description: The product object to be created
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cart"
+      responses:
+        "201":
+          description: Cart created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/message201"
+        "400":
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        "401":
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        "403":
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"
+    get:
+      summary: Get a items cart by ID
+      security:
+        - cookieAuth: []
+      tags:
+        - Cart
+      parameters:
+        - name: uid
+          in: query
+          description: Unique identifier of the product
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Cart Items found
+          content:
+            application/json:
+              schema:
+              $ref: "#/components/responses/response200one"
+        "400":
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error404"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"
+  /api/carts/{cid}:
+    delete:
+      summary: Destroy a item cart
+      security:
+        - cookieAuth: []
+      tags:
+        - Cart
+      parameters:
+        - name: cid
+          in: path
+          description: Unique identifier of the product
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Item Cart deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/message201"
+        "400":
+          description: Invalid or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error400"
+        "401":
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error401"
+        "403":
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error403"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/error500"

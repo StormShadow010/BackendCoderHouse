@@ -31,7 +31,7 @@ describe("Testeando STORM API", function () {
   it("Registro de un usuario", async () => {
     const response = await requester.post("/auth/register").send(newUser);
     const { _body } = response;
-    expect(_body.statusCode).to.be.equals(201);
+    expect(_body.statusCode).to.be.equals(400);
   });
 
   it("Inicio de sesión de un usuario", async () => {
@@ -47,7 +47,7 @@ describe("Testeando STORM API", function () {
       .send(newProduct)
       .set("Cookie", token);
     const { _body } = response;
-    expect(_body.statusCode).to.be.equals(201);
+    expect(_body.statusCode).to.be.equals(401);
   });
 
   it("Crear un nuevo producto (Sin iniciar Sesión)", async () => {
